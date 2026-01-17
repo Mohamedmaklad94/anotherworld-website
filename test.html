@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Another World Photography</title>
+  <link rel="stylesheet" href="css/style-v3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+
+
+/* ترتيب أفقي */
+.home-content.horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* النص */
+.home-content .text {
+  flex: 1;
+}
+
+/* صورة المعرض الصغيرة */
+.gallery-thumb {
+  flex-shrink: 0;
+  width: 320px;
+  border-radius: 30;          /* لو مش محتاج تقويس */
+  background: transparent;   /* مهم جدًا */
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-thumb img {
+  width: 100%;
+  display: block;
+  background: transparent;
+
+}
+
+/* Hover */
+.gallery-thumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+}
+
+
+/* ===== Scroll Reveal Animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal > * {
+  transition-delay: 0.1s;
+}
+
+
+/* ====== CONTACT BRIDGE SECTION ====== */
+.contact-bridge {
+  background: #a59f95;
+  padding: 80px 5%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.contact-container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-family: "Cairo", sans-serif;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.contact-subtitle {
+  font-size: 1.2rem;
+  color: #000000;
+  font-family: "Cairo", sans-serif;
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;/* الحقول فوق بعض */
+  gap: 20px;
+}
+
+/* صف الزرار */
+.contact-form .btn-row {
+  display: flex;
+  justify-content: flex-start; /* الزرار على الشمال */
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  padding: 15px;
+  font-family: "Cairo", sans-serif;
+  color: #030303;
+  border: 1px solid #ccc;
+  background: #a59f95;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+/* الشكل العام للـ select box */
+.contact-form select {
+  background: #a59f95; /* نفس لون الخلفية */
+  color: #000;          /* نص أسود */
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 1rem;
+  outline: none;
+  -webkit-appearance: none;  /* لإزالة الشكل الافتراضي على سفاري وكروم */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* عند فتح القائمة dropdown نفسها */
+.contact-form select option {
+  background: #ffffff; /* خلفية بيضاء عند الفتح */
+  color: #000000;      /* نص أسود داخل القائمة */
+}
+
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: #ffffff;
+}
+
+.contact-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+.contact-btn {
+  background: #654c36;
+  color: #fff;
+  font-family: "Cairo", sans-serif;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #5c3904;
+}
+
+/* لون الـ placeholder */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #302e2e !important;
+  opacity: 1;
+}
+
+/* لون النص داخل الحقول */
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  color: #302e2e !important;
+}
+
+/* التعليم */
+
+.education-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.education-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.education-slider::-webkit-scrollbar-thumb {
+  background: #654c36;
+  border-radius: 10px;
+}
+
+.edu-card {
+  min-width: 340px;
+  scroll-snap-align: start;
+}
+
+
+/* موبايل */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+  </style>
+</head>
+  <body class="index-body">
+  <div id="header"></div>
+<script>
+  fetch("components/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+
+  <!-- ===========================
+       السلايدر الاحترافي + الخلفية المموهة
+  ============================ -->
+  <section class="slider">
+    <button class="prev">&#10095;</button>
+
+    <div class="slides">
+
+      <!-- السلايد 1 (active) -->
+      <div class="slide-wrapper" style="background-image: url('img/image1.jpg')">
+        <img src="img/image1.jpg">
+      </div>
+
+      <!-- السلايد 2 -->
+      <div class="slide-wrapper" style="background-image: url('img/image2.jpg')">
+        <img src="img/image2.jpg">
+      </div>
+
+      <!-- السلايد 3 -->
+      <div class="slide-wrapper" style="background-image: url('img/image3.jpg')">
+        <img src="img/image3.jpg">
+      </div>
+
+      <!-- السلايد 4 -->
+      <div class="slide-wrapper" style="background-image: url('img/image4.jpg')">
+        <img src="img/image4.jpg">
+      </div>
+
+      <!-- السلايد 5 -->
+      <div class="slide-wrapper" style="background-image: url('img/image5.jpg')">
+        <img src="img/image5.jpg">
+      </div>
+
+      <!-- السلايد 6 -->
+      <div class="slide-wrapper" style="background-image: url('img/image6.jpg')">
+        <img src="img/image6.jpg">
+      </div>
+
+    </div>
+
+    <button class="next">&#10094;</button>
+
+<div class="slider-caption-overlay">
+  <h2>أفضل صور الأسبوع</h2>
+  <p>أفضل صور الأسبوع الرابع من ديسمبر</p>
+</div>
+
+
+    <div class="slider-dots"></div>
+  </section>
+
+
+
+  <!-- قسم معرض مختصر -->
+   <section class="home-section reveal">
+  <div class="home-content horizontal">
+
+    <div class="text">
+      <h2>معرض الصور</h2>
+      <p>اكتشف أفضل أعمال مصورينا في مختلف التصنيفات.</p>
+      <a href="gallery-all.html" class="btn">استعرض المعرض</a>
+    </div>
+
+    <a href="gallery-all.html" class="gallery-thumb">
+      <img src="img/gallery/preview.png" alt="معرض الصور">
+    </a>
+
+  </div>
+</section>
+
+
+
+  <!-- قسم الشراكات -->
+  <section class="partners-section">
+  <div class="partners-header">
+    <div class="reveal">
+      <h2 class="partners-title">شراكاتنا</h2>
+      <p class="partners-subtitle">شراكتنا مع أبرز العلامات التجارية</p>
+    </div> <!-- إغلاق reveal -->
+  </div> <!-- إغلاق partners-header -->
+
+  <div class="partners-logos reveal">
+    <div class="partner-item">
+      <img src="img/partners/oppo.png" alt="Yalla Nsawr">
+    </div>
+
+    <div class="partner-item">
+      <img src="img/partners/tourism.png" alt="Ministry of Tourism">
+    </div>
+
+    <div class="partner-item">
+      <img src="img/partners/yallansawr.png" alt="OPPO">
+    </div>
+  </div>
+</section>
+
+
+
+
+  <!-- قسم آخر الأخبار -->
+ <section class="home-section">
+  <div class="reveal">
+    <h2>آخر أخبارنا</h2>
+    <ul>
+      <li>إطلاق مسابقة المحاور الجديدة.</li>
+      <li>إعلان نتائج المسابقة الأسبوعية.</li>
+      <li>تحديث أماكن التصوير المتاحة في القاهرة.</li>
+    </ul>
+  </div>
+</section>
+
+
+  <!-- قسم التعليم -->
+ <section class="home-section">
+  <div class="reveal">
+  <div class="contact-container"> <!-- الكونتينر المركزي -->
+    <h2>التعليم</h2>
+    <p>أحدث البوستات التعليمية من صفحة Another World Photography</p>
+
+    <div class="education-slider">
+
+      <!-- بوست 1 -->
+      <div class="edu-card">
+        <div class="fb-post"
+             data-href="https://www.facebook.com/anotherworldphotography/posts/pfbid031MnrtijEhuawpgNLmqPn81bNYj1qNKsrJiJ823DdyiqYvkJYNd4FmXpbPTRTWzxZl"
+             data-width="250">
+        </div>
+      </div>
+
+      <!-- بوست 2 -->
+      <div class="edu-card">
+        <div class="fb-post"
+             data-href="https://www.facebook.com/anotherworldphotography/posts/pfbid02oQdko9naWNadNrZJvVUrxADPeWPs7TxRECXVoG78Yd98hiv5LYqVefrb55d77ckMl"
+             data-width="250">
+        </div>
+      </div>
+
+      <!-- بوست 3 -->
+      <div class="edu-card">
+        <div class="fb-post"
+             data-href="https://www.facebook.com/anotherworldphotography/posts/pfbid032WdMjWzD2dqwndQjKR3SJoDreqFC9vtWwd4J3KzWaYKquWpbAZEPUcLGGsyu1Mdpl"
+             data-width="250">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="contact-bridge">
+  <div class="contact-container">
+
+    <h2 class="contact-title">دعنا نبدأ معًا</h2>
+    <p class="contact-subtitle">نحن هنا لربط المصورين بالعملاء وتسهيل عملية التواصل وضمان خدمة احترافية</p>
+
+    <form class="contact-form">
+
+      <div class="form-row">
+        <input type="text" placeholder="الاسم" required>
+        <input type="email" placeholder="البريد الإلكتروني" required>
+      </div>
+
+      <div class="form-row">
+        <input type="tel" placeholder="رقم الهاتف" required>
+
+        <select required>
+  <option value="" disabled selected>اختر نوع الخدمة</option>
+  <option value="client">عميل يبحث عن مصور</option>
+  <option value="fashion">مودل أو فاشون تبحث عن مصور</option>
+  <option value="photographer">مصور يبحث عن عميل</option>
+  <option value="join-team">الانضمام لفريق العمل</option>
+  <option value="join-photographer">الانضمام كمصور</option>
+</select>
+
+      </div>
+
+      <textarea placeholder="اكتب رسالتك هنا..." required></textarea>
+
+      <div class="btn-row">
+    <button type="submit" class="contact-btn">إرسال الرسالة</button>
+  </div>
+
+    </form>
+
+  </div>
+</section>
+
+  
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+
+  <script src="js/slider.js"></script>
+
+<!-- السكرول  -->
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const reveals = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementTop < windowHeight - 120) {
+          el.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+  });
+</script>
+
+<!-- Facebook SDK (مرة واحدة فقط قبل نهاية الـ body) -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+  src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v24.0">
+</script>
+</body>
+</html>
