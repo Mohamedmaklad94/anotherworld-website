@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Another World Photography</title>
+  <link rel="stylesheet" href="css/style-v3.css" />
+
+<style>
+    /* CSS مخصص لصفحة من نحن */
+    .about-page {
+      background: #f8f8f8;
+      padding-top: 0;
+    }
+    
+   .about-hero {
+    width: 100%;
+  height: 450px; /* ارتفاع الهيرو */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden; /* مهم عشان البلور مايطلعش بره */
+}
+
+
+
+.about-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+
+.about-hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 2;
+}
+
+
+
+    .about-hero h1 {
+      font-size: 3.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  color: #fff; /* 👈 الحل */
+    }
+    
+  
+    
+    .about-section {
+      background: white;
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+    
+    .profile-container {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .profile-image {
+      flex: 0 0 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 8px solid #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .profile-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    
+    .profile-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+    
+    .stat-card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #333;
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 250px;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 80px 20px;
+      border-radius: 15px;
+      margin: 60px 0;
+    }
+    
+    @media (max-width: 768px) {
+      .profile-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .about-hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+  /* ========== للموبايل فقط ========== */
+@media (max-width: 768px) {
+  /* كونتينر الصفحة */
+  .about-hero {
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: black !important;
+    padding: 20px !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+  
+  /* البلور حول الصورة */
+  .about-hero::before {
+    content: "" !important;
+    position: absolute !important;
+    top: -50px !important;
+    left: -50px !important;
+    right: -50px !important;
+    bottom: -50px !important;
+    background: 
+      linear-gradient(45deg, #1a1a2e, #16213e, #0f3460) !important;
+    filter: blur(30px) !important;
+    z-index: 0 !important;
+  }
+  
+  /* إخفاء الـ overlay القديم */
+  .about-hero::after {
+    display: none !important;
+  }
+  
+  /* الصورة في الوسط */
+  .about-hero-img {
+    width: 85% !important;
+    max-width: 400px !important;
+    max-height: 50vh !important;
+    position: relative !important;
+    z-index: 1 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.9) !important;
+  }
+  
+  /* النص تحت الصورة */
+  .about-hero-content {
+    position: relative !important;
+    z-index: 1 !important;
+    background: rgba(0,0,0,0.85) !important;
+    color: white !important;
+    padding: 20px !important;
+    margin-top: 20px !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+    width: 85% !important;
+  }
+  
+  .profile-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .about-hero h1 {
+    font-size: 2rem !important;
+  }
+}
+  
+
+  </style>
+
+</head>
+<body class="about-body">
+  <div id="header"></div>
+<script>
+  fetch("components/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+ <!-- قسم من نحن -->
+ <section class="about-hero">
+<img src="./img/about-bg.jpg" class="about-hero-img" alt="">
+  <div class="about-hero-content">
+    <h1>من نحن</h1>
+    <p>مجموعة من المصورين الموهوبين الذين يحولون اللحظات إلى فن خالد</p>
+  </div>
+</section>
+
+
+  <!-- المحتوى الرئيسي -->
+  <div class="about-content">
+    
+<!-- قسم عن المجموعة -->
+<section class="about-intro">
+  <div class="intro-content">
+    <h2>عن Another World Photography</h2>
+    
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="highlight">
+<br>AWP – Another World Photography</br>
+هو واحد من أقدم وأكبر مجتمعات التصوير الشبابية على مواقع التواصل الاجتماعي في مصر والوطن العربي.
+منذ انطلاقه، كان هدفنا الأساسي هو توثيق اللحظات الإنسانية والجمالية بعدسة المصور، ودعم كل من يرى في التصوير لغة للتعبير، سواء عبر كاميرا الهاتف المحمول أو الكاميرا الرقمية.
+<br>اليوم، أصبح AWP منصة رائدة تجمع المصورين، الفنانين، وصناع المحتوى من مختلف أنحاء العالم العربي، وتعمل على تطويرهم، دعمهم، وربطهم بفرص حقيقية.</br>
+        </p>
+        <p>
+         تم تأسيس صفحة Another World عام 2015،
+وتبعها إطلاق جروب AWP عام 2018،
+ليكون مساحة مفتوحة تجمع المصورين والفنانين من مختلف المستويات، من الهواة إلى المحترفين.
+<br>كان الهدف منذ البداية:</br>
+بناء مجتمع حقيقي للمصورين، وإتاحة مساحة آمنة لعرض الأعمال
+بالإضافة إلى تبادل الخبرات
+وتسليط الضوء على المواهب الصاعدة
+
+       <br>  خلال أكثر من 5 سنوات من العمل المستمر، توسع مجتمع AWP ليصبح:
+      <br> أكثر من 5 مليون متابع على مختلف منصات التواصل الاجتماعي.
+<br>أكثر من 1 مليون عضو نشط مهتم بكل ما يتعلق بالتصوير وصناعة المحتوى</br>
+ أحد أكبر مجتمعات التصوير في مصر والعالم العربي
+</br>كما أصبح لدينا فريق متكامل متخصص في:
+<br>التصوير الفوتوغرافي
+<br>إدارة المحتوى
+<br>التسويق الرقمي
+<br>وتنظيم الفعاليات والجولات التصويرية</br>
+
+<p><strong>رؤيتنا القادمة</strong>
+
+<br> نؤمن أن التصوير ليس هواية فقط، بل مسار مهني وصناعة إبداعية. لذلك بدأنا مؤخرًا في إطلاق منصتنا المتخصصة لحجوزات التصوير والتي تهدف إلى:
+<br>ربط المصورين الموهوبين بعملاء حقيقيين
+<br>تسهيل وصول العملاء إلى مصورين محترفين قادرين على تلبية احتياجاتهم
+<br>خلق بيئة عمل عادلة ومستدامة للمصورين
+<br>بناء مجتمع قوي، عادل، وملهم للمصورين في العالم العربي، حيث تتحول الموهبة إلى فرصة، والشغف إلى مسار حقيقي.
+
+  </p>
+   
+      </div>
+      <div class="intro-image">
+<img src="./img/about-intro.jpg" alt="فريق Another World Photography">       
+</div>
+    </div>
+  </div>
+</section>
+
+   <!-- Our Team Section -->
+<section class="team-section">
+  <div class="section-header">
+    <h2>Our Professional Team</h2>
+    <p>Meet the talented photographers who make your moments unforgettable</p>
+  </div>
+
+  <!-- Team Section - Your Team Only -->
+<section class="team-exact">
+  <div class="team-container">
+    
+    <!-- المؤسسون -->
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/mohamed-atef.jpg" alt="Mohamed Atef" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Mohamed Atef</h3>
+        <p class="team-role">Founder</p>
+        <p class="team-company">Social Media Manager</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/asmaa-zakarya.jpg" alt="Asmaa Zakarya" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Asmaa Zakarya</h3>
+        <p class="team-role">Founder</p>
+        <p class="team-company">Events Organizer & Master Photographer</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/sama-ahmed.jpg" alt="Sama Ahmed" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Sama Ahmed</h3>
+        <p class="team-role">Founder</p>
+        <p class="team-company">Community Lead</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/hassan-alzayyat.jpg" alt="Hassan Al-Zayyat" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Hassan Al-Zayyat</h3>
+        <p class="team-role">Founder</p>
+        <p class="team-company">Interactive Content Lead</p>
+      </div>
+    </div>
+
+    <!-- Group Admins -->
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/youssef-mohamed.jpg" alt="Youssef Mohamed" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Youssef Mohamed</h3>
+        <p class="team-role">Group Admin</p>
+        <p class="team-company">Reels Designer | Photographer</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/mona-salah.jpg" alt="Mona Salah" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Mona Salah</h3>
+        <p class="team-role">Group Admin</p>
+        <p class="team-company">Photographer</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/rofyda-mohamed.jpg" alt="Rofyda Mohamed" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Rofyda Mohamed</h3>
+        <p class="team-role">Group Admin</p>
+        <p class="team-company">Photographer</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/esraa-mahmoud.jpg" alt="Esraa Mahmoud" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Esraa Mahmoud</h3>
+        <p class="team-role">Group Admin</p>
+        <p class="team-company">Photographer</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/alaa-atef.jpg" alt="Alaa Atef" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Alaa Atef</h3>
+        <p class="team-role">Group Admin</p>
+        <p class="team-company">Finance Specialist</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/zahraa-mohamed.jpg" alt="Zahraa Mohamed" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Zahraa Mohamed</h3>
+        <p class="team-role">Group Admin</p>
+        <p class="team-company">Photographer | Content Creator</p>
+      </div>
+    </div>
+
+    <!-- Social Media Specialists -->
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/retage-mohamed.jpg" alt="Retage Mohamed" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Retage Mohamed</h3>
+        <p class="team-role">Social Media Specialist</p>
+        <p class="team-company">Content Strategy & Engagement</p>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-image">
+        <img src="img/team/habiba-sayed.jpg" alt="Habiba Sayed" loading="lazy">
+      </div>
+      <div class="team-content">
+        <h3 class="team-name">Habiba Sayed</h3>
+        <p class="team-role">Social Media Specialist</p>
+        <p class="team-company">Visual Content & Platform Management</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Stats Section -->
+
+ </div>
+</section>
+
+    <!-- Stats Section -->
+    <section class="about-section">
+      <h2 style="text-align: center; margin-bottom: 40px; color: #333;">أرقامنا تتحدث</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">100000+</span>
+          <h3>منشور بجروب التصوير</h3>
+          <p>حصدوا ملايين المشاهدات</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">1000+</span>
+          <h3>مشاريع قمنا بدعمها</h3>
+          <p>حتى تنجح</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">1000+</span>
+          <h3>عميل سعيد</h3>
+          <p>وثقوا بنا</p>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">8+</span>
+          <h3>سنوات خبرة</h3>
+          <p>في مجال التصوير</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="about-section">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+        <div>
+          <h3 style="color: #333; margin-bottom: 20px;">🎯 رؤيتنا</h3>
+          <p style="line-height: 1.7; color: #555;">
+            أن نكون الوجهة الأولى لكل من يبحث عن التميز في التصوير الفوتوغرافي في العالم العربي، 
+            وأن نرفع مستوى الفن البصري في مجتمعنا.
+          </p>
+        </div>
+        <div>
+          <h3 style="color: #333; margin-bottom: 20px;">🚀 مهمتنا</h3>
+          <p style="line-height: 1.7; color: #555;">
+            تقديم تجربة تصوير استثنائية تجمع بين الإبداع الفني والاحترافية التقنية، 
+            مع الحفاظ على الأصالة والجمال في كل لقطة.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">هل أنت مستعد لتحويل لحظاتك إلى فن؟</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        تواصل معنا اليوم وناقش مشروعك القادم مع فريقنا من المحترفين.
+      </p>
+      <a href="contact.html" style="display: inline-block; background: white; color: #764ba2; padding: 15px 40px; 
+         border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem; transition: all 0.3s ease;">
+        تواصل معنا
+      </a>
+    </section>
+  </div>
+
+  <!-- Popup Overlay -->
+<div id="memberPopup" class="popup-overlay">
+  <div class="popup-content">
+    <button class="popup-close">&times;</button>
+    
+    <div class="popup-profile">
+      <div class="popup-image-container">
+        <img id="popupImage" src="" alt="صورة العضو">
+      </div>
+      
+      <div class="popup-info">
+        <h2 id="popupName">الاسم</h2>
+        <p id="popupRole" class="popup-role">الدور</p>
+        <p id="popupCompany" class="popup-company">الشركة/التخصص</p>
+        
+        <div class="popup-bio" id="popupBio">
+          <!-- المعلومات التفصيلية ستظهر هنا -->
+        </div>
+        
+        <div class="popup-social" id="popupSocial">
+          <!-- روابط السوشيال ميديا ستظهر هنا -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/team-data.js"></script>
+
+ <script>
+// كود JavaScript الباقي...
+const popup = document.getElementById('memberPopup');
+const popupImage = document.getElementById('popupImage');
+const popupName = document.getElementById('popupName');
+const popupRole = document.getElementById('popupRole');
+const popupCompany = document.getElementById('popupCompany');
+const popupBio = document.getElementById('popupBio');
+const popupSocial = document.getElementById('popupSocial');
+const closeBtn = document.querySelector('.popup-close');
+
+// جعل كل بطاقة فريق قابلة للنقر
+document.querySelectorAll('.team-card').forEach(card => {
+  card.addEventListener('click', function() {
+    const name = this.querySelector('.team-name').textContent;
+    openPopup(name);
+  });
+});
+
+// فتح النافذة المنبثقة
+function openPopup(memberName) {
+  const member = teamMembers[memberName];
+  
+  if (!member) {
+    console.error('لا توجد بيانات لهذا العضو:', memberName);
+    return;
+  }
+  
+  // تحديث محتوى النافذة - مع تنسيق أجمل
+  popupImage.src = member.image;
+  popupImage.alt = memberName;
+  popupName.textContent = memberName;
+  
+  // دمج الـ Role والـ Company في سطر واحد
+  popupRole.innerHTML = `<strong>${member.role}</strong> | ${member.company}`;
+  popupCompany.style.display = 'none'; // نخفي العنصر الأصلي
+  
+   // تحديد العنوان حسب الجنس
+  /*const bioTitle = member.gender === 'female' ? 'نبذة عنها:' : 'نبذة عنه:';*/
+
+   // تحديث النبذة مع العنوان المناسب
+  popupBio.innerHTML = `
+  <p style="margin: 30px 0 100px 0; line-height: 1.7; font-size: 1.05rem; color: #444;">
+    ${member.bio}
+  </p>
+`;
+  
+  
+  // إضافة روابط السوشيال ميديا
+  popupSocial.innerHTML = '';
+  popupSocial.style.paddingTop = "30px !important";
+  const socialIcons = {
+    facebook: 'fab fa-facebook-f',
+    instagram: 'fab fa-instagram',
+    twitter: 'fab fa-twitter',
+    linkedin: 'fab fa-linkedin-in',
+    youtube: 'fab fa-youtube',
+    behance: 'fab fa-behance',
+    tiktok: 'fab fa-tiktok',
+    pinterest: 'fab fa-pinterest'
+  };
+  
+  for (const [platform, url] of Object.entries(member.social)) {
+    const iconClass = socialIcons[platform];
+    if (iconClass) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.title = platform;
+      link.innerHTML = `<i class="${iconClass}"></i>`;
+      popupSocial.appendChild(link);
+    }
+  }
+  
+  // إضافة أيقونات FontAwesome
+  if (!document.querySelector('link[href*="fontawesome"]')) {
+    const faLink = document.createElement('link');
+    faLink.rel = 'stylesheet';
+    faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    document.head.appendChild(faLink);
+  }
+  
+  // إظهار النافذة
+  popup.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+// إغلاق النافذة
+closeBtn.addEventListener('click', closePopup);
+popup.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closePopup();
+  }
+});
+
+// إغلاق بـ ESC
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closePopup();
+  }
+});
+
+function closePopup() {
+  popup.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+</script>
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>شراكتنا مع أوبو - OPPO - Another World Photography</title>
+   <link rel="stylesheet" href="css/style-v3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+
+<style>
+/* الهيرو */
+.oppo-hero {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: none;
+}
+
+/* Overlay */
+.oppo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 1;
+}
+
+/* العنوان */
+.oppo-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 140px;
+    letter-spacing: -3.5px;
+}
+
+/* أزرار Next/Prev */
+.oppo-prev,
+.oppo-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.4);
+    border: none;
+    border-radius: 8px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oppo-prev { left: 40px; }
+.oppo-next { right: 40px; }
+
+/* Dots */
+.oppo-dots {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.oppo-dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.oppo-dots .dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* Hover */
+.oppo-prev:hover,
+.oppo-next:hover {
+    background: rgba(255,255,255,0.6);
+    color: black;
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* ===== LIGHTBOX — oppo Only ===== */
+/* Navigation arrows */
+.oppo-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oppo-prev { left: 20px; }
+.oppo-next { right: 20px; }
+
+  .hidden {
+    display: none !important;
+}
+
+/* ===== OPPO PARTNERSHIP ===== */
+.oppo-partnership {
+  max-width: 1100px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.oppo-section-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 80px;
+}
+
+/* YEAR BLOCK */
+.oppo-year {
+  border-top: 1px solid rgba(0,0,0,0.15);
+}
+
+.oppo-year:last-child {
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+.oppo-year-header {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 30px 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.oppo-year-header i {
+  transition: transform 0.5s ease;
+}
+
+/* CONTENT */
+.oppo-year-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.9s ease, opacity 0.6s ease;
+  opacity: 0;
+}
+
+.oppo-year-content.open {
+  opacity: 1;
+}
+
+/* INNER */
+.oppo-year-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  padding: 40px 0 60px;
+}
+
+.oppo-year-inner img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.oppo-year-inner p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #444;
+}
+
+/* ACTIVE */
+.oppo-year.active .oppo-year-header i {
+  transform: rotate(180deg);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .oppo-year-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .oppo-year-header {
+    font-size: 1.8rem;
+  }
+}
+
+
+</style>
+</head>
+
+<body class="about-body">
+
+<!-- HEADER -->
+<div id="header"></div>
+<script>
+  fetch("components/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+<!-- HERO -->
+<section class="gallery-hero oppo-hero">
+    <div class="oppo-overlay"></div>
+    <!--<h1>OPPO</h1>-->
+
+    <button class="oppo-prev prev" id="oppo-prev">›</button>
+    <button class="oppo-next next" id="oppo-next">‹</button>
+    <div class="oppo-dots"></div>
+</section>
+
+<script src="js/oppo-slider.js"></script>
+
+<!-- OPPO PARTNERSHIP TIMELINE -->
+<section class="oppo-partnership">
+
+  <h2 class="oppo-section-title">رحلة شراكتنا مع OPPO</h2>
+
+  <!-- YEAR -->
+  <div class="oppo-year">
+    <button class="oppo-year-header">
+      <span>2023</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="oppo-year-content">
+      <div class="oppo-year-inner">
+        <img src="img/gallery/oppo-15.jpg" alt="OPPO 2023">
+
+        <p>
+         جاءت مسابقة تصوير البورتريه سنة 2023 بالتعاون مع OPPO Egypt كخطوة حقيقية لدعم المصورين المبدعين ومنحهم مساحة للتعبير عن أفكارهم الفنية بحرية. لم تكن المسابقة مجرد التقاط صورة بورتريه، بل كانت دعوة لتقديم قصة وشعور ورؤية مختلفة من خلال الصورة.
+شارك المصورون بأعمال تعكس قوة الفكرة والإبداع البصري، وتم تقييم المشاركات بعناية لاختيار أفضل الصور، ثم إجراء تصويت على المراكز الأولى، مع تقديم جوائز نقدية تقديرًا للجهد والتميّز. هذه التجربة عكست روح الشراكة بين OPPO و Another World Photography في دعم الإبداع الحقيقي وتمكين المواهب.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEAR -->
+  <div class="oppo-year">
+    <button class="oppo-year-header">
+      <span>2024</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="oppo-year-content">
+      <div class="oppo-year-inner">
+        <img src="img/gallery/oppo-16.jpg" alt="OPPO 2024">
+
+        <p>
+         في عام 2024، واصلنا شراكتنا مع OPPO Egypt من خلال إطلاق مسابقة تصوير فوتوغرافي متخصصة في فن البورتريه، استهدفت إبراز الإبداع الحقيقي للمصورين وتسليط الضوء على قوة الفكرة قبل الصورة. ركزت المسابقة على تقديم بورتريهات غير تقليدية تعكس رؤية فنية عميقة وشخصية، بعيدًا عن القوالب المعتادة.
+شهدت المسابقة مشاركة واسعة من المصورين عبر مختلف المنصات، وتم اختيار أفضل الأعمال من خلال لجنة تحكيم متخصصة، تلاها تصويت لاختيار المراكز الثلاثة الأولى، مع تقديم جوائز قيمة دعماً للمواهب وإيمانًا بدور التصوير في التعبير البصري المؤثر.
+        </p>
+      </div>
+
+       <div class="oppo-year-inner">
+      <img src="img/gallery/oppo-17.jpg" alt="Egypt Identity OPPO 2024">
+
+      <p>
+      في إطار تعزيز دور التصوير الفوتوغرافي كأداة فعالة في إبراز الهوية المصرية، جاءت مسابقة عام 2024 كثمرة تعاون قوي بين OPPO Egypt ووزارة السياحة والآثار وبالتنظيم من جروب Another World Photography. تُعد هذه المسابقة واحدة من أكبر وأهم مسابقات التصوير التي أُقيمت خلال العام، حيث استهدفت تقديم صورة متكاملة عن الثقافة المصرية من خلال عدة محاور إبداعية شملت وجوه مصرية، والتصوير المعماري، والطبيعة في مصر، والعادات والتقاليد، والصناعات والحرف المصرية.
+شهدت المسابقة مشاركة واسعة من المصورين من مختلف أنحاء الجمهورية، مع مستوى فني مرتفع يعكس قوة وتأثير مجتمع AWP، وقدرته على إدارة مسابقات ضخمة ذات معايير احترافية عالية. أتاح هذا التعاون للمواهب فرصة حقيقية للوصول إلى جمهور واسع عبر منصات OPPO الرسمية، مع جوائز كبرى جمعت بين الدعم المادي والتقني، مما عزز من قيمة التجربة ورسّخ مكانة Another World Photography كأحد أقوى المجتمعات الفوتوغرافية في مصر، وشريك موثوق للعلامات التجارية والمؤسسات الرسمية في تقديم محتوى بصري يعكس روح وهوية الوطن.
+      </p>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- YEAR -->
+  <div class="oppo-year">
+    <button class="oppo-year-header">
+      <span>2025</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="oppo-year-content">
+      <div class="oppo-year-inner">
+        <img src="img/gallery/oppo-18.jpg" alt="OPPO 2025">
+
+        <p>
+  في أبريل 2025، أطلقنا واحدة من أقوى مسابقات التصوير الفوتوغرافي بالتعاون مع OPPO Egypt وبرعاية وزارة السياحة والآثار ممثلة في الهيئة العامة المصرية لتنشيط السياحة، في خطوة تهدف إلى دعم وتنشيط السياحة المصرية من خلال قوة الصورة وتأثيرها. ركزت المسابقة على إبراز جمال مصر وتنوعها الثقافي والسياحي، من خلال عدسة المصورين وقدرتهم على تقديم رؤية مختلفة للأماكن والوجوه والتجارب السياحية.
+شهدت المسابقة تفاعلًا غير مسبوق ومنافسة قوية بين آلاف المشاركين، حيث لعب مجتمع Another World Photography دورًا محوريًا في الوصول إلى أكثر من 5 ملايين شخص عبر مختلف المنصات، مما ساهم في نشر المحتوى السياحي على نطاق واسع وبأسلوب بصري حديث يتماشى مع رؤية OPPO في دعم الإبداع وصناعة المحتوى. وقد عكست النتائج المستوى العالي للمشاركات وقوة التعاون بين العلامة التجارية والمجتمع الفوتوغرافي، مؤكدة قدرة AWP على تنفيذ حملات جماهيرية مؤثرة تخدم أهداف السياحة الوطنية وتُبرز مصر بصورة تليق بها محليًا ودوليًا.
+        </p>
+      </div>
+
+      <div class="oppo-year-inner">
+      <img src="img/gallery/oppo-19.jpg" alt="Egypt Identity OPPO 2025">
+
+      <p>
+     استكمالًا لمسيرة التعاون المثمرة مع OPPO Egypt خلال عام 2025، جاءت مسابقة OPPO Egypt Photography Awards 2025 لتكون واحدة من أضخم المبادرات الفوتوغرافية التي استهدفت توثيق اللحظات الاستثنائية في مصر من منظور إنساني وإبداعي معاصر. ركزت المسابقة على فكرة أن كل لحظة تحمل قصة، من خلال ثمانية محاور متنوعة شملت الحياة اليومية، والبورتريه، والشباب، والفرح، والحكايات، والتواصل الإنساني، وصولًا إلى الأماكن الاستثنائية التي تعكس جمال مصر وتنوعها الثقافي والسياحي.
+لعب مجتمع Another World Photography دورًا محوريًا في إدارة وتنظيم ونشر المسابقة، سواء عبر المنصات الرقمية أو من خلال الأنشطة الميدانية، حيث تم إطلاق جولات تصوير حصرية بالتعاون مع OPPO، أُتيحت خلالها الفرصة للمشاركين لاستخدام أحدث هواتف OPPO لتوثيق لحظاتهم الخاصة والمشاركة بها في المسابقة. وقد ساهم هذا التكامل بين المسابقة الرقمية والتجربة الواقعية في رفع مستوى التفاعل والوصول إلى شريحة واسعة من المبدعين، مع تأهل الفائزين تلقائيًا للمنافسة على الجوائز العالمية، مما عزز من حضور مصر على خريطة التصوير الفوتوغرافي العالمية وأكد مكانة Another World Photography كشريك استراتيجي قادر على تنفيذ مبادرات إبداعية كبرى تجمع بين التكنولوجيا، القصة الإنسانية، والتأثير المجتمعي.
+      </p>
+    </div>
+ <div class="oppo-year-inner">
+      <img src="img/gallery/oppo-20.jpg" alt="Oppo Conference 2025">
+
+      <p>
+        واختُتم عام 2025 بحدث استثنائي تمثل في مؤتمر OPPO Photography 2025 Year Awards، والذي جاء تتويجًا لعام كامل من التعاون الإبداعي بين OPPO Egypt وAnother World Photography. شهد المؤتمر توزيع الجوائز الرسمية على الفائزين في مسابقات التصوير المختلفة، إلى جانب تسليط الضوء على دور مجتمع Another World Photography في تمكين الشباب وجذبهم للمشاركة الفعّالة في مبادرات OPPO الفنية والثقافية.
+كما أتاح الحدث للمشاركين فرصة زيارة معرض OPPO لأفضل الأعمال الفوتوغرافية المختارة خلال العام، والتفاعل المباشر مع شركاء OPPO وصناع القرار في مجال التصوير والتكنولوجيا، فضلًا عن تنظيم ورش عمل مبسطة ركزت على تطوير المهارات البصرية وربط الإبداع بالتقنيات الحديثة. لم يكن المؤتمر مجرد حفل توزيع جوائز، بل منصة حقيقية للاحتفاء بالمواهب الشابة، وبناء جسور تواصل بين المبدعين والعلامات العالمية، وترسيخ مكانة Another World Photography كشريك مجتمعي مؤثر قادر على صناعة تجارب إبداعية متكاملة تمتد من المسابقة إلى الواقع، ومن الصورة إلى التأثير.
+      </p>
+    </div>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+  document.querySelectorAll('.oppo-year-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const year = header.parentElement;
+      const content = year.querySelector('.oppo-year-content');
+
+      year.classList.toggle('active');
+
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.classList.remove('open');
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.classList.add('open');
+      }
+    });
+  });
+</script>
+
+
+<!-- GALLERY SCRIPT -->
+<script src="js/oppo-gallery.js"></script>
+
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+<!-- HEADER SCROLL -->
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+</body>
+</html>
+

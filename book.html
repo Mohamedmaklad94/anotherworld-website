@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>  احجز معنا | Booking - Another World Photography</title>
+  <link rel="stylesheet" href="css/style-v3.css" />
+  <link rel="stylesheet" href="css/booking-form.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+body {
+margin: 0;
+font-family: 'Cairo', sans-serif;
+background: #dbd8d6;
+color: #222;
+}
+/* الهيرو */
+.hero {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 80px 8%;
+gap: 60px;
+}
+.hero-content {
+max-width: 520px;
+}
+
+.hero-content h1 {
+ font-family: 'Montserrat', 'Cairo', sans-serif; /* الخط الجديد */
+  font-weight: 780; /* يخلي النص تقيل Bold */
+  font-size: 40px; /* حجم مناسب */
+  line-height: 1.3;
+  margin-bottom: 20px;
+  color: #472d30; /* ليتناسب مع الهيدر الشفاف */
+}
+
+.hero-content p {
+font-size: 18px;
+color: #555;
+line-height: 1.8;
+margin-bottom: 30px;
+}
+
+.hero-actions {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.hero-actions a {
+text-decoration: none;
+padding: 14px 32px;
+border-radius: 30px;
+font-size: 16px;
+font-weight: 600;
+}
+
+.btn-primary {
+background: #643c07;
+color: #fff;
+transition: all 0.3s ease; /* مهم للأنميشن */
+}
+
+/* التأثير عند المرور بالماوس */
+.btn-primary:hover {
+  background: #7a4b10; /* لون أفتح شوي */
+  transform: scale(1.05); /* يكبر الزر 5% */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* ظل خفيف */
+}
+
+.btn-secondary {
+color: #555;
+font-size: 15px;
+}
+
+.hero-image img {
+width: 100%;
+max-width: 520px;
+border-radius: 16px;
+object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+.hero {
+flex-direction: column-reverse;
+text-align: center;
+}
+.hero-actions {
+justify-content: center;
+}
+}
+
+.booking-section {
+  padding: 80px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+.booking-section.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+</style>
+</head>
+
+<body>
+<!-- HEADER -->
+<div id="header"></div>
+<script>
+  fetch("components/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>
+احجز مصورك بسهولة<br>
+أو اعثر على عملاء جدد فورًا
+</h1>
+
+<p>
+منصة ذكية تربط بين المصورين والعملاء.
+سهّل الحجز، وفّر الوقت، وابدأ التعاون بدون تعقيد —
+سواء كنت تبحث عن مصور محترف أو مصور تبحث عن فرص عمل حقيقية.
+</p>
+
+<div class="hero-actions">
+<!-- يودّي على صفحة الحجز -->
+<a href="#" class="btn-primary" id="scrollBookingBtn">احجز الآن</a>
+<span class="btn-secondary">لا حاجة للدفع المسبق</span>
+</div>
+</div>
+
+<div class="hero-image">
+<img
+src="img/bookinghero.png"
+alt="تصوير احترافي">
+</div>
+</section>
+
+  <!-- الفورم-->
+<section id="booking-section" class="booking-section">
+<div class="container">
+<h1> احجز معنا</h1>
+<p class="subtitle">نربط بين أفضل المصورين والعملاء بسهولة وسرعة</p>
+
+<!-- اختيار نوع المستخدم -->
+<div class="user-type">
+<button id="clientBtn" onclick="showClient()">
+<span class="material-symbols-outlined">person</span> عميل
+</button>
+
+<button id="photographerBtn" onclick="showPhotographer()">
+<span class="material-symbols-outlined">photo_camera</span> مصور
+</button>
+</div>
+
+<!-- نص توضيحي -->
+<div id="info" class="info-text"></div>
+
+
+<!-- فورم العميل -->
+<form id="clientForm">
+<div class="field">
+<span class="material-symbols-outlined icon">person</span>
+<input type="text" placeholder="الاسم">
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">mail</span>
+<input type="email" placeholder="عنوان البريد الإلكتروني">
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">call</span>
+<input type="tel" placeholder="رقم الهاتف">
+</div>
+
+<div class="field select">
+<span class="material-symbols-outlined icon">photo_camera</span>
+<select required>
+<option value="">نوع التصوير</option>
+<option>أفراح أو خطوبة</option>
+<option>بورتريه</option>
+<option>تصوير منتجات</option>
+<option>مناسبات</option>
+<option>إعلانات</option>
+</select>
+</div>
+
+<div class="field select">
+<span class="material-symbols-outlined icon">wc</span>
+<select>
+<option value="">تفضيل المصور</option>
+<option value="any">لا يوجد تفضيل</option>
+<option value="male">مصور</option>
+<option value="female">مصورة</option>
+</select>
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">location_on</span>
+<input type="text" placeholder="المدينة">
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">calendar_month</span>
+<input
+type="text"
+placeholder="موعد التصوير"
+onfocus="this.type='date'"
+onblur="if(!this.value) this.type='text'">
+</div>
+
+<div class="field textarea">
+<span class="material-symbols-outlined icon">edit</span>
+<textarea placeholder="ملاحظات إضافية"></textarea>
+</div>
+
+<button type="submit" class="submit">احجز مصور الآن</button>
+</form>
+
+<!-- فورم المصور -->
+<form id="photographerForm">
+<div class="field">
+<span class="material-symbols-outlined icon">person</span>
+<input type="text" placeholder="الاسم" required>
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">call</span>
+<input type="tel" placeholder="رقم الهاتف / واتساب" required>
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">location_on</span>
+<input type="text" placeholder="المدينة">
+</div>
+
+<div class="field select">
+<span class="material-symbols-outlined icon">photo_camera</span>
+<select id="photographyType" required onchange="toggleOtherType()">
+<option value="">نوع التصوير</option>
+<option value="wedding">أفراح – Wedding</option>
+<option value="engagement">خطوبة – Engagement</option>
+<option value="birthday">أعياد ميلاد – Birthdays</option>
+<option value="portrait">بورتريه / فاشون – Portrait / Fashion</option>
+<option value="events">مناسبات</option>
+<option value="corporate">شركات – Corporate</option>
+<option value="other">أخرى</option>
+</select>
+</div>
+
+<div class="service-section">
+<div class="section-title">
+<span class="material-symbols-outlined">work</span>
+<span>نوع الخدمة</span>
+</div>
+
+<label class="check-item">
+<input type="checkbox" name="service[]" value="photo_only">
+<span>تصوير فوتوغرافي فقط</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" name="service[]" value="photo_edit">
+<span>تصوير + تعديل</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" name="service[]" value="video_only">
+<span>فيديو فقط</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" name="service[]" value="video_edit">
+<span>فيديو + مونتاج</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" name="service[]" value="packages">
+<span>باقات (صور + فيديو)</span>
+</label>
+</div>
+
+<div class="service-section">
+<div class="section-title">
+<span class="material-symbols-outlined">camera_alt</span>
+<span>أداة التصوير</span>
+</div>
+
+<label class="check-item">
+<input type="checkbox" name="equipment[]" value="phone">
+<span>مصور بهاتف</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" name="equipment[]" value="camera">
+<span>مصور بكاميرا</span>
+</label>
+
+<label class="check-item">
+<input type="checkbox" name="equipment[]" value="camera_gear">
+<span>كاميرا + أدوات إضافية</span>
+</label>
+
+</div>
+<div class="field select">
+<span class="material-symbols-outlined icon">payments</span>
+<select id="pricingType" required onchange="togglePricingDetails()">
+<option value="">طريقة التسعير</option>
+<option value="hourly">بالساعة – Hourly</option>
+<option value="daily">باليوم – Daily</option>
+<option value="per_photo">حسب عدد الصور – Per Photo</option>
+<option value="packages">باقات – Packages</option>
+</select>
+</div>
+
+<!-- تفاصيل إضافية -->
+<div class="field" id="pricingDetailsField" style="display:none;">
+<span class="material-symbols-outlined icon">edit</span>
+<input
+type="text"
+id="pricingDetailsInput"
+placeholder="اكتب تفاصيل التسعير (مثال: 30 صورة = 1500 جنيه)"
+>
+</div>
+
+<!-- يظهر فقط عند اختيار "أخرى" -->
+<div class="field" id="otherTypeField" style="display:none;">
+<span class="material-symbols-outlined icon">edit</span>
+<input
+type="text"
+id="otherTypeInput"
+placeholder="من فضلك اكتب نوع التصوير"
+>
+</div>
+
+<!-- مدة التسليم -->
+<div class="field select">
+<span class="material-symbols-outlined icon">schedule</span>
+<select id="deliveryTime" required>
+<option value="">مدة التسليم</option>
+<option value="same_day">نفس اليوم</option>
+<option value="2_3_days">من 2 إلى 3 أيام</option>
+<option value="1_week">أسبوع</option>
+<option value="2_weeks_plus">أسبوعين أو أكثر</option>
+</select>
+
+</div>
+<!-- سنوات الخبرة -->
+<div class="field select">
+<span class="material-symbols-outlined icon">star</span>
+<select id="experienceYears" required>
+<option value="">سنوات الخبرة</option>
+<option value="1-2">من 1 إلى 2 سنة</option>
+<option value="3-5">من 3 إلى 5 سنوات</option>
+<option value="6-10">من 6 إلى 10 سنوات</option>
+<option value="10+">أكثر من 10 سنوات</option>
+</select>
+</div>
+
+<div class="service-section">
+<div class="section-title">
+<span class="material-symbols-outlined">attach_money</span>
+<span>هل يتطلب عربون للحجز؟</span>
+</div>
+
+<label class="check-item">
+<input type="radio" name="deposit" value="yes" required>
+<span>نعم</span>
+</label>
+
+<label class="check-item">
+<input type="radio" name="deposit" value="no">
+<span>لا</span>
+</label>
+</div>
+
+<div class="field">
+<span class="material-symbols-outlined icon">link</span>
+<input type="text" placeholder="رابط أعمالك (إنستجرام / موقع)">
+</div>
+
+<div class="field textarea">
+<span class="material-symbols-outlined icon">badge</span>
+<textarea placeholder="نبذة عن خبرتك"></textarea>
+</div>
+
+<button type="submit" class="submit">انضم كمصور</button>
+</form>
+<p class="note">سيتم التواصل معك خلال 24 ساعة</p>
+</div>
+
+<script>
+function showClient() {
+document.getElementById("clientForm").style.display = "block";
+document.getElementById("photographerForm").style.display = "none";
+document.getElementById("info").innerText =
+"هل تبحث عن مصور محترف لمناسبة أو جلسة تصوير؟";
+document.getElementById("clientBtn").classList.add("active");
+document.getElementById("photographerBtn").classList.remove("active");
+}
+
+function showPhotographer() {
+document.getElementById("photographerForm").style.display = "block";
+document.getElementById("clientForm").style.display = "none";
+document.getElementById("info").innerText =
+"هل أنت مصور وتبحث عن عملاء وفرص تصوير؟";
+document.getElementById("photographerBtn").classList.add("active");
+document.getElementById("clientBtn").classList.remove("active");
+}
+</script>
+
+<script>
+function toggleOtherType() {
+const select = document.getElementById("photographyType");
+const otherField = document.getElementById("otherTypeField");
+const otherInput = document.getElementById("otherTypeInput");
+if (select.value === "other") {
+otherField.style.display = "block";
+otherInput.required = true;
+} else {
+otherField.style.display = "none";
+otherInput.required = false;
+otherInput.value = "";
+}
+}
+</script>
+
+<script>
+function togglePricingDetails() {
+const pricingType = document.getElementById("pricingType");
+const detailsField = document.getElementById("pricingDetailsField");
+const detailsInput = document.getElementById("pricingDetailsInput");
+if (
+pricingType.value === "packages" ||
+pricingType.value === "per_photo"
+) {
+detailsField.style.display = "block";
+detailsInput.required = true;
+} else {
+detailsField.style.display = "none";
+detailsInput.required = false;
+detailsInput.value = "";
+}
+}
+</script>
+</section>
+
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+<!-- HEADER SCROLL -->
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+<script>
+function scrollToBooking() {
+  const section = document.getElementById("booking-section");
+
+  section.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  setTimeout(() => {
+    section.classList.add("active"); // فقط نشوف الفورم، لكن لا نفتح أي واحد
+  }, 600);
+}
+
+document.getElementById("scrollBookingBtn").addEventListener("click", function(e) {
+  e.preventDefault(); // يمنع الرابط من عمل reload
+  const bookingSection = document.getElementById("booking-section");
+
+  // Scroll سلس للأسفل
+  const yOffset = +250; // المسافة اللي هيتحرك فوق العنصر (علشان الهيدر الشفاف)
+const y = bookingSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+window.scrollTo({ top: y, behavior: 'smooth' });
+
+  // يظهر الفورم تدريجي (animation)
+  bookingSection.classList.add("active");
+
+  // لا نفتح أي فورم تلقائي هنا
+});
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>  بورتريه portrait - Another World Photography</title>
+  <link rel="stylesheet" href="css/style-v3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+
+<style>
+/* الهيرو */
+.portrait-hero {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: none;
+}
+
+/* Overlay */
+.portrait-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 1;
+}
+
+/* العنوان */
+.portrait-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 140px;
+    letter-spacing: 0px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.100);
+}
+
+/* أزرار Next/Prev */
+.portrait-prev,
+.portrait-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.4);
+    border: none;
+    border-radius: 8px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portrait-prev { left: 40px; }
+.portrait-next { right: 40px; }
+
+/* Dots */
+.portrait-dots {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.portrait-dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.portrait-dots .dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* Hover */
+.portrait-prev:hover,
+.portrait-next:hover {
+    background: rgba(255,255,255,0.6);
+    color: black;
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* ===== LIGHTBOX — portrait Only ===== */
+.portrait-lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.portrait-lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.portrait-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.portrait-img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 8px;
+}
+
+.portrait-info {
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.portrait-author {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Close button */
+.portrait-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+/* Navigation arrows */
+.portrait-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portrait-prev { left: 20px; }
+.portrait-next { right: 20px; }
+
+.latest-works {
+  min-height: 800px; }
+  
+  .hidden {
+    display: none !important;
+}
+
+
+</style>
+</head>
+
+<body class="about-body">
+
+<!-- HEADER -->
+<div id="header"></div>
+<script>
+  fetch("components/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+<!-- HERO -->
+<section class="gallery-hero portrait-hero">
+    <div class="portrait-overlay"></div>
+    <h1>portrait</h1>
+
+    <button class="portrait-prev prev" id="portrait-prev">›</button>
+    <button class="portrait-next next" id="portrait-next">‹</button>
+    <div class="portrait-dots"></div>
+</section>
+
+<script src="js/portrait-slider.js"></script>
+
+<!-- LIGHTBOX HTML -->
+<div class="portrait-lightbox" id="portraitLightbox">
+    <button class="portrait-close" id="portraitClose">&times;</button>
+    <button class="portrait-nav portrait-prev" id="portraitPrev">›</button>
+    <button class="portrait-nav portrait-next" id="portraitNext">‹</button>
+    <div class="portrait-content">
+        <img class="portrait-img" id="portraitImg" src="" alt="">
+        <div class="portrait-info">
+            <div class="portrait-author" id="portraitAuthor"></div>
+        </div>
+    </div>
+</div>
+
+<!-- LIGHTBOX SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const portrait = document.getElementById('portraitLightbox');
+  const portraitImg = document.getElementById('portraitImg');
+  const portraitAuthor = document.getElementById('portraitAuthor');
+  const portraitClose = document.getElementById('portraitClose');
+  const portraitPrev = document.getElementById('portraitPrev');
+  const portraitNext = document.getElementById('portraitNext');
+  window.openportrait = function(photo, index) {
+      portraitImg.src = photo.image;
+      portraitAuthor.textContent = photo.author;
+      portrait.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      portrait.dataset.index = index;
+  }
+
+  function closeportrait() {
+      portrait.classList.remove('active');
+      document.body.style.overflow = 'auto';
+  }
+
+  function navportrait(dir) {
+      let idx = parseInt(portrait.dataset.index);
+      if (dir === 'next') idx = (idx + 1) % portraitPhotos.length;
+      else idx = (idx - 1 + portraitPhotos.length) % portraitPhotos.length;
+
+      const photo = portraitPhotos[idx];
+      portraitImg.src = photo.image;
+      portraitAuthor.textContent = photo.author;
+      portrait.dataset.index = idx;
+  }
+
+  portraitClose.onclick = closeportrait;
+  portraitPrev.onclick = () => navportrait('prev');
+  portraitNext.onclick = () => navportrait('next');
+
+  document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeportrait();
+  });
+});
+</script>
+
+<!-- GALLERY -->
+<section class="latest-works">
+    <div class="section-header">
+      <h2>Portrait Gallery</h2>
+      <p>أبرز صور البورتريه  من مجتمعنا</p>
+    </div>
+
+    <div class="photo-grid" id="photo-grid"></div>
+
+    <button id="load-more-btn" class="load-more-btn hidden">More</button>
+</section>
+
+<!-- GALLERY SCRIPT -->
+<script src="js/portrait-gallery.js"></script>
+
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+<!-- HEADER SCROLL -->
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+</body>
+</html>

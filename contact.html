@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تواصل معنا | Another World Photography</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/style-v3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+    --btn-bg:#a59f95;
+    --btn-hover:#644117;
+    --modal-bg:rgba(0,0,0,.65);
+}
+
+.contact-body .contact-card,
+.contact-body .contact-card * {
+    font-family:'Montserrat',system-ui;
+}
+
+/* ==== إصلاح الهيدر لصفحة contact فقط ==== */
+body.contact-page header,
+body.contact-page .navbar,
+body.contact-page nav,
+body.contact-page .header-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+    background: #998872 !important;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1) !important;
+    transform: translateY(0) !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+body.contact-page .navbar.sticky,
+body.contact-page .navbar.scrolled,
+body.contact-page .navbar.fixed {
+    position: fixed !important;
+    top: 0 !important;
+}
+
+body.contact-page {
+    padding-top: 80px !important;
+}
+
+/* إيقاف أي تأثيرات scroll */
+body.contact-page .navbar {
+    will-change: unset !important;
+}
+
+
+/*الحقول داخل المودال */
+
+.field {
+  position: relative;
+}
+
+.field i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  pointer-events: none;
+}
+
+
+
+.field textarea {
+  padding-top: 12px;
+    padding-right: 52px;
+    box-sizing: border-box;
+
+}
+
+
+.contact-card *,
+.contact-card *::before,
+.contact-card *::after {
+  box-sizing: border-box;
+}
+
+/* مسح القاعدتين القديمتين وإضافة هذه بدلاً منهما */
+
+/* توحيد جميع حقول الإدخال */
+.field input,
+.field textarea,
+#joinModal input,
+#joinModal textarea {
+    padding-right: 42px !important; /* قيمة موحدة */
+    padding-left: 12px !important;
+    box-sizing: border-box !important;
+    font-family: "Cairo", sans-serif;
+
+}
+
+
+
+/* منع أي flex أو grid من ملف style-v3 إنه يأثر على الصفحة */
+.contact-card {
+  width: 100%;
+  max-width: 900px;  
+  margin: 0 auto 100px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+}
+
+
+/* أزرار الفورم + Join/Hire */
+button { 
+    background: var(--btn-bg); 
+    color:#fff; 
+    border:none; 
+    padding:14px 28px; 
+    font-size:15px; 
+    font-weight:500;
+    cursor:pointer; 
+    border-radius:6px;
+    transition: all 0.25s ease; 
+    font-family: "Cairo", sans-serif;
+
+}
+
+button:hover { 
+    background: var(--btn-hover);         
+    transform: scale(1.05);    
+}
+
+/* زر إرسال الفورم */
+form button {
+    background: var(--btn-bg);      
+    color:#fff;
+    width:100%;
+    font-weight:600;
+}
+
+form button:hover {
+    background: var(--btn-hover);         
+    transform: scale(1.03);  
+}
+
+input, textarea {
+    width:100%;
+    padding:10px 12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:14px;
+    font-weight:400;
+}
+
+textarea { resize:vertical; min-height:100px; }
+
+.notice { 
+    background:#1e1e1e; 
+    color:#d6d6d6; 
+    padding:18px 22px; 
+    border-radius:6px; 
+    font-size:14px; 
+    line-height:1.7; 
+    margin-top:16px; 
+    border-right:3px solid #444;
+}
+
+.modal {
+    display:none;
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:var(--modal-bg);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:20px;
+}
+
+.modal-content {
+    background:#fff;
+    padding:30px;
+    border-radius:8px;
+    max-width:600px;
+    width:100%;
+    text-align:right;
+    transform: scale(0.7);
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.modal.show .modal-content { transform: scale(1); }
+
+.modal-close {
+    position:absolute;
+    top:15px;
+    left:15px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.flex-buttons {
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.flex-buttons button {
+    flex:1 1 200px;
+}
+
+/* Floating Social Vertical */
+.social-floating {
+    position:fixed;
+    bottom:25px;
+    left:25px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    z-index:9999;
+}
+
+.social-floating a {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:55px;  
+    height:55px;
+    border-radius:50%;
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    transition: all 0.25s ease, box-shadow 0.3s ease;
+}
+
+.social-floating a:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px 3px var(--icon-glow);
+}
+
+/* Colors */
+#whatsappBtn { background: var(--whatsapp-color); }
+#facebookBtn { background: var(--facebook-color); }
+#instagramBtn { background: var(--instagram-color); }
+
+.social-floating img {
+    width:32px; /* تكبير اللوجو داخل الدائرة */
+    height:32px;
+}
+
+/* Responsive */
+@media(max-width:600px){
+    body{font-size:13px;}
+    header h1{font-size:22px;}
+}
+
+
+/* Join Modal Fix */
+#joinModal .modal-content {
+  max-width: 420px;
+  width: 100%;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+#joinModal .field {
+  width: 100%;
+}
+
+#joinModal input,
+#joinModal textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+}
+
+
+.join-card input,
+.join-card select,
+.join-card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+
+</style>
+
+<script>
+function openModal(id){
+    document.getElementById(id).style.display='flex';
+    document.getElementById(id).classList.add('show');
+}
+function closeModal(id){
+    document.getElementById(id).style.display='none';
+    document.getElementById(id).classList.remove('show');
+}
+</script>
+</head>
+
+<body class="contact-page">
+
+
+<!-- HEADER
+<div id="header"></div>
+<script>
+fetch("components/header.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("header").innerHTML=d);
+</script> -->
+
+<!-- HERO -->
+<section style="background:#a59f95;padding:80px 20px;color:#fff;text-align:center">
+  <h1>تواصل معنا</h1>
+  <p><a href="/" style="color:#fff">الرئيسية</a> › تواصل معنا</p>
+</section>
+
+<!-- Join Modal -->
+<div id="joinModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('joinModal')">&times;</span>
+
+    <h2>انضم إلينا</h2>
+
+    <form id="joinForm">
+      <div class="field">
+        <i class="fa-regular fa-user"></i>
+        <input type="text" placeholder="الاسم" required>
+      </div>
+
+      <div class="field">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email" placeholder="البريد الإلكتروني" required>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" placeholder="رقم الهاتف" required>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-message"></i>
+        <textarea placeholder="أخبرنا عن خبرتك أو مهاراتك" required></textarea>
+      </div>
+
+      <button type="submit">إرسال</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!-- CONTENT -->
+<div class="contact-card">
+
+<div class="flex-buttons">
+  <button onclick="openModal('joinModal')">انضم إلينا</button>
+  <button onclick="openModal('hireModal')">استئجار خدماتنا</button>
+</div>
+
+<!-- Hire Modal -->
+<div id="hireModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('hireModal')">&times;</span>
+    <h2>استئجار خدماتنا</h2>
+
+    <form id="hireForm">
+      <div class="field">
+        <i class="fa-regular fa-user"></i>
+        <input type="text" placeholder="الاسم" required>
+      </div>
+
+      <div class="field">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email" placeholder="عنوان البريد الإلكتروني" required>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-phone"></i>
+        <input type="text" placeholder="رقم الهاتف" required>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-list"></i>
+        <textarea placeholder="أخبرنا بما تحتاجه" required></textarea>
+      </div>
+
+      <button type="submit">إرسال</button>
+    </form>
+  </div>
+</div>
+
+<h2>تواصل معنا بشأن شكوى أو اقتراح</h2>
+
+<form id="contactForm">
+  <div class="field"><i class="fa-regular fa-user"></i><input type="text" placeholder="الاسم" required></div>
+  <div class="field"><i class="fa-regular fa-envelope"></i><input type="email" placeholder="البريد الإلكتروني" required></div>
+  <div class="field"><i class="fa-solid fa-phone"></i><input type="text" placeholder="رقم الهاتف" required></div>
+  <div class="field"><i class="fa-solid fa-bars"></i><input type="text" placeholder="الموضوع" required></div>
+  <div class="field"><i class="fa-solid fa-message"></i><textarea placeholder="اترك رسالتك هنا.." required></textarea></div>
+  <button type="submit">إرسال</button>
+</form>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<div id="footer"></div>
+<script>
+fetch("components/footer.html")
+.then(r=>r.text())
+.then(d=>document.getElementById("footer").innerHTML=d);
+</script>
+
+
+<!-- Floating Social Vertical -->
+<div class="social-floating">
+    <a href="https://wa.me/201146708455" target="_blank" style="background: #25d366;" title="واتساب">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="28">
+    </a>
+    <a href="https://www.facebook.com/AnotherWorldPhotography" target="_blank" style="background: #1877f2;" title="فيسبوك">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook" width="28">
+    </a>
+    <a href="https://www.instagram.com/AnotherWorldPhotography" target="_blank" style="background: #e4405f;" title="انستجرام">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" width="28">
+    </a>
+</div>
+
+<script>
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', function(e){
+    if (e.target === this) {
+      this.classList.remove('show');
+      this.style.display = 'none';
+    }
+  });
+});
+</script>
+
+<script>
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  if (!this.checkValidity()) {
+    e.preventDefault();
+    alert('من فضلك املأ جميع الحقول المطلوبة بشكل صحيح');
+  }
+});
+</script>
+
+<script>
+// التحقق من صحة الموديلات
+document.getElementById('joinForm')?.addEventListener('submit', function(e) {
+  if (!this.checkValidity()) {
+    e.preventDefault();
+    alert('من فضلك املأ جميع الحقول المطلوبة في نموذج الانضمام');
+  }
+});
+
+document.getElementById('hireForm')?.addEventListener('submit', function(e) {
+  if (!this.checkValidity()) {
+    e.preventDefault();
+    alert('من فضلك املأ جميع الحقول المطلوبة في نموذج الاستئجار');
+  }
+});
+</script>
+
+
+</body>
+</html>

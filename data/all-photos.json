@@ -1,0 +1,927 @@
+{
+  "photos": [
+    
+    {
+      "author": "Elsayed AlQumra",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0001-elsayed-al-qumra.jpg"
+    },
+    {
+      "author": "Heba Mostafa",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0002-heba-mostafa.jpg"
+    },
+    {
+      "author": "Yara Jarkas",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0003-yara-jarkas.jpg"
+    },
+    {
+      "author": "Meennaeem Hassaan",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0004-meennaeem-hassaan.jpg"
+    },
+    {
+      "author": "Mustafa Ahmed",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0005-mustafa-ahmed.jpg"
+    },
+    {
+      "author": "Amr Ali",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0006-amr-ali.jpg"
+    },
+    {
+      "author": "Doha Alaa",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0007-doha-alaa.jpg"
+    },{
+      "author": "Moustafa Abdlrazik",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0008-moustafa-abdlrazik.jpg"
+    },
+    {
+      "author": "Elsayed Al Safaan",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0009-elsayed-al-safaan.jpg"
+    },
+    {
+      "author": "Muhammed M Fathy",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0010-muhammed-m-fathy.jpg"
+    },
+    {
+      "author": "Abdo Thabet",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0011-abdo-thabet.jpg"
+    },
+    {
+      "author": "Abdelrahman Mohsen",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0012-abdelrahman-mohsen.jpg"
+    },
+    {
+      "author": "Nader A Ayman",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0013-nader-a-ayman.jpg"
+    },
+    {
+      "author": "Nuh Youseff",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0014-nuh-youseff.jpg"
+    },
+    {
+      "author": "Eman Abdelkader",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0015-eman-abdelkader.jpg"
+    },
+    {
+      "author": "Nesma Ismail",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0016-nesma-ismail.jpg"
+    },
+    {
+      "author": "Abdelazez Mohamed",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0017-abdelazez-mohamed.jpg"
+    },
+    {
+      "author": "Anas Haidrou",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0018-anas-haidrou.jpg"
+    },
+    {
+      "author": "Elsayed Al Safaan",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0019-elsayed-al-safaan.jpg"
+    },
+    {
+      "author": "Elsayed Al Safaan",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0020-elsayed-al-safaan.jpg"
+    },
+    {
+      "author": "Youssef Ibrahim",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0021-youssef-ibrahim.jpg"
+    },
+    {
+      "author": "Abdalla Gamal",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0022-abdalla-gamal.jpg"
+    },
+    {
+      "author": "Radwa Farok",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0023-radwa-farok.jpg"
+    },
+    {
+      "author": "Hamada Eltayer",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0024-hamada-eltayer.jpg"
+    },
+    {
+      "author": "Ahmed Rezk",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0025-ahmed-rezk.jpg"
+    },
+    {
+      "author": "Islam Mickey",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0026-islam-mickey.jpg"
+    },
+    {
+      "author": "Mohamed Ahdy",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0027-mohamed-ahdy.jpg"
+    },
+    {
+      "author": "Islam Mickey",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0028-islam-mickey.jpg"
+    },
+    {
+      "author": "Hisham Naeem",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0029-hisham-naeem.jpg"
+    },
+    {
+      "author": "Ahmed Farid",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0030-ahmed-farid.jpg"
+    },
+    {
+      "author": "Hisham Tawhid",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0031-hisham-tawhid.jpg"
+    },
+    {
+      "author": "Abdullah Salah",
+      "category": "architecture",
+      "image": "img/gallery/architecture/0032-abdullah-salah.jpg"
+    },
+
+    {
+      "author": "Mayar Gomaa khater",
+      "category": "events",
+      "image": "img/gallery/events/0001-mayar-gomaa-khater.jpg"
+    },
+    {
+      "author": "Zeinab Mohey",
+      "category": "events",
+      "image": "img/gallery/events/0002-zeinab-mohey.jpg"
+    },
+    {
+      "author": "Ahmed S Hashad",
+      "category": "events",
+      "image": "img/gallery/events/0003-ahmed-hashad.jpg"
+    },
+    {
+      "author": "Asmaa Essam",
+      "category": "events",
+      "image": "img/gallery/events/0004-asmaa-essam.jpg"
+    },
+    {
+      "author": "Eslam Osama",
+      "category": "events",
+      "image": "img/gallery/events/0005-eslam-osama.jpg"
+    },
+    {
+      "author": "Zeinab Mohey",
+      "category": "events",
+      "image": "img/gallery/events/0006-zeinab-mohey.jpg"
+    },
+    {
+      "author": "Noha Ali Eldin",
+      "category": "events",
+      "image": "img/gallery/events/0007-noha-ali-eldin.jpg"
+    },
+    {
+      "author": "Noha Ali Eldin",
+      "category": "events",
+      "image": "img/gallery/events/0008-noha-ali-eldin.jpg"
+    },
+    {
+      "author": "Noha Ali Eldin",
+      "category": "events",
+      "image": "img/gallery/events/0009-noha-ali-eldin.jpg"
+    },
+    {
+      "author": "Zeinab Mohey",
+      "category": "events",
+      "image": "img/gallery/events/0010-zeinab-mohey.jpg"
+    },
+    {
+      "author": "Faris Hassan",
+      "category": "events",
+      "image": "img/gallery/events/0011-faris-hassan.jpg"
+    },
+    {
+      "author": "Karim Samir",
+      "category": "events",
+      "image": "img/gallery/events/0012-karim-samir.jpg"
+    },
+    {
+      "author": "Mohamed Abdelrahman",
+      "category": "events",
+      "image": "img/gallery/events/0013-mohamed-abdelrahman.jpg"
+    },
+    {
+      "author": "Lobna Mahmoud Elpatal",
+      "category": "events",
+      "image": "img/gallery/events/0014-lobna-mahmoud-elpatal.jpg"
+    },
+    {
+      "author": "Mina Kamal",
+      "category": "events",
+      "image": "img/gallery/events/0015-mina-kamal.jpg"
+    },
+    {
+      "author": "Sherif Shouman",
+      "category": "events",
+      "image": "img/gallery/events/0016-sherif-shouman.jpg"
+    },
+    {
+      "author": "Nagat Refaat",
+      "category": "events",
+      "image": "img/gallery/events/0017-nagat-refaat.jpg"
+    },
+    {
+      "author": "Mayar Gomaa khater",
+      "category": "events",
+      "image": "img/gallery/events/0018-mayar-gomaa-khater.jpg"
+    },
+    {
+      "author": "Sherif Shouman",
+      "category": "events",
+      "image": "img/gallery/events/0019-sherif-shouman.jpg"
+    },
+
+
+    {
+      "author": "Ayoup Ahmed",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0001-ayoup-ahmed.jpg"
+    },
+    {
+      "author": "Ahmed Mostafa Musti",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0002-ahmed-mostafa-musti.jpg"
+    },
+    {
+      "author": "Mohamed Mostafa Mohamed",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0003-mohamed-mostafa-mohamed.jpg"
+    },
+    {
+      "author": "Mahmoud El Bashlawy",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0004-mahmoud-el-bashlawy.jpg"
+    },
+    {
+      "author": "Tina Hema",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0005-tina-hema.jpg"
+    },
+    {
+      "author": "Nada Fathy",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0006-nada-fathy.jpg"
+    },
+    {
+      "author": "Ghada Osama",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0007-ghada-osama.jpg"
+    },
+    {
+      "author": "Mohamed Mostafa Mohamed",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0009-mohamed-mostafa-mohamed.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0010-wagida-anis.jpg"
+    },
+    {
+      "author": "Retage Mohamed",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0011-retage-mohamed.jpg"
+    },
+    {
+      "author": "Radwa Farok",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0012-radwa-farok.jpg"
+    },
+    {
+      "author": "Hazem Samir",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0013-hazem-samir.jpg"
+    },
+    {
+      "author": "Rahaf Alaa",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0014-rahaf-alaa.jpg"
+    },
+    {
+      "author": "Radwa Farok",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0015-radwa-farok.jpg"
+    },
+    {
+      "author": "Omaima Ahmed",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0016-omaima-ahmed.jpg"
+    },
+    {
+      "author": "Eman Ali",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0017-eman-ali.jpg"
+    },
+    {
+      "author": "Mohamed Galal",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0018-mohamed-galal.jpg"
+    },
+    {
+      "author": "Ghada Osama",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0019-ghada-osama.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0020-wagida-anis.jpg"
+    },
+
+
+
+    {
+      "author": "Abdo Thabet",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0001-abdo-thabet.jpg"
+    },
+    {
+      "author": "Menah Mohamed",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0002-menah mohamed.jpg"
+    },
+    {
+      "author": "Mohamed Ahdy",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0003-mohamed-ahdy.jpg"
+    },
+    {
+      "author": "Med Ali Mokadim",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0004-med-ali-mokadim.jpg"
+    },
+    {
+      "author": "Zainab Ali",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0005-zainab-ali.jpg"
+    },
+    {
+      "author": "Mai Elnagar",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0006-mai-elnagar.jpg"
+    },
+    {
+      "author": "Jawad Aji",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0007-jawad-aji.jpg"
+    },
+    {
+      "author": "Amin Al-Awkali",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0008-amin-al-awkali.jpg"
+    },
+    {
+      "author": "Mina Adel",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0009-mina-adel.jpg"
+    },
+    {
+      "author": "Mahmoud Hassan Fouda",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0010-mahmoud-hassan-fouda.jpg"
+    },
+    {
+      "author": "Fatma El-Mahdy",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0011-fatma-el-mahdy.jpg"
+    },
+    {
+      "author": "Saeed Ahmed",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0012-saeed-ahmed.jpg"
+    },
+    {
+      "author": "Wafaa Fahmy",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0013-wafaa-fahmy.jpg"
+    },
+    {
+      "author": "Wafaa Fahmy",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0014-wafaa-fahmy.jpg"
+    },
+    {
+      "author": "Wafaa Fahmy",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0015-wafaa-fahmy.jpg"
+    },
+    {
+      "author": "Abd-Elhamid Zaki",
+      "category": "landscape",
+      "image": "img/gallery/landscape/0016-abd-elhamid-zaki.jpg"
+    },
+
+
+    {
+      "author": "Nada Khaled",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0001-nada-khaled.jpg"
+    },
+    {
+      "author": "Abderlahamn Ayman",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0002-abderlahamn-ayman.jpg"
+    },
+    {
+      "author": "Taha Nasar",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0003-taha-nasar.jpg"
+    },
+    {
+      "author": "Nada Harhara",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0004-nada-harhara.jpg"
+    },
+    {
+      "author": "Bassel Hamzawy",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0005-bassel-hamzawy.jpg"
+    },
+    {
+      "author": "Mahmoud Mohamed",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0007-mahmoud-mohamed.jpg"
+    },
+    {
+      "author": "Mahmoud El-Bashlawy",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0008-mahmoud-el-bashlawy.jpg"
+    },
+    {
+      "author": "Mahmoud El-Bashlawy",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0009-mahmoud-el-bashlawy.jpg"
+    },
+    {
+      "author": "Samir Mustafa",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0010-samir-mustafa.jpg"
+    },
+    {
+      "author": "Mohamed Moustafa Fadl",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0011-mohamed-moustafa-fadl.jpg"
+    },
+    {
+      "author": "Ahmed Salah Elbaaly",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0012-ahmed-salah-elbaaly.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0013-wagida-anis.jpg"
+    },
+    {
+      "author": "Rawan Ashraf",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0014-rawan-ashraf.jpg"
+    },
+    {
+      "author": "Peter Adel",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0015-peter-adel.jpg"
+    },
+    {
+      "author": "Marwa Atef",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0016-marwa-atef.jpg"
+    },
+    {
+      "author": "Mina Saad",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0017-mina-saad.jpg"
+    },
+    {
+      "author": "Samir Mustafa",
+      "category": "miscellaneous",
+      "image": "img/gallery/miscellaneous/0018-samir-mustafa.jpg"
+    },
+   
+
+
+    {
+      "author": "Ahmed Mostafa Musti",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0001-ahmed-mostafa-musti.jpg"
+    },
+    {
+      "author": "Amal Gamal",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0002-amal-gamal.jpg"
+    },
+    {
+      "author": "Marwa A Mohammad",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0003-marwa-a-mohammad.jpg"
+    },
+    {
+      "author": "Ahmed Beltagy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0004-ahmed-beltagy.jpg"
+    },
+    {
+      "author": "Noha Mohamed Abdellah",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0005-noha-mohamed-abdellah.jpg"
+    },{
+      "author": "Mohamed Gamal Hussien",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0006-mohamed-gamal-hussien.jpg"
+    },{
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0007-nada-fathy.jpg"
+    },{
+      "author": "May Hosny",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0008-may-hosny.jpg"
+    },{
+      "author": "Nada Harhara",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0009-nada-harhara.jpg"
+    },{
+      "author": "Amal Gamal",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0010-amal-gamal.jpg"
+    },{
+      "author": "Alyieldeen Qepal",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0011-alyieldeen-qepal.jpg"
+    },{
+      "author": "Tarek Mohamed",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0012-tarek-mohamed.jpg"
+    },{
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0013-nada-fathy.jpg"
+    },{
+      "author": "Mahmoud El-Bashlawy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0014-mahmoud-el-bashlawy.jpg"
+    },{
+      "author": "Amal Gamal",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0015-amal-gamal.jpg"
+    },{
+      "author": "Tina Hema",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0016-tina-hema.jpg"
+    },{
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0017-nada-fathy.jpg"
+    },{
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0018-nada-fathy.jpg"
+    },{
+      "author": "Ahmed Salim Mousse Alkadeeki",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0019-ahmed-salim-mousse-alkadeeki.jpg"
+    },{
+      "author": "Abdullh ElKafrawy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0020-abdullh-elkafrawy.jpg"
+    },{
+      "author": "Alyieldeen Qepal",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0021-alyieldeen-qepal.jpg"
+    },
+    {
+      "author": "Tina Hema",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0022-tina-hema.jpg"
+    },
+    {
+      "author": "Mahmoud El-Bashlawy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0023-mahmoud-el-bashlawy.jpg"
+    },
+    {
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0024-nada-fathy.jpg"
+    },{
+      "author": "Amal Gamal",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0025-amal-gamal.jpg"
+    },{
+      "author": "Ahmed Salim Mousse Alkadeeki",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0026-ahmed-salim-mousse-alkadeeki.jpg"
+    },
+    {
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0027-nada-fathy.jpg"
+    },
+    {
+      "author": "Islam Solo",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0028-islam-solo.jpg"
+    },
+    {
+      "author": "Tina Hema",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0029-tina-hema.jpg"
+    },
+    {
+      "author": "Ahmed Salah Elbaaly",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0030-ahmed-salah-elbaaly.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0031-wagida-anis.jpg"
+    },
+    {
+      "author": "Islam Mickey",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0032-islam-mickey.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0033-wagida-anis.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0034-wagida-anis.jpg"
+    },
+    {
+      "author": "Nada Fathy",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0035-nada-fathy.jpg"
+    },
+    {
+      "author": "Lysa Nxia",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0036-lysa-nxia.jpg"
+    },
+
+
+    {
+      "author": "Nada Abd El Fattah",
+      "category": "product",
+      "image": "img/gallery/product/0001-nada-abd-elfttah.jpg"
+    },
+    {
+      "author": "Menna Sallah",
+      "category": "product",
+      "image": "img/gallery/product/0002-menna-sallah.jpg"
+    },
+    {
+      "author": "Nagat Refaat",
+      "category": "product",
+      "image": "img/gallery/product/0003-nagat-refaat.jpg"
+    },
+    {
+      "author": "Mariam Omar",
+      "category": "product",
+      "image": "img/gallery/product/0004-mariam-omar.jpg"
+    },
+    {
+      "author": "Nada Abd El Fattah",
+      "category": "product",
+      "image": "img/gallery/product/0005-nada-abd-elfttah.jpg"
+    },
+    {
+      "author": "Mohamed Hamdy",
+      "category": "product",
+      "image": "img/gallery/product/0006-mohamed-hamdy.jpg"
+    },
+    {
+      "author": "Nada Abd El Fattah",
+      "category": "product",
+      "image": "img/gallery/product/0007-nada-abd-elfttah.jpg"
+    },{
+      "author": "Menna Sallah",
+      "category": "product",
+      "image": "img/gallery/product/0008-menna-sallah.jpg"
+    },
+    {
+      "author": "Mervat El-Khateeb",
+      "category": "product",
+      "image": "img/gallery/product/0009-mervat-el-khateeb.jpg"
+    },
+    {
+      "author": "Mervat El-Khateeb",
+      "category": "product",
+      "image": "img/gallery/product/0010-mervat-el-khateeb.jpg"
+    },
+    {
+      "author": "Alaa Lens",
+      "category": "product",
+      "image": "img/gallery/product/0011-alaa-lens.jpg"
+    },
+    {
+      "author": "Nouran Waleed",
+      "category": "product",
+      "image": "img/gallery/product/0012-nouran-waleed.jpg"
+    },
+    {
+      "author": "Nesreen Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0013-nesreen-mohammed.jpg"
+    },
+    {
+      "author": "Hamza Sleem",
+      "category": "product",
+      "image": "img/gallery/product/0014-hamza-sleem.jpg"
+    },
+    {
+      "author": "Mervat El-Khateeb",
+      "category": "product",
+      "image": "img/gallery/product/0015-mervat-el-khateeb.jpg"
+    },
+
+
+    {
+      "author": "Nada Fathy",
+      "category": "street",
+      "image": "img/gallery/street/0001-nada-fathy.jpg"
+    },
+    {
+      "author": "Ph. Abdu",
+      "category": "street",
+      "image": "img/gallery/street/0002-ph-abdu.jpg"
+    },
+    {
+      "author": "Abdo Thabet",
+      "category": "street",
+      "image": "img/gallery/street/0003-abdo-thabet.jpg"
+    },
+    {
+      "author": "Eman Abdelkader",
+      "category": "street",
+      "image": "img/gallery/street/0004-eman-abdelkader.jpg"
+    },
+    {
+      "author": "Mohammed Abuelgasim",
+      "category": "street",
+      "image": "img/gallery/street/0005-mohammed-abuelgasim.jpg"
+    },
+    {
+      "author": "Nada Fathy",
+      "category": "street",
+      "image": "img/gallery/street/0006-nada-fathy.jpg"
+    },
+    {
+      "author": "Islam Mickey",
+      "category": "street",
+      "image": "img/gallery/street/0007-islam-mickey.jpg"
+    },
+    {
+      "author": "Ahmed Rasull",
+      "category": "street",
+      "image": "img/gallery/street/0008-ahmed-rasull.jpg"
+    },
+    {
+      "author": "Eslam Raslan",
+      "category": "street",
+      "image": "img/gallery/street/0009-eslam-raslan.jpg"
+    },
+    {
+      "author": "Ahmed Beltagy",
+      "category": "street",
+      "image": "img/gallery/street/0010-ahmed-beltagy.jpg"
+    },
+    {
+      "author": "Youssef Michael",
+      "category": "street",
+      "image": "img/gallery/street/0011-youssef-michael.jpg"
+    },
+
+    {
+      "author": "Elsayed Al Safaan",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0001-elsayed-al-safaan.jpg"
+    },
+    {
+      "author": "Ayman Muhammad",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0002-ayman-muhammad.jpg"
+    },
+    {
+      "author": "Jawad Aji",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0003-jawad-aji.jpg"
+    },
+    {
+      "author": "Jawad Aji",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0004-jawad-aji.jpg"
+    },
+    {
+      "author": "Osama R. Ghobashy",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0005-osama-ghobashy.jpg"
+    },
+    {
+      "author": "Islam Mickey",
+      "category": "portrait",
+      "image": "img/gallery/portrait/0037-islam-mickey.jpg"
+    },
+    {
+      "author": "Mirna Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0016-mirna-mohammed.jpg"
+    }, 
+    {
+      "author": "Mirna Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0017-mirna-mohammed.jpg"
+    },
+    {
+      "author": "Mirna Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0018-mirna-mohammed.jpg"
+    },
+    {
+      "author": "Mirna Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0019-mirna-mohammed.jpg"
+    },
+    {
+      "author": "Mirna Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0020-mirna-mohammed.jpg"
+    },
+    {
+      "author": "Mirna Mohammed",
+      "category": "product",
+      "image": "img/gallery/product/0021-mirna-mohammed.jpg"
+    },
+    {
+      "author": "Moamen Abdelmageed",
+      "category": "product",
+      "image": "img/gallery/product/0021-moamen-abdelmageed.jpg"
+    },
+    {
+      "author": "Ibrahim Elbasiony",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0021-ibrahim-elbasiony.jpg"
+    },
+    {
+      "author": "Wagida Anis",
+      "category": "fine-art",
+      "image": "img/gallery/fine-art/0022-wagida-anis.jpg"
+    },
+     {
+      "author": "Marmar Ali",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0006-marmar-ali.jpg"
+    },
+    {
+      "author": "Marmar Ali",
+      "category": "wildlife",
+      "image": "img/gallery/wildlife/0007-marmar-ali.jpg"
+    },
+    {
+      "author": "Mahmoud M. Omar",
+      "category": "events",
+      "image": "img/gallery/events/0020-mahmoud-omar.jpg"
+    }
+    
+
+
+
+
+
+
+
+
+
+    
+  ]
+}

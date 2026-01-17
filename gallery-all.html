@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>معرض الصور - Another World Photography</title>
+  <!-- CSS -->
+   <link rel="stylesheet" href="css/style-v3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+  <!-- رابط Font Awesome -->
+<link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .gallery-hero {
+      min-height: 100vh;
+      background: url('../img/gallery/gallery-banner.jpg') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .gallery-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 7rem;
+      font-weight: 600;
+      margin-bottom: 140px;
+      text-shadow: 0 2px 10px rgba(54, 45, 45, 0.5);
+      letter-spacing: -3.5px;
+    }
+    
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .lightbox-img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 85vh;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-info {
+      position: absolute;
+      bottom: -60px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: white;
+    }
+
+    .lightbox-author {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .lightbox-category {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.2);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    /* ===== نظام Load More ===== */
+    .load-more-btn {
+      display: block;
+      margin: 40px auto;
+      padding: 12px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .load-more-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .load-more-btn:active {
+      transform: translateY(0);
+    }
+
+    .load-more-btn.loading {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* ===== Lazy Loading ===== */
+    .lazy-image {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .lazy-image.loaded {
+      opacity: 1;
+    }
+
+    /* إخفاء زر Load More مؤقتاً */
+    .load-more-btn.hidden {
+      display: none;
+    }
+
+    /* إخفاء الأزرار على الموبايل */
+    @media (max-width: 768px) {
+      .lightbox-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
+      
+      .lightbox-prev {
+        left: 10px;
+      }
+      
+      .lightbox-next {
+        right: 10px;
+      }
+      
+      .lightbox-close {
+        top: 10px;
+        right: 10px;
+        font-size: 2rem;
+      }
+      
+      .gallery-hero h1 {
+        font-size: 4rem;
+        margin-bottom: 80px;
+      }
+      
+      .load-more-btn {
+        padding: 10px 30px;
+        font-size: 14px;
+      }
+
+      .hidden { 
+        display: none !important; }
+    }
+  </style>
+</head>
+<body class="about-body">
+  <div id="header"></div>
+  <script>
+    fetch("components/header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      });
+  </script>
+
+  <!-- الهيرو -->
+  <section class="gallery-hero">
+    <h1>Gallery</h1>
+  </section>
+
+  <!-- المعرض -->
+  <section class="latest-works">
+    <div class="section-header">
+      <h2>Latest Art Works</h2>
+      <p>آخر الصور المميزة من مجتمعنا</p>
+    </div>
+    
+    <!-- فلترة الأقسام -->
+    <div class="filter-buttons">
+      <button class="filter-btn" data-filter="product">Product</button>
+      <button class="filter-btn" data-filter="events">Events</button>
+      <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+      <button class="filter-btn" data-filter="fine-art">Fine Art</button>
+      <button class="filter-btn" data-filter="landscape">Landscape</button>
+      <button class="filter-btn" data-filter="street">Street</button>
+      <button class="filter-btn" data-filter="architecture">Architecture</button>
+      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn active" data-filter="all">All</button>
+    </div>
+    
+    <!-- شبكة الصور -->
+    <div class="photo-grid" id="photo-grid"></div>
+    
+    <!-- زر Load More -->
+    <button id="load-more-btn" class="load-more-btn hidden">
+      More
+    </button>
+  </section>
+
+<!-- أسهم الصور -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    
+    <button class="lightbox-arrow prev" id="lightboxPrev">›</button>
+    <button class="lightbox-arrow next" id="lightboxNext">‹</button>
+
+    
+    <div class="lightbox-content">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-info">
+            <div class="lightbox-author" id="lightboxAuthor"></div>
+            <div class="lightbox-category" id="lightboxCategory"></div>
+        </div>
+    </div>
+</div>
+
+ 
+  <!-- ===== سكربت واحد فقط ===== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // متغيرات النظام
+      let allPhotos = [];
+      let currentShuffle = {};
+      let currentCategory = 'all';
+      let displayedPhotos = [];
+      let currentIndex = 0;
+      const photosPerLoad = 12; // عدد الصور في كل تحميل
+      
+      // عناصر DOM
+      const photoGrid = document.getElementById('photo-grid');
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const loadMoreBtn = document.getElementById('load-more-btn');
+      
+      // Lightbox elements
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxAuthor = document.getElementById('lightboxAuthor');
+      const lightboxCategory = document.getElementById('lightboxCategory');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const lightboxPrev = document.getElementById('lightboxPrev');
+      const lightboxNext = document.getElementById('lightboxNext');
+      
+      // 1. تحميل جميع البيانات مرة واحدة
+      async function loadPhotos() {
+        try {
+          const response = await fetch('data/all-photos.json');
+          const data = await response.json();
+          allPhotos = data.photos || [];
+          console.log(`✅ تم تحميل ${allPhotos.length} صورة`);
+          
+          // تحميل الدفعة الأولى
+          loadInitialPhotos();
+          
+        } catch (error) {
+          console.error('خطأ في تحميل البيانات:', error);
+          photoGrid.innerHTML = '<p style="text-align:center; color:#666;">عذراً، حدث خطأ في تحميل الصور</p>';
+        }
+      }
+      
+      // 2. تحميل الدفعة الأولى
+      function loadInitialPhotos() {
+        // shuffle للصور
+        const shuffled = shuffleArray([...allPhotos]);
+        currentShuffle['all'] = shuffled;
+        displayedPhotos = shuffled;
+        
+        // عرض أول دفعة
+        loadMorePhotos();
+        
+        // تفعيل Lazy Loading
+        lazyLoadImages();
+      }
+      
+      // 3. دالة shuffle
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+      
+      // 4. تحميل المزيد من الصور
+      function loadMorePhotos() {
+        const endIndex = Math.min(currentIndex + photosPerLoad, displayedPhotos.length);
+        
+        // عرض الصور الجديدة
+        for (let i = currentIndex; i < endIndex; i++) {
+          const photo = displayedPhotos[i];
+          createPhotoCard(photo, i);
+        }
+        
+        currentIndex = endIndex;
+        
+        // التحكم في زر Load More
+        if (currentIndex >= displayedPhotos.length) {
+          loadMoreBtn.classList.add('hidden');
+        } else {
+          loadMoreBtn.classList.remove('hidden');
+        }
+        
+        // تفعيل Lazy Loading للصور الجديدة
+        lazyLoadImages();
+      }
+      
+      // 5. إنشاء بطاقة صورة واحدة
+      function createPhotoCard(photo, index) {
+        const div = document.createElement('div');
+        div.className = 'photo-item';
+        div.style.cursor = 'pointer';
+        div.dataset.index = index;
+        
+        div.innerHTML = `
+          <img src="img/placeholder.jpg" 
+               data-src="${photo.image}" 
+               alt="${photo.author}" 
+               class="lazy-image"
+               style="width:100%; height:100%; object-fit:cover;">
+          <div class="photo-info">
+            <h4>${photo.author}</h4>
+            <span class="category">${photo.category}</span>
+          </div>
+        `;
+        
+        // حدث النقر للـ Lightbox
+        div.addEventListener('click', () => openLightbox(photo, index));
+        
+        photoGrid.appendChild(div);
+      }
+      
+      // 6. Lazy Loading
+      function lazyLoadImages() {
+        const lazyImages = document.querySelectorAll('.lazy-image');
+        
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              
+              // تأخير بسيط لتجنب الحمل الزائد
+              setTimeout(() => {
+                img.src = img.dataset.src;
+                img.classList.add('loaded');
+                imageObserver.unobserve(img);
+              }, 100);
+            }
+          });
+        }, {
+          rootMargin: '100px' // بدء التحميل قبل ظهور الصورة بـ100px
+        });
+        
+        lazyImages.forEach(img => {
+          if (!img.classList.contains('loaded')) {
+            imageObserver.observe(img);
+          }
+        });
+      }
+      
+      // 7. عند تغيير الفلتر
+      function changeFilter(category) {
+        currentCategory = category;
+        currentIndex = 0;
+        
+        // إفراغ الشبكة
+        photoGrid.innerHTML = '';
+        
+        if (category === 'all') {
+          displayedPhotos = currentShuffle['all'] || shuffleArray([...allPhotos]);
+        } else {
+          displayedPhotos = allPhotos.filter(p => p.category === category);
+          currentShuffle[category] = displayedPhotos;
+        }
+        
+        // تحديث حالة الأزرار
+        filterButtons.forEach(btn => {
+          if (btn.dataset.filter === category) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+        
+        // تحميل الدفعة الأولى من هذا الفلتر
+        loadMorePhotos();
+        
+        // إظهار زر Load More إذا كانت هناك صور أكثر
+        if (displayedPhotos.length > photosPerLoad) {
+          loadMoreBtn.classList.remove('hidden');
+        } else {
+          loadMoreBtn.classList.add('hidden');
+        }
+      }
+      
+      // 8. فتح Lightbox
+      function openLightbox(photo, index) {
+        lightboxImg.src = photo.image;
+        lightboxAuthor.textContent = photo.author;
+        lightboxCategory.textContent = photo.category;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // حفظ الفهرس الحالي للتنقل
+        lightbox.dataset.currentIndex = index;
+        lightbox.dataset.currentCategory = currentCategory;
+      }
+      
+      // 9. التنقل في Lightbox
+      function navigateLightbox(direction) {
+        let currentIdx = parseInt(lightbox.dataset.currentIndex);
+        const category = lightbox.dataset.currentCategory;
+        let photos = category === 'all' ? displayedPhotos : allPhotos.filter(p => p.category === category);
+        
+        if (direction === 'next') {
+          currentIdx = (currentIdx + 1) % photos.length;
+        } else {
+          currentIdx = (currentIdx - 1 + photos.length) % photos.length;
+        }
+        
+        const photo = photos[currentIdx];
+        lightboxImg.src = photo.image;
+        lightboxAuthor.textContent = photo.author;
+        lightboxCategory.textContent = photo.category;
+        lightbox.dataset.currentIndex = currentIdx;
+      }
+      
+      // 10. إغلاق Lightbox
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+      
+      // ===== أحداث DOM =====
+      
+      // أحداث الفلتر
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const category = this.dataset.filter;
+          changeFilter(category);
+        });
+      });
+      
+      // حدث زر Load More
+      loadMoreBtn.addEventListener('click', function() {
+        this.classList.add('loading');
+        this.textContent = 'جاري التحميل...';
+        
+        // محاكاة التأخير
+        setTimeout(() => {
+          loadMorePhotos();
+          this.classList.remove('loading');
+          this.textContent = 'More';
+        }, 300);
+      });
+      
+      // أحداث Lightbox
+      lightboxClose.addEventListener('click', closeLightbox);
+      
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+      
+      lightboxPrev.addEventListener('click', () => navigateLightbox('prev'));
+      lightboxNext.addEventListener('click', () => navigateLightbox('next'));
+      
+      // إغلاق بـ Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+      
+      // بدء النظام
+      loadPhotos();
+    });
+  </script>
+
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

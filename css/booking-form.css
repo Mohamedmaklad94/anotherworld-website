@@ -1,0 +1,243 @@
+.booking-section {
+font-family: 'Cairo', 'Montserrat', sans-serif;
+background: #dbd8d6;
+padding: 30px;
+}
+
+.booking-section .container {
+max-width: 600px;
+background: #fff;
+padding: 25px;
+margin: auto;
+border-radius: 10px;
+box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+}
+
+.booking-section h1 {
+text-align: center;
+margin-bottom: 10px;
+}
+
+.booking-section .subtitle {
+text-align: center;
+color: #555;
+margin-bottom: 25px;
+}
+
+.booking-section .user-type {
+display: flex;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.booking-section .user-type button {
+flex: 1;
+font-family: 'Cairo', sans-serif;
+font-weight: 800;
+padding: 12px;
+font-size: 16px;
+cursor: pointer;
+border-radius: 8px;
+border: 1px solid #ddd;
+background: #f9f9f9;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 6px; /* مسافة بين الأيقونة والنص */
+transition: all 0.3s;
+}
+
+.booking-section .user-type button.active {
+background: #643c07;
+color: #fff;
+border-color: #643c07;
+}
+
+/* تأثير الهوف */
+.booking-section .user-type button:hover {
+  transform: scale(1.05); /* يكبر شوية */
+  background: #7a4b10; /* لون خفيف يتغير على الهوف */
+  color: #f3f2f1; /* لو عايز لون النص يفضل واضح */
+}
+
+.user-type button .material-symbols-outlined {
+font-size: 20px;
+vertical-align: middle;
+}
+
+.booking-section .info-text {
+margin-bottom: 15px;
+font-weight: bold;
+}
+
+.booking-section form {
+display: none;
+}
+
+.booking-section form input, 
+.booking-section form select, 
+.booking-section form textarea {
+width: 100%;
+padding: 10px;
+margin-bottom: 12px;
+border-radius: 6px;
+border: 1px solid #ccc;
+}
+
+.booking-section form button {
+width: 100%;
+padding: 12px;
+color: #fff;
+border: none;
+border-radius: 8px;
+font-size: 16px;
+cursor: pointer;
+}
+
+.booking-section .note {
+margin-top: 15px;
+font-size: 14px;
+color: #777;
+text-align: center;
+}
+
+.material-symbols-outlined {
+font-size: 20px;
+color: #9a9a9a;
+vertical-align: middle;
+}
+
+/* field wrapper */
+.booking-section .field {
+position: relative;
+margin-bottom: 16px;
+}
+
+.booking-section .field input,
+.booking-section .field select,
+.booking-section .field textarea {
+width: 100%;
+padding: 12px 46px 12px 12px; /* مساحة للأيقونة */
+border-radius: 8px;
+border: 1px solid #bdbdbd;
+font-family: 'Cairo', sans-serif;
+background: #fff;
+color: #222;
+box-sizing: border-box;
+}
+
+/* textarea */
+.booking-section.field textarea {
+resize: vertical;
+min-height: 90px;
+}
+
+/* icon INSIDE field */
+.booking-section .field .icon {
+position: absolute;
+right: 14px;
+top: 50%;
+transform: translateY(-50%);
+font-size: 20px;
+color: #9a9a9a;
+pointer-events: none;
+}
+
+/* select arrow */
+.booking-section .field.select::after {
+content: "expand_more";
+font-family: 'Material Symbols Outlined';
+position: absolute;
+left: 14px;
+top: 50%;
+transform: translateY(-50%);
+color: #9a9a9a;
+pointer-events: none;
+}
+
+.booking-section .field select {
+appearance: none;
+}
+
+/* textarea icon fix */
+.booking-section.field.textarea .icon {
+top: 16px;
+transform: none;
+}
+
+
+.booking-section .check-item input[type="checkbox"],
+.booking-section .check-item input[type="radio"] {
+width: 18px;
+height: 18px;
+margin: 0; /* إزالة أي مسافات افتراضية */
+vertical-align: middle; /* يحاذي الدائرة مع النص */
+flex-shrink: 0; /* يمنع تصغير حجم الدائرة */
+}
+
+.booking-section .check-item span {
+direction: rtl; /* نخلي النص عربي من اليمين لليسار */
+text-align: right;
+line-height: 18px; /* يساوي ارتفاع الدائرة */
+user-select: none;
+}
+
+.booking-section .service-section {
+border: 1px solid #ddd;
+border-radius: 10px;
+padding: 14px;
+margin-bottom: 20px;
+}
+
+.booking-section .section-title {
+display: flex;
+align-items: center;
+gap: 8px;
+font-weight: 700;
+margin-bottom: 12px;
+color: #333;
+font-size: 16px;
+
+}
+.booking-section .section-title .material-symbols-outlined {
+font-size: 22px;
+color: #9a9a9a;
+}
+
+.booking-section .check-item {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 12px;
+font-size: 15px;
+cursor: pointer;
+direction: rtl; /* يجعل العناصر تبدأ من اليمين */
+text-align: right;
+}
+
+.booking-section .check-item input[type="checkbox"] {
+width: 18px;
+height: 18px;
+cursor: pointer;
+margin-top: 0;
+}
+
+.submit {
+  background-color: #654c36; /* لون الزر */
+  color: #ffffff;
+  font-family: 'Cairo', sans-serif; /* الخط */
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit:hover {
+  background-color: #7a4b10;
+  transform: translateY(-2px);
+}
+

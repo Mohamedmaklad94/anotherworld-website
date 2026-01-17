@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>صور الحياة البرية - Another World Photography</title>
+   <link rel="stylesheet" href="css/style-v3.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+
+<style>
+/* الهيرو */
+.wildlife-hero {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: none;
+}
+
+/* Overlay */
+.wildlife-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 1;
+}
+
+/* العنوان */
+.wildlife-hero h1 {
+    position: relative;
+    z-index: 2;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 7rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 140px;
+    letter-spacing: -3.5px;
+}
+
+/* أزرار Next/Prev */
+.wildlife-prev,
+.wildlife-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.4);
+    border: none;
+    border-radius: 8px;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wildlife-prev { left: 40px; }
+.wildlife-next { right: 40px; }
+
+/* Dots */
+.wildlife-dots {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    gap: 12px;
+    z-index: 3;
+}
+
+.wildlife-dots .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.wildlife-dots .dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+/* Hover */
+.wildlife-prev:hover,
+.wildlife-next:hover {
+    background: rgba(255,255,255,0.6);
+    color: black;
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* ===== LIGHTBOX — Wildlife Only ===== */
+.wildlife-lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.wildlife-lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+.wlb-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.wlb-img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 8px;
+}
+
+.wlb-info {
+  text-align: center;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.wlb-author {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* Close button */
+.wlb-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+/* Navigation arrows */
+.wlb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wlb-prev { left: 20px; }
+.wlb-next { right: 20px; }
+
+.latest-works {
+  min-height: 800px; }
+  
+  .hidden {
+    display: none !important;
+}
+
+
+</style>
+</head>
+
+<body class="about-body">
+
+<!-- HEADER -->
+<div id="header"></div>
+<script>
+  fetch("components/header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
+
+<!-- HERO -->
+<section class="gallery-hero wildlife-hero">
+    <div class="wildlife-overlay"></div>
+    <h1>WILD LIFE</h1>
+
+    <button class="wildlife-prev prev" id="wildlife-prev">›</button>
+    <button class="wildlife-next next" id="wildlife-next">‹</button>
+    <div class="wildlife-dots"></div>
+</section>
+
+<script src="js/wildlife-slider.js"></script>
+
+<!-- LIGHTBOX HTML -->
+<div class="wildlife-lightbox" id="wildlifeLightbox">
+    <button class="wlb-close" id="wlbClose">&times;</button>
+    <button class="wlb-nav wlb-prev" id="wlbPrev">›</button>
+    <button class="wlb-nav wlb-next" id="wlbNext">‹</button>
+
+    <div class="wlb-content">
+        <img class="wlb-img" id="wlbImg" src="" alt="">
+        <div class="wlb-info">
+            <div class="wlb-author" id="wlbAuthor"></div>
+        </div>
+    </div>
+</div>
+
+<!-- LIGHTBOX SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const wlb = document.getElementById('wildlifeLightbox');
+  const wlbImg = document.getElementById('wlbImg');
+  const wlbAuthor = document.getElementById('wlbAuthor');
+  const wlbClose = document.getElementById('wlbClose');
+  const wlbPrev = document.getElementById('wlbPrev');
+  const wlbNext = document.getElementById('wlbNext');
+
+  window.openWLB = function(photo, index) {
+      wlbImg.src = photo.image;
+      wlbAuthor.textContent = photo.author;
+      wlb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      wlb.dataset.index = index;
+  }
+
+  function closeWLB() {
+      wlb.classList.remove('active');
+      document.body.style.overflow = 'auto';
+  }
+
+  function navWLB(dir) {
+      let idx = parseInt(wlb.dataset.index);
+      if (dir === 'next') idx = (idx + 1) % wildlifePhotos.length;
+      else idx = (idx - 1 + wildlifePhotos.length) % wildlifePhotos.length;
+
+      const photo = wildlifePhotos[idx];
+      wlbImg.src = photo.image;
+      wlbAuthor.textContent = photo.author;
+      wlb.dataset.index = idx;
+  }
+
+  wlbClose.onclick = closeWLB;
+  wlbPrev.onclick = () => navWLB('prev');
+  wlbNext.onclick = () => navWLB('next');
+
+  document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeWLB();
+  });
+});
+</script>
+
+<!-- GALLERY -->
+<section class="latest-works">
+    <div class="section-header">
+      <h2>Wildlife Gallery</h2>
+      <p>صور الحياة البرية من مجتمعنا</p>
+    </div>
+
+    <div class="photo-grid" id="photo-grid"></div>
+
+    <button id="load-more-btn" class="load-more-btn hidden">More</button>
+</section>
+
+<!-- GALLERY SCRIPT -->
+<script src="js/wildlife-gallery.js"></script>
+
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+<!-- HEADER SCROLL -->
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+</body>
+</html>

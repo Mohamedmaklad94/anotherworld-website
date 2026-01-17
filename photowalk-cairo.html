@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title> جولة القاهرة - Another World Photography</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style-v3.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+
+
+  <style>
+
+.photowalkcairo-hero {
+  width: 100%;
+  height: 450px; /* ارتفاع الهيرو */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden; /* مهم عشان البلور مايطلعش بره */
+
+}
+
+.hero-full-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* الصورة كلها تظهر بدون قص */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+    
+  .photowalkcairo-hero h1 {
+font-family: 'IBM Plex Sans Arabic', 'Montserrat', sans-serif;
+  font-size: 7rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #f8e4e4; /* لون أنعم من الأبيض */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  letter-spacing: -2px;
+  position: relative;
+  z-index: 2;
+
+
+}
+
+.photowalkcairo-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('img/photowalkcairo.jpg') center/cover no-repeat;
+  filter: blur(10px); /* البلور هنا */
+  z-index: 1;
+}
+
+
+.photowalkcairo-hero .subline {
+font-family: 'IBM Plex Sans Arabic', 'Montserrat', sans-serif;
+  font-size: 2.3rem;
+  font-weight: 500;
+  margin-top: -60px;
+  color: #ffffff;
+  text-shadow: 0 5px 8px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 2;
+}
+/*.photowalkcairo-hero + * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}*/
+
+.photowalkcairo-body {
+  max-width: none;
+  margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+  .photowalkcairo-hero h1 {
+    font-size: 3.5rem;
+  }
+
+  .photowalkcairo-hero .subline {
+    font-size: 1.3rem;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .photowalkcairo-hero {
+    background: none;
+    min-height: auto;
+    display: block;
+  }
+
+   .photowalkcairo-hero::before {
+    display: none;
+  }
+
+ .hero-mobile-img {
+    display: block;
+    object-fit: contain;
+  }
+
+  .hero-content {
+    padding: 20px 15px 30px;
+  }
+
+  .hero-mobile-wrapper {
+    width: 100%;
+  }
+}
+
+.hero-mobile-img {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.hero-mobile-wrapper {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .photowalkcairo-hero {
+    background: none !important;
+  }
+}
+
+.cairophotowalk-map {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.map-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap; /* عشان الموبايل */
+  flex-direction: row-reverse; /* الكلام يمين - الخريطة شمال */
+
+}
+
+.map-text {
+  flex: 1; /* النص ياخد نص المساحة تقريبًا */
+  min-width: 0px;
+}
+
+#cairoMap {
+  flex: 0.9; /* الخريطة تاخد المساحة التانية */
+  min-width: 300px;
+  height: 320px; /* تصغيرها عن 450px الافتراضية */
+  border-radius: 14px;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+  .map-wrapper {
+    flex-direction: column;
+  }
+
+  #cairoMap {
+    width: 100%;
+    height: 350px; /* أصغر للموبايل */
+  }
+}
+
+
+.custom-pin {
+  animation: pinBounce 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes pinBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+
+.cairophotowalk-places {
+  max-width: 1300px;
+  margin-top: 80px auto 0;
+  padding: 0 20px;
+}
+
+.place-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 150px;
+}
+
+.place-section.place-left {
+  flex-direction: row-reverse;
+}
+
+.place-image {
+  flex: 1.2;
+  min-width: 0; /* مهم جدًا */
+}
+
+
+.place-image img {
+  width: 100%;
+  height: auto;      /* يخلي الطول يتناسب مع العرض */
+  max-height: none;  /* تمنع القص */
+  object-fit: contain; /* تظهر الصورة بالكامل داخل الصندوق */
+  object-fit: cover; /* ممكن تخلي الصورة تملا المساحة */
+  border-radius: 14px;
+}
+
+.place-text {
+  flex: 1;
+}
+
+.place-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+}
+
+.place-text p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #444;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+  .place-section,
+  .place-section.place-left {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .place-image img {
+    max-height: none;
+  }
+}
+
+img, section, div {
+  max-width: 100%;
+}
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  width: 100%;
+  max-width: none;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+#footer {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+
+.map-text h2,
+.map-text p {
+  display: block;
+  white-space: normal; /* يسمح بكسرة الأسطر */
+  margin-bottom: 10px; /* مسافة بين العنوان والفقرات */
+  text-align: right; /* يخلي النص يمين (RTL) */
+}
+
+
+.hero-overlay {
+  position: absolute;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.35); /* اسود شفافية 35% */
+  z-index: 1; /* تحت المحتوى، فوق الصورة */
+  pointer-events: none; /* عشان مايأثرش على الضغط */
+}
+
+
+  </style>
+
+</head>
+<body class="photowalkcairo-body">
+  <div id="header"></div>
+  <script>
+    fetch("components/header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header").innerHTML = data;
+      });
+  </script>
+
+  <div class="page-wrapper">
+
+  <!-- الهيرو -->
+  <section class="photowalkcairo-hero">
+  <img class="hero-full-img" src="img/photowalkcairo.jpg" alt="جولة القاهرة">
+  <div class="hero-content">
+    <h1>جولة القاهرة</h1>
+    <p class="subline">بالتعاون مع شركة أوبو</p>
+  </div>
+</section>
+
+
+
+<!-- الأماكن -->
+  <section class="cairophotowalk-places">
+
+
+    <!-- 1. نشاط تصوير جماعي -->
+<div class="place-section place-right" data-aos="fade-up">
+  <div class="place-image">
+    <img src="img/records.png" alt="توثيق للجولة">
+  </div>
+
+  <div class="place-text">
+    <h2>توثيق للجولة</h2>
+    <p>
+      في جولتنا الممتعة في قلب القاهرة، كان معانا فريق مليان طاقة وحيوية وروح مرحة! سلمنا موبايلات أوبو والتقطنا صور حلوة لكل لحظة، من ضحكنا مع بعض لابتساماتنا الطبيعية ولحظات التركيز أثناء اكتشاف المعالم. كل صورة فيها قصة، كل ضحكة فيها ذكريات، وكل زاوية فيها جمال القاهرة الفريد. الجولات دي مش بس تصوير، ده كمان وقت للتعارف، مشاركة اللحظات، والتمتع بجمال المدينة بروح الفريق الواحد.
+    </p>
+  </div>
+</div>
+
+
+    <!-- 2. مسجد السلطان حسن -->
+    <div class="place-section place-left" data-aos="fade-up">
+  <div class="place-image">
+    <img src="img/sultan1.png" alt="مسجد السلطان حسن">
+  </div>
+
+  <div class="place-text">
+    <h2>مسجد السلطان حسن</h2>
+    <p>
+      أول مكان زرناه، تحفة معمارية ضخمة تعكس فن العمارة الإسلامية
+بدأنا جولتنا عند المسجد والمدرسة العظيمة للسلطان حسن، ووقفنا مذهولين قدام ضخامة القباب والزخارف المملوكية الرائعة. صورنا بعض في الباحات الكبيرة والممرات المزخرفة، وفكرنا إزاي كل حجر بيحكي قصة تاريخية. لما ضوء الشمس دخل من النوافذ العالية، كل صورة فيها شعور بالهدوء والعظمة، وكأننا رجعنا لزمن المماليك. لفينا المكان كله، ضحكنا، اكتشفنا التفاصيل الصغيرة على الجدران، وصورنا كل زاوية ممكن تصور جمال المعمار بطريقة مختلفة.
+    </p>
+  </div>
+</div>
+
+    <!-- 3.  الدرب الأحمر -->
+<div class="place-section place-right" data-aos="fade-up">
+  <div class="place-image">
+    <img src="img/darb.png" alt="الدرب الأحمر">
+  </div>
+
+  <div class="place-text">
+    <h2>الدرب الأحمر</h2>
+    <p>
+بعدها رحنا الدرب الأحمر، الحي اللي مليان حياة وألوان وروح الزمن الجميل. اتجولنا في الأزقة الضيقة، تصفحنا المحلات الصغيرة اللي بتبيع كل حاجة من البهارات للمشغولات اليدوية، وكل زاوية فيها ريحة زمان. صورنا الحارات القديمة، ضحكنا مع بعض، والتقطنا لقطات عفوية تعكس حركة الحياة اليومية. الدرب الأحمر مكان يخليك تحس إنك داخل فيلم عن القاهرة القديمة، مليان مفاجآت لكل عين بتدور على جمال التفاصيل.    </p>
+  </div>
+</div>
+
+   <!-- 4.  باب زويلة -->
+<div class="place-section place-left" data-aos="fade-up">
+  <div class="place-image">
+    <img src="img/zawyla.png" alt="باب زويلة">
+  </div>
+
+  <div class="place-text">
+    <h2>باب زويلة</h2>
+    <p>
+بعدها وصلنا باب زويلة التاريخي، ووقفنا قدام العراقة والجمال. صورنا الباب من كل الزوايا، من بعيد ومن قريب، ولفينا الشارع اللي حواليه، واكتشفنا كل تفاصيل النقوش الحجرية والأقواس الكبيرة. حسينا كأننا رجعنا بالزمن للقرون اللي فاتت، وكل صورة فيها روح التاريخ والمدينة القديمة. كان المشي حوالين الباب واللقطات اللي صورناها تجربة مدهشة لكل محبي التاريخ والتصوير.    </p>
+  </div>
+</div>
+
+     <!-- 5.  شارع المعز -->
+<div class="place-section place-right" data-aos="fade-up">
+  <div class="place-image">
+    <img src="img/moez.png" alt="شارع المعز">
+  </div>
+
+  <div class="place-text">
+    <h2>شارع المعز</h2>
+    <p>
+أخيرًا، قضينا وقت رائع في شارع المعز، المكان اللي بيجمع بين سحر الماضي وحيوية المدينة. لفينا الأزقة، دخلنا الأسواق، وتصورنا قدام المباني العتيقة والمساجد الجميلة. كل زاوية فيها منظر مختلف، كل ضحكة بين الناس والألوان فيها روح القاهرة القديمة. صورنا كل التفاصيل، من القباب المزخرفة للمداخل الحجرية، وكل لقطة فيها شعور بالزمن الجميل. الجولة في المعز كانت ختام مثالي ليوم مليان اكتشافات، ضحك، وتصوير لا يُنسى.    </p>
+  </div>
+</div>
+
+    
+
+
+<section class="cairophotowalk-map" data-aos="fade-up" dir="ltr">
+  <div class="map-wrapper">
+    <div class="map-text">
+      <h2 style="direction: rtl;">خريطة الأماكن التي تمت زيارتها</h2>
+      <p>هنا توضيح لجميع الأماكن التي تم زيارتها في الجولة مع موقعها على الخريطة.</p>
+    </div>
+    <div id="cairoMap"></div>
+  </div>
+</section>
+
+
+
+<script>
+  // إنشاء الخريطة
+  const map = L.map('cairoMap').setView([30.0455, 31.2615], 16);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+setTimeout(() => {
+  map.invalidateSize();
+}, 500);
+
+
+  // أيقونة مخصصة
+  const locationIcon = L.icon({
+    iconUrl: 'img/pin.png',
+    iconSize: [42, 42],
+    iconAnchor: [21, 42], // يخلي رأس الدبوس على المكان بالظبط
+    popupAnchor: [0, -38],
+    className: 'custom-pin'
+  });
+
+  // الأماكن
+  const places = [
+    {
+      name: "مسجد السلطان حسن",
+      coords: [30.0444, 31.2587],
+      desc: "بداية الجولة – تحفة معمارية مملوكية"
+    },
+    {
+      name: "الدرب الأحمر",
+      coords: [30.0466, 31.2636],
+      desc: "منطقة تراثية نابضة بالحياة"
+    },
+    {
+      name: "باب زويلة",
+      coords: [30.0436, 31.2599],
+      desc: "أحد أبواب القاهرة الفاطمية التاريخية"
+    },
+    {
+      name: "شارع المعز",
+      coords: [30.0452, 31.2628],
+      desc: "قلب القاهرة القديمة وأهم محطاتها"
+    }
+  ];
+
+  // إضافة الماركرز بالأيقونة
+  places.forEach(place => {
+  L.marker(place.coords, { icon: locationIcon })
+    .addTo(map)
+    .bindPopup(`
+      <strong>${place.name}</strong><br>
+      ${place.desc}
+    `);
+});
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script>
+AOS.init({duration:800, once:true});
+</script>
+
+
+
+
+<!-- HEADER SCROLL -->
+<script>
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  document.querySelectorAll('.place-image').forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-img');
+      document.getElementById('lightbox-img').src = imgSrc;
+      document.getElementById('lightbox').style.display = 'flex';
+    });
+  });
+
+  document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
+  });
+</script>
+
+<!-- الفوتر -->
+ <div id="footer"></div>
+<script>
+  fetch("components/footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer").innerHTML = data;
+    });
+</script>
+
+<div class="hero-overlay"></div>
+
+</body>
+</html>
