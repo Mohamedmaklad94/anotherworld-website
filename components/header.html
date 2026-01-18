@@ -1,13 +1,19 @@
 <!-- شريط التصفح -->
-  <header class="navbar">
-    <div class="logo">
-  <a href="index.html">
-    <img src="img/logo.png" alt="Another World Logo">
-  </a>
-</div>
+<header class="navbar">
+  <div class="logo">
+    <a href="index.html">
+      <img src="img/logo.png" alt="Another World Logo">
+    </a>
+  </div>
 
+  <nav class="nav">
+    <!-- زرار الموبايل (Hamburger) -->
+    <button class="nav-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-    <nav>
+    <!-- الروابط -->
+    <div class="nav-links" id="navLinks">
       <a href="index.html">الرئيسية</a>
 
       <div class="dropdown">
@@ -17,7 +23,7 @@
           <a href="gallery-portrait.html">بورتريه</a>
           <a href="gallery-street.html">شارع</a>
           <a href="gallery-wildlife.html">الحياة البرية</a>
-          <a href="gallery-landscape.html"> الطبيعة</a>
+          <a href="gallery-landscape.html">الطبيعة</a>
           <a href="gallery-fineart.html">الفن التشكيلي</a>
           <a href="gallery-events.html">مناسبات</a>
           <a href="gallery-product.html">منتجات</a>
@@ -46,19 +52,16 @@
         <span>جولات التصوير</span>
         <div class="dropdown-menu">
           <a href="photowalk-cairo.html">جولة القاهرة</a>
-          <a href="photowalk-stwhrv.html"> حصاد الفراولة</a>
+          <a href="photowalk-stwhrv.html">حصاد الفراولة</a>
         </div>
       </div>
-      
-      <div class="dropdown book-btn">
-        <span>احجز معانا</span>
-        <div class="dropdown-menu">
-          <a href="book.html"> تصوير مودل</a>
-          <a href="book.html">تصوير أفراح</a>
-          <a href="book.html">تصوير منتجات</a>
-        </div>
-      </div>
+    </div>
 
-      
-    </nav>
-  </header>
+    <!-- اللي هيظهر برا على الموبايل -->
+    <div class="nav-actions">
+      <a class="book-pill" href="book.html">احجز معنا</a>
+      <!-- لو عندك صفحة بحث -->
+      <!-- <a class="search-ico" href="search.html" aria-label="بحث">🔍</a> -->
+    </div>
+  </nav>
+</header>

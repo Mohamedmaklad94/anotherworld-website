@@ -422,6 +422,105 @@ padding: 10px 30px; /* يصغر شوية */
   margin-left: 60px !important;
 }
 
+/* ===== Mobile Navbar ===== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* زر الهامبرجر */
+.nav-toggle {
+  display: none;           /* desktop hidden */
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-toggle span{
+  display:block;
+  height:2px;
+  margin:6px 0;
+  background: #fff;        /* غيّر لو الهيدر فاتح */
+  border-radius: 2px;
+}
+
+/* الروابط */
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+}
+
+/* الجزء اللي عايزه يظهر برا (احجز معنا + بحث) */
+.nav-actions{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* زر احجز معنا */
+.book-pill{
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.35);
+  color:#fff;
+  text-decoration:none;
+  white-space: nowrap;
+}
+
+/* ===== Mobile فقط ===== */
+@media (max-width: 768px){
+  /* اخفي روابط الديسكتوب */
+  .nav-links{
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background: rgba(20,20,20,0.96);
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    z-index: 9999;
+  }
+
+  /* لما القائمة تفتح */
+  .nav-links.is-open{
+    display: flex;
+  }
+
+  .nav-toggle{
+    display: inline-flex; /* يظهر في الموبايل */
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* منظم ومش كبير */
+  .nav-links a,
+  .nav-links .dropdown > span{
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  /* الدروب داون جوه القائمة بالموبايل  */
+  .nav-links .dropdown-menu{
+    position: static;
+    display: none;
+    background: transparent;
+    box-shadow: none;
+    padding-right: 12px;
+  }
+  .nav-links .dropdown.open .dropdown-menu{
+    display: block;
+  }
+}
+
 
 /* ===========================
    Slider (Final Fixed Version)
