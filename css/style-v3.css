@@ -3,7 +3,7 @@
 =========================== */
 body {
   margin: 0;
-  font-family: "Cairo", sans-serif;
+  font-family: "Cairo", sans-serif !important;
   background: #f0f0f0;
   color: #222;
   direction: rtl;
@@ -650,7 +650,7 @@ padding: 10px 30px; /* يصغر شوية */
 }
 
 .footer-contact i {
-  font-size: 20px; /* كبرها براحتك */
+  font-size: 20px; /*  حجم الخط بتاع الفوتر */
   min-width: 24px; /* يخلي كل الأيقونات مصطفة */
   color: #fff;
 }
