@@ -503,18 +503,30 @@ AOS.init({duration:800, once:true});
 </div>
 
 <script>
-  document.querySelectorAll('.place-image').forEach(item => {
-    item.addEventListener('click', () => {
-      const imgSrc = item.getAttribute('data-img');
-      document.getElementById('lightbox-img').src = imgSrc;
-      document.getElementById('lightbox').style.display = 'flex';
-    });
-  });
+document.addEventListener("DOMContentLoaded", () => {
 
-  document.getElementById('lightbox').addEventListener('click', () => {
-    document.getElementById('lightbox').style.display = 'none';
-  });
+  const images = document.querySelectorAll('.place-image');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  if (images.length && lightbox && lightboxImg) {
+    images.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (!img) return;
+
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  }
+});
 </script>
+
 
 <!-- الفوتر -->
  <div id="footer"></div>
