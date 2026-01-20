@@ -236,24 +236,6 @@
     .then(res => res.text())
     .then(data => {
       document.getElementById("header").innerHTML = data;
-
-      // Mobile toggle
-      const toggle = document.querySelector(".nav-toggle");
-      const links  = document.querySelector(".nav-links");
-
-      if (toggle && links) {
-        toggle.addEventListener("click", () => {
-          const open = links.classList.toggle("is-open");
-          toggle.setAttribute("aria-expanded", open ? "true" : "false");
-        });
-      }
-
-      // Dropdowns inside mobile menu
-      document.querySelectorAll(".nav-links .dropdown > span").forEach(sp => {
-        sp.addEventListener("click", () => {
-          sp.parentElement.classList.toggle("open");
-        });
-      });
     });
 </script>
 
