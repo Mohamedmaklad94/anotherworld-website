@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>  تصوير أفراح events - Another World Photography</title>
   <link rel="stylesheet" href="css/style-v3.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -192,11 +193,191 @@
 <!-- HEADER -->
 <div id="header"></div>
 <script>
-  fetch("components/header.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
+  function initHeader(){
+    const navbar = document.querySelector("header.navbar");
+    if(!navbar) return;
+
+    const navBtn = document.getElementById("navToggle");
+    const closeMenu = document.getElementById("closeMenu");
+
+    const openSearch = document.getElementById("openSearch");
+    const overlay = document.getElementById("searchOverlay");
+    const closeSearch = document.getElementById("closeSearch");
+    const input = document.getElementById("searchInput");
+
+    // فتح/قفل المنيو
+    if(navBtn){
+      navBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbar.classList.toggle("open");
+        navBtn.setAttribute("aria-expanded", navbar.classList.contains("open") ? "true" : "false");
+      });
+    }
+
+    if(closeMenu){
+      closeMenu.addEventListener("click", () => {
+        navbar.classList.remove("open");
+        navBtn?.setAttribute("aria-expanded","false");
+      });
+    }
+
+    // اقفل المنيو لما تدوس بره
+    document.addEventListener("click", (e) => {
+      const nav = document.getElementById("mainNav");
+      if(!nav) return;
+      if(navbar.classList.contains("open") && !nav.contains(e.target) && e.target !== navBtn){
+        navbar.classList.remove("open");
+        navBtn?.setAttribute("aria-expanded","false");
+      }
     });
+
+    // =========================
+    // =========================
+// MOBILE: dropdown click accordion (ONLY)
+// =========================
+const isMobile = window.matchMedia("(max-width: 900px)");
+
+function bindMobileDropdowns(){
+  const nav = document.getElementById("mainNav");
+  if(!nav) return;
+
+  const dropdowns = nav.querySelectorAll(":scope > .dropdown");
+
+  function closeAll(except){
+    dropdowns.forEach(dd=>{
+      if(dd !== except){
+        dd.classList.remove("is-open");
+        const t = dd.querySelector(":scope > span");
+        t && t.setAttribute("aria-expanded","false");
+      }
+    });
+  }
+
+  dropdowns.forEach(dd=>{
+    const trigger = dd.querySelector(":scope > span");
+    const menu = dd.querySelector(":scope > .dropdown-menu");
+    if(!trigger || !menu) return;
+
+    trigger.setAttribute("role","button");
+    trigger.setAttribute("tabindex","0");
+    trigger.setAttribute("aria-expanded","false");
+
+    const toggle = (e)=>{
+      if(!isMobile.matches) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      const open = dd.classList.contains("is-open");
+      closeAll(dd);
+
+      if(open){
+        dd.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded","false");
+      }else{
+        dd.classList.add("is-open");
+        trigger.setAttribute("aria-expanded","true");
+      }
+    };
+
+    trigger.addEventListener("click", toggle);
+    trigger.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ toggle(e); }
+    });
+  });
+}
+
+bindMobileDropdowns();
+
+
+
+
+    // البحث Overlay
+    if(openSearch && overlay && closeSearch && input){
+      openSearch.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbar.classList.remove("open");
+        navbar.classList.add("search-open");
+        overlay.setAttribute("aria-hidden","false");
+        setTimeout(()=>input.focus(), 50);
+      });
+
+      function closeIt(){
+        input && input.blur();                 // ✅ شيل الفوكس من input
+        navbar.classList.remove("search-open");
+        overlay.setAttribute("aria-hidden","true");
+        input && (input.value = "");
+      }
+
+
+
+      closeSearch.addEventListener("click", closeIt);
+      overlay.addEventListener("click", (e)=>{ if(e.target===overlay) closeIt(); });
+      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeIt(); });
+    }
+  }
+
+  function lockMobilePinnedHeader(){
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  if(!isMobile) return;
+
+  const host = document.getElementById("header");
+  const navbar = host?.querySelector("header.navbar");
+  if(!host || !navbar) return;
+
+  // امسح أي آثار من سكربت السكرول
+  navbar.classList.remove("hide","is-hidden","scrolled");
+
+  // احسب الارتفاع الحقيقي واعمله padding-top للجسم
+  const h = Math.ceil(navbar.getBoundingClientRect().height || 64);
+  document.documentElement.style.setProperty("--nav-h", h + "px");
+  document.body.style.paddingTop = h + "px";
+}
+
+  fetch("components/header.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("header").innerHTML = html;
+      initHeader();
+      lockMobilePinnedHeader();   // ✅ تثبيت الموبايل
+      window.addEventListener("resize", lockMobilePinnedHeader);
+      window.addEventListener("orientationchange", lockMobilePinnedHeader);
+
+
+    });
+</script>
+
+
+
+
+<!-- السكرول  -->
+<script>
+  // DESKTOP ONLY: scrolled header
+  (function(){
+    const mq = window.matchMedia("(max-width: 768px)");
+    function onScroll(){
+      const navbar = document.querySelector("header.navbar");
+      if(!navbar) return;
+      if (window.scrollY > 50) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
+    }
+
+    function bind(){
+      // لو موبايل: شيل scrolled واقفل التأثير
+      if(mq.matches){
+        const navbar = document.querySelector("header.navbar");
+        navbar && navbar.classList.remove("scrolled");
+        window.removeEventListener("scroll", onScroll);
+        return;
+      }
+      // لو ديسكتوب: شغل
+      window.addEventListener("scroll", onScroll, { passive:true });
+      onScroll();
+    }
+
+    // أول مرة + عند تغيير المقاس
+    bind();
+    mq.addEventListener?.("change", bind);
+  })();
 </script>
 
 <!-- HERO -->
@@ -292,17 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 </script>
 
-<!-- HEADER SCROLL -->
-<script>
-  window.addEventListener("scroll", function () {
-    const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
-  });
-</script>
 
 </body>
 </html>

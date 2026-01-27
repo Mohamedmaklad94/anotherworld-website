@@ -1,6 +1,12 @@
 /* ===========================
    إعدادات عامة
 =========================== */
+html, body{
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: "Cairo", sans-serif !important;
@@ -396,10 +402,6 @@ padding: 10px 30px; /* يصغر شوية */
   border-bottom: none !important;
 }
 
-.book-btn > span {
-  background: transparent;
-  border: 2px solid #fff;
-}
 
 
 /* تعديل جزء اللوجو فقط */
@@ -422,105 +424,12 @@ padding: 10px 30px; /* يصغر شوية */
   margin-left: 60px !important;
 }
 
-/* ===== Mobile Navbar ===== */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+header.navbar{
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: clip; /* أو hidden لو clip مش شغال عندك */
 }
-
-/* زر الهامبرجر */
-.nav-toggle {
-  display: none;           /* desktop hidden */
-  width: 42px;
-  height: 42px;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  padding: 8px;
-}
-.nav-toggle span{
-  display:block;
-  height:2px;
-  margin:6px 0;
-  background: #fff;        /* غيّر لو الهيدر فاتح */
-  border-radius: 2px;
-}
-
-/* الروابط */
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex: 1;
-}
-
-/* الجزء اللي عايزه يظهر برا (احجز معنا + بحث) */
-.nav-actions{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* زر احجز معنا */
-.book-pill{
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.35);
-  color:#fff;
-  text-decoration:none;
-  white-space: nowrap;
-}
-
-/* ===== Mobile فقط ===== */
-@media (max-width: 768px){
-  /* اخفي روابط الديسكتوب */
-  .nav-links{
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    background: rgba(20,20,20,0.96);
-    padding: 14px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    z-index: 9999;
-  }
-
-  /* لما القائمة تفتح */
-  .nav-links.is-open{
-    display: flex;
-  }
-
-  .nav-toggle{
-    display: inline-flex; /* يظهر في الموبايل */
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* منظم ومش كبير */
-  .nav-links a,
-  .nav-links .dropdown > span{
-    font-size: 16px;
-    line-height: 1.2;
-  }
-
-  /* الدروب داون جوه القائمة بالموبايل  */
-  .nav-links .dropdown-menu{
-    position: static;
-    display: none;
-    background: transparent;
-    box-shadow: none;
-    padding-right: 12px;
-  }
-  .nav-links .dropdown.open .dropdown-menu{
-    display: block;
-  }
-}
-
 
 /* ===========================
    Slider (Final Fixed Version)
@@ -626,6 +535,27 @@ padding: 10px 30px; /* يصغر شوية */
 }
 
 
+/* ✅ fix slider overflow */
+.slider, .slides{
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.slide-wrapper{
+  width: 100% !important;        /* بدل أي 100vw */
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.slide-wrapper img{
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
 /* ===========================
    Sections
 =========================== */
@@ -707,6 +637,21 @@ padding: 10px 30px; /* يصغر شوية */
 }
 
 
+footer.aw-footer, 
+#footer,
+.footer-container{
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+ul.footer-contact{
+  padding-left: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  word-break: break-word;
+}
+
+
 /* Social Icons */
 .footer-social {
   display: flex;
@@ -754,6 +699,13 @@ padding: 10px 30px; /* يصغر شوية */
   color: #fff;
 }
 
+.footer-contact li a{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;    /* ✅ مهم جدًا مع ellipsis */
+  flex: 1;         /* ✅ يخليه ياخد عرض العمود */
+}
 
 .footer-contact a {
   color: #ccc;
@@ -949,6 +901,59 @@ padding: 10px 30px; /* يصغر شوية */
     text-align: center;
   }
 }
+
+/* خلي عرض اللينك يتمدّ جوه السطر */
+.footer-contact li a.footer-email{
+  width: 100%;
+}
+
+/* مهم: اسمح للنص ياخد المساحة ويتقص بـ ... بدل ما يختفي */
+.footer-contact li a.footer-email span{
+  display: block;
+  min-width: 0;              /* أهم سطر عشان ellipsis يشتغل مع flex */
+  white-space: nowrap;
+
+}
+
+/* خلي الأيقونة ثابتة وما تزقش النص */
+.footer-contact li a.footer-email i{
+  flex: 0 0 24px;
+}
+@media (min-width: 992px){
+  .footer-container .footer-col:last-child{
+    flex: 2;
+    min-width: 450px;
+  }
+}
+
+/* ===== FOOTER DESKTOP: خليه Grid عشان ميكسرش صفوف ===== */
+@media (min-width: 992px){
+  .footer-container{
+    display: grid !important;
+    grid-template-columns: 1.2fr 1fr 1fr 1.3fr; /* Brand - روابط - معلومات - تواصل */
+    gap: 30px !important; /* قللناها عشان يقربوا من بعض */
+    align-items: start;
+  }
+
+  /* امنع أي wrap قديم من flex */
+  .footer-col{ 
+    min-width: 0 !important;  /* مهم */
+  }
+}
+@media (min-width: 992px){
+  .footer-container .footer-brand{ grid-column: 1; }        /* اللوجو */
+  .footer-container .footer-col:nth-child(2){ grid-column: 2; } /* روابط سريعة */
+  .footer-container .footer-col:nth-child(3){ grid-column: 3; } /* معلومات */
+  .footer-container .footer-col:nth-child(4){ grid-column: 4; } /* تواصل معنا */
+}
+
+.footer-contact li a.footer-email span{
+  white-space: nowrap;
+}
+
+
+
+
 /* ===========================
    Caption
 =========================== */
@@ -1852,6 +1857,1069 @@ p:not(.navbar p):not(.footer p) {
 }
 
 
+/* ======= mobile-only (hard isolated) ======= */
 
+/* ===========================
+   Mobile-only header (FINAL)
+   - fixes desktop showing mobile items
+=========================== */
+
+/* 1) Desktop: hide mobile stuff (FORCE) */
+.nav-toggle,
+.book-pill-mobile,
+.search-btn,
+.search-overlay,
+.menu-close{
+  display: none !important;
+}
+
+/* 2) Mobile only */
+@media (max-width: 768px){
+
+  /* show mobile stuff */
+  .nav-toggle,
+  .book-pill-mobile,
+  .search-btn{
+    display: inline-flex !important;
+  }
+
+  header.navbar{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    padding: 10px 12px;
+    background: #0b2a55 !important;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    direction: rtl;
+    gap: 10px;
+  }
+
+  body{ padding-top: 64px; }
+
+  /* order: menu, book, search, logo */
+  header.navbar .nav-toggle{ order: 1; }
+  header.navbar .book-pill-mobile{ order: 2; }
+  header.navbar .search-btn{ order: 3; }
+  header.navbar .logo{ order: 4; }
+
+  /* hamburger */
+  header.navbar .nav-toggle{
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+  header.navbar .nav-toggle span{
+    width: 22px;
+    height: 2px;                /* سماكة موحّدة */
+    background: #ffffff;
+    border-radius: 2px;
+    display: block;
+  }
+
+  /* book button */
+  .book-pill-mobile{
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: #f4a43a;
+    color: #fff !important;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  /* search icon */
+  .search-btn{
+    width: 42px;
+    height: 42px;
+    border: 0;
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .search-btn svg{
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    display: block;
+  }
+
+  /* logo */
+  header.navbar .logo{ 
+    margin: 0 !important; 
+    margin-right: 10px !important;   /* زوّد/قلّل الرقم */
+    padding: 0 !important;
+    flex: 0 0 auto !important; 
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  header.navbar .logo a{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* عشان يكون على اليمين */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+
+  header.navbar .logo img{
+    display: block !important;
+    height: 42px !important;
+    width: auto !important;
+    max-width: 180px !important;
+  }
+
+  /* overlay behind drawer */
+  header.navbar::after{
+    content:"";
+    position: fixed;
+    inset: 64px 0 0 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+    z-index: 999997;
+  }
+  header.navbar.open::after{
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* drawer */
+  header.navbar > nav{
+    display: block !important;
+    position: fixed;
+    top: 64px;
+    right: 0;
+    width: min(86vw, 360px);
+    height: calc(100vh - 64px);
+    background: #fff;
+    z-index: 999998;
+    overflow: auto;
+
+    transform: translateX(100%);
+    transition: transform .28s ease;
+    padding: 14px 14px 18px;
+  }
+  header.navbar.open > nav{ transform: translateX(0); }
+
+  /* close X inside drawer */
+  #mainNav .menu-close{
+    display: flex !important;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 999px;
+    background: #f4a43a;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    margin-left: auto;
+    align-items: center;
+    justify-content: center;
+  }
+  #mainNav .menu-close:hover{ filter: brightness(.92); }
+
+  /* links */
+  header.navbar > nav a,
+  header.navbar > nav .dropdown > span{
+    color: #111 !important;
+    text-shadow: none !important;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 10px;
+    border-radius: 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: block;
+  }
+  header.navbar > nav a:hover,
+  header.navbar > nav .dropdown > span:hover{
+    background: rgba(244,164,58,0.15);
+  }
+
+  /* search overlay */
+  .search-overlay{ display: none !important; }
+  header.navbar.search-open .search-overlay{
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 999999;
+  }
+  .search-close{
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .search-panel{ margin-top: 90px; padding: 0 16px; }
+  .search-panel input{
+    width: 100%;
+    height: 52px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12) !important; /* رمادي/شفاف لطيف */
+    color: #fff;
+    border-radius: 14px;
+    padding: 0 14px;
+    font-size: 18px;
+    outline: none;
+    font-family: "Cairo", sans-serif;
+  }
+}
+
+@media (max-width: 768px){
+
+  /* زود المسافة من الطرفين */
+  header.navbar{
+    padding-left: 8px !important;
+    padding-right: 10px !important;
+    justify-content: flex-start; /* بدل space-between */
+    gap: 8px;
+  }
+
+  /* امنع أي ضغط على اللوجو + خليه ما يلزقش في الحافة */
+  header.navbar > .logo{
+    min-width: 110px !important;   /* مساحة للوجو */
+    display: flex !important;
+    justify-content: flex-start !important; /* لأن اللوجو آخر عنصر فبيكون ناحية الشمال */
+    margin-inline-start: auto; /* ده المهم */
+    padding-left: 0px !important;  /* يبعده عن الحافة */
+  }
+
+  header.navbar > .logo img{
+    max-width: 180px !important;
+    height: 34px !important;
+    width: auto !important;
+  }
+
+ /* خليك متأكد إن إطار السلايدر ثابت */
+  .slide-wrapper{
+    display: flex !important;
+    align-items: center !important;     /* ✅ يخليها في النص عمودي */
+    justify-content: center !important; /* ✅ في النص أفقي */
+    overflow: hidden !important;
+  }
+
+  /* الصورة نفسها */
+  .slide-wrapper img{
+    width: 100% !important;
+    height: auto !important;            
+    object-fit: contain !important;       
+    object-position: center center !important; 
+  }
+  .slider-caption-overlay p {
+    display: none !important;
+  }
+  .slider{
+    height: 420px; 
+  }
+  .slide-wrapper{
+    height: 420px; 
+  }
+@media (max-width: 768px) {
+  .slider-caption-overlay h2 {
+    font-size: 26px;   /* جرب 26 أو 24 لو حابب أصغر */
+    line-height: 1.5;
+  }
+}
+
+}
+
+/* FIX logo position on mobile (put at END of CSS file) */
+@media (max-width: 768px){
+  header.navbar .logo{
+    margin-right: auto !important;   /* يزق اللوجو للحتة الفاضية */
+    flex: 0 0 auto !important;       /* يمنع التمدد */
+    margin-inline-start: 0 !important; /* يلغي السطر اللي كان بيبوّظه */
+  }
+
+  header.navbar .logo img{
+    height: 40px !important;         /* كبّره سنة (غيّرها لو تحب) */
+    max-width: none !important;
+  }
+}
+
+@media (max-width: 900px){
+
+  /* ====== Reset states اللي بتبوّظ الشكل ====== */
+  header.navbar #mainNav a,
+  header.navbar #mainNav .dropdown > span{
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  header.navbar #mainNav a:active,
+  header.navbar #mainNav a:focus,
+  header.navbar #mainNav .dropdown > span:active,
+  header.navbar #mainNav .dropdown > span:focus{
+    background: transparent !important;
+    color: inherit !important;
+    outline: none !important;
+  }
+
+  /* ====== شكل العناصر الرئيسية في المنيو ====== */
+  header.navbar #mainNav > a,
+  header.navbar #mainNav > .dropdown > span{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 14px;
+    border-radius: 16px;
+
+    background: #fff;
+    color: #111;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    border: 1px solid rgba(0,0,0,.06);
+  }
+
+  /* ====== العنصر المفتوح (مهم عشان النص ما يختفيش) ====== */
+  header.navbar #mainNav > .dropdown.is-open > span{
+    background: #fff !important;            /* ✅ خليه أبيض */
+    color: #111 !important;                 /* ✅ النص أسود */
+    border-color: rgba(246,169,0,.35);      /* بوردر ذهبي خفيف */
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);/* ظل محترم خفيف */
+  }
+
+
+  header.navbar #mainNav > .dropdown.is-open > span::after{
+    transform: rotate(180deg);
+  }
+
+  /* ====== submenu تحت العنصر (accordion) بدون شادو/كروت ====== */
+  header.navbar #mainNav .dropdown .dropdown-menu{
+    position: static !important;
+    inset: auto !important;
+    transform: none !important;
+
+    display: none !important;
+    margin: 8px 6px 0 !important;
+    padding: 0 !important;
+
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+  }
+
+  header.navbar #mainNav .dropdown.is-open .dropdown-menu{
+    display: block !important;
+  }
+
+  /* عناصر submenu: بسيطة وواضحة */
+  header.navbar #mainNav .dropdown .dropdown-menu a{
+    display: block;
+    padding: 14px 8px;
+
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+
+    font-size: 18px;
+    font-weight: 700;
+    color: #111 !important;
+
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+  header.navbar #mainNav .dropdown .dropdown-menu a:last-child{
+    border-bottom: 0;
+  }
+
+  /* ====== اخفاء اللي تحت فقط (زي المثال بتاعك) ====== */
+  header.navbar #mainNav > .dropdown.is-open ~ a,
+  header.navbar #mainNav > .dropdown.is-open ~ .dropdown{
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px){
+
+  /* ✅ الأقسام الرئيسية: شكل طبيعي بدون مربعات */
+  header.navbar #mainNav > a,
+  header.navbar #mainNav > .dropdown > span{
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+
+    padding: 16px 10px !important;
+    margin: 0 !important;
+
+    color: #111 !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+
+    border-bottom: 1px solid rgba(0,0,0,.08) !important; /* خط خفيف */
+  }
+
+  /* ✅ لما تفتح قسم: خلي الخلفية نفس لون الهيدر */
+  header.navbar #mainNav > .dropdown.is-open > span{
+    background: #0b2a4a !important;  /* نفس لون الهيدر تقريبًا */
+    color: #fff !important;
+    border-bottom-color: rgba(255,255,255,.18) !important;
+  }
+
+  /* ✅ السهم: خليه واضح وبسيط (بدون دايرة ولا شادو) */
+  header.navbar #mainNav > .dropdown > span::after{
+    content: "▾" !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+
+    color: #f6a900 !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+
+    transition: transform .2s ease !important;
+  }
+
+  header.navbar #mainNav > .dropdown.is-open > span::after{
+    transform: rotate(180deg) !important;
+  }
+
+  /* ✅ submenu تحت بعض بشكل طبيعي بدون كروت/شادو */
+  header.navbar #mainNav .dropdown .dropdown-menu a{
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+
+    padding: 14px 14px !important;
+    font-size: 14px !important;
+    font-weight: 650 !important;
+
+    border-bottom: 1px solid rgba(0,0,0,.08) !important;
+  }
+
+  header.navbar #mainNav .dropdown .dropdown-menu{
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+@media (max-width: 768px){
+  header.navbar > nav .dropdown > span{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px;
+  }
+
+  header.navbar #mainNav > .dropdown > span::after{
+    content: "▾" !important;
+    display: inline-block !important;
+    color: #f4a43a !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+    transform: none;
+  }
+
+  header.navbar #mainNav > .dropdown.is-open > span::after{
+    transform: rotate(180deg) !important;
+  }
+
+  .search-btn .search-label{ display: none !important; }
+}
+
+/* =========================
+   Desktop only tweaks
+========================= */
+@media (min-width: 769px){
+
+  /* ✅ 1) Search داخل الهيدر */
+  .nav-search{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+
+  .nav-search input{
+    width: 220px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-family: "Cairo", sans-serif;
+    font-size: 14px;
+  }
+
+  .nav-search input::placeholder{
+    color: rgba(255,255,255,0.75);
+  }
+
+  .nav-search button{
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-search svg{
+    width: 18px;
+    height: 18px;
+    fill: #fff;
+    opacity: 0.9;
+  }
+
+  /* لما الهيدر يبقى scrolled خلي البحث مناسب للخلفية الفاتحة */
+  .navbar.scrolled .nav-search{
+    background: rgba(0,0,0,0.08);
+    border-color: rgba(0,0,0,0.12);
+  }
+  .navbar.scrolled .nav-search input{
+    color: #111;
+  }
+  .navbar.scrolled .nav-search input::placeholder{
+    color: rgba(0,0,0,0.55);
+  }
+  .navbar.scrolled .nav-search svg{
+    fill: #111;
+    opacity: 0.7;
+  }
+
+  /* ✅ 2) زر احجز معنا: ملون طول الوقت (Fix التعارض) */
+  .book-btn > span{
+    background: #f4a43a !important;     /* نفس لون زر الموبايل */
+    color: #fff !important;
+    border: 2px solid transparent !important;
+    padding: 8px 16px !important;
+    border-radius: 999px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.25) !important;
+    text-shadow: none !important;
+  }
+
+  .book-btn > span:hover{
+    background: #df8f25 !important;     /* أغمق شيد */
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.30) !important;
+    border-bottom: none !important;
+  }
+
+  /* حتى في حالة scrolled يفضل ملون */
+  .navbar.scrolled .book-btn > span{
+    background: #f4a43a !important;
+    color: #fff !important;
+  }
+
+  /* ✅ 3) تكبير اللوجو للديسكتوب */
+  .logo img{
+    height: 64px !important;  /* كان 50 */
+    max-width: none;
+  }
+}
+
+/* =========================
+   DESKTOP FIX (only)
+========================= */
+@media (min-width: 769px){
+
+  /* 0) ترتيب الهيدر: logo (left) - search - nav (right) */
+  header.navbar{
+    justify-content: flex-start !important;
+    direction: ltr !important;   /* سيبها LTR عشان التخطيط يبقى ثابت */
+    gap: 16px;
+  }
+
+  /* المنيو ناحية اليمين */
+  header.navbar > nav#mainNav{
+    margin-left: auto !important; /* يدفع الـ nav كله لليمين */
+    direction: rtl;
+  }
+
+  /* اللوجو أقصى الشمال */
+  header.navbar .logo{
+    order: 1 !important;
+    margin: 0 !important;
+  }
+
+  /* البحث بعد اللوجو */
+  header.navbar #openSearch{
+    order: 2 !important;
+  }
+
+  /* المنيو آخر حاجة (يمين) */
+  header.navbar #mainNav{
+    order: 3 !important;
+  }
+
+  /* 1) اخفاء حاجات الموبايل على الديسكتوب */
+  header.navbar .nav-toggle,
+  header.navbar .book-pill-mobile,
+  header.navbar .menu-close{
+    display: none !important;
+  }
+
+  /* 2) إظهار زر البحث على الديسكتوب حتى لو كان مخفي في مكان تاني */
+ header.navbar .search-btn{
+  display: inline-flex !important;
+  align-items: center !important;
+
+  /* ✅ أهم سطرين */
+  justify-content: flex-start !important;   /* خلي المحتوى يبدأ من أول الزر */
+  direction: rtl !important;                /* عشان “🔍 ابحث” يروح ناحية اليمين جوه الزر */
+
+  height: 42px;
+  padding: 0 14px 0 28px !important;        /* يمين أقل، شمال أكتر */
+  min-width: 170px;                         /* حجم خانة البحث */
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.26);
+  background: rgba(0,0,0,0.22);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+
+  gap: 6px !important;
+}
+
+header.navbar .search-btn svg{ order: 1; }
+header.navbar .search-btn .search-label{ order: 2; }
+
+
+  header.navbar .search-btn svg{
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    opacity: 0.95;
+  }
+
+  header.navbar .search-btn .search-label{
+    display: inline-block !important;
+    color: #fff;
+    font-family: "Cairo", sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  header.navbar .search-btn:hover{
+    background: rgba(0,0,0,0.32);
+    border-color: rgba(255,255,255,0.35);
+  }
+
+  /* 3) لما الهيدر يبقى scrolled (خلفية فاتحة) */
+  header.navbar.scrolled .search-btn{
+    background: rgba(255,255,255,0.35);
+    border-color: rgba(0,0,0,0.12);
+  }
+  header.navbar.scrolled .search-btn svg{
+    fill: #111;
+    opacity: 0.75;
+  }
+  header.navbar.scrolled .search-btn .search-label{
+    color: #111;
+  }
+
+  /* 4) تكبير اللوجو للديسكتوب */
+  header.navbar .logo img{
+    height: 64px !important;
+  }
+
+  /* 5) تشغيل overlay على الديسكتوب (مهم لأن عندك mobile-only rules) */
+  .search-overlay{
+    display: none !important;
+  }
+  header.navbar.search-open .search-overlay{
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65); /* جراي محترم */
+    backdrop-filter: blur(8px);
+    z-index: 999999;
+  }
+
+  header.navbar.search-open .search-panel{
+    margin-top: 120px;
+    padding: 0 20px;
+  }
+
+  header.navbar.search-open .search-panel input{
+    width: min(720px, 92vw);
+    height: 56px;
+    background: rgba(255,255,255,0.14) !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+    color: #fff !important;
+    border-radius: 16px;
+    padding: 0 16px;
+    font-size: 18px;
+    outline: none;
+    font-family: "Cairo", sans-serif;
+  }
+
+  header.navbar.search-open .search-panel input::placeholder{
+    color: rgba(255,255,255,0.78) !important;
+  }
+}
+
+/* =========================
+   Desktop Search Overlay - Polish
+========================= */
+@media (min-width: 769px){
+
+  /* الخلفية */
+  header.navbar.search-open .search-overlay{
+    background: rgba(0,0,0,0.72) !important;
+    backdrop-filter: blur(10px) !important;
+  }
+
+  /* زر الإغلاق (X) احترافي */
+  header.navbar.search-open .search-close{
+    position: fixed !important;
+    top: 22px !important;
+    right: 22px !important;   /* يمين بدل الشمال */
+    left: auto !important;
+
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 999px !important;
+
+    border: 1px solid rgba(255,255,255,0.22) !important;
+    background: rgba(255,255,255,0.14) !important;
+    color: #fff !important;
+
+    font-size: 22px !important;
+    line-height: 1 !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    cursor: pointer !important;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease !important;
+  }
+
+  header.navbar.search-open .search-close:hover{
+    background: rgba(255,255,255,0.22) !important;
+    border-color: rgba(255,255,255,0.35) !important;
+    transform: scale(1.04) !important;
+  }
+
+  /* خلّي البانل في النص */
+  header.navbar.search-open .search-panel{
+    margin: 0 !important;
+    padding: 0 !important;
+
+    position: fixed !important;
+    inset: 0 !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    z-index: 1000000 !important;
+  }
+
+  /* input وسط الشاشة بشكل “Search bar” محترم */
+  header.navbar.search-open .search-panel input{
+    width: min(760px, 92vw) !important;
+    height: 64px !important;
+
+    border-radius: 18px !important;
+    padding: 0 20px !important;
+
+    background: rgba(255,255,255,0.14) !important;
+    border: 1px solid rgba(255,255,255,0.25) !important;
+
+    color: #fff !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    font-family: "Cairo", sans-serif !important;
+
+    outline: none !important;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.35) !important;
+  }
+
+  header.navbar.search-open .search-panel input::placeholder{
+    color: rgba(255,255,255,0.75) !important;
+  }
+
+  /* Focus حلو */
+  header.navbar.search-open .search-panel input:focus{
+    border-color: rgba(244,164,58,0.65) !important;  /* قريب من لون زر احجز معنا */
+    box-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 0 0 4px rgba(244,164,58,0.18) !important;
+  }
+}
+@media (min-width: 769px){
+
+  /* input: ابحث تبقى يمين */
+  header.navbar.search-open .search-panel input{
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  /* خلي زر الإغلاق فوق أي حاجة وميتاكلش */
+  header.navbar.search-open .search-close{
+    z-index: 1000002 !important;
+    pointer-events: auto !important;
+  }
+
+  /* خلي overlay يستقبل الضغط (للقفل) */
+  header.navbar.search-open .search-overlay{
+    pointer-events: auto !important;
+    z-index: 1000000 !important;
+  }
+
+  /* خلي panel فوق overlay */
+  header.navbar.search-open .search-panel{
+    z-index: 1000001 !important;
+    pointer-events: none !important;       /* مهم */
+  }
+
+  /* input نفسه يستقبل الكتابة */
+  header.navbar.search-open .search-panel input{
+    pointer-events: auto !important;
+  }
+}
+
+/* =========================
+   FOOTER MOBILE FIX
+========================= */
+@media (max-width: 768px){
+
+  /* ✅ خليه Grid فعلاً + ترتيب واضح */
+  .footer-container{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* عمودين */
+    gap: 22px !important;
+    text-align: center;
+    direction: rtl;
+  }
+
+  /* ✅ اللوجو والسوشيال ياخدوا صف كامل */
+  .footer-brand{
+    grid-column: 1 / -1 !important;
+    order: 1;
+  }
+
+  /* ✅ روابط سريعة + معلومات جنب بعض */
+  .footer-container > .footer-col:nth-child(2){
+    order: 2;
+  }
+  .footer-container > .footer-col:nth-child(3){
+    order: 3;
+  }
+
+  /* ✅ تواصل معنا ياخد صف كامل لتجنب تكسير الايميل */
+  .footer-container > .footer-col:nth-child(4){
+    grid-column: 1 / -1 !important;
+    order: 4;
+    text-align: center;
+  }
+
+  /* ✅ تواصل معنا: خلي السطور متوسّطة والأيقونات ثابتة */
+  .footer-contact li,
+  .footer-contact li a{
+    justify-content: center;
+  }
+
+  /* ✅ الايميل: سطر واحد من غير ما يختفي + يكسر لو لازم */
+  .footer-email{
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-email span{
+    display: inline-block !important;
+    max-width: 92vw;          /* مساحة كفاية على الموبايل */
+    white-space: normal !important; /* بدل nowrap */
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-break: break-word;   /* لو لازم يكسر */
+  }
+
+  /* ✅ Secure payment: ترتيب ونظافة */
+  .secure-payment{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .secure-title{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .secure-logos{
+    justify-content: center;
+    gap: 14px;
+  }
+  .secure-logos img{
+    height: 30px;
+  }
+}
+
+/* أصغر موبايل */
+@media (max-width: 480px){
+  .footer-container{
+    grid-template-columns: 1fr !important; /* عمود واحد */
+  }
+}
+@media (max-width: 768px){
+
+  /* ✅ صف الإيميل: خلي الأيقونة فوق/يمين والسطر تحتها كامل */
+  .footer-contact li:has(.footer-email){
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .footer-contact li:has(.footer-email) .footer-email{
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .footer-contact li:has(.footer-email) .footer-email i{
+    margin: 0 !important;
+  }
+
+  .footer-contact li:has(.footer-email) .footer-email span{
+    width: 100% !important;
+    text-align: center !important;
+    white-space: nowrap !important;  /* ✅ يبقى سطر واحد */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* ✅ لو الشاشة أضيق: ... بدل ما يكسر */
+    max-width: 92vw !important;
+  }
+}
+/* ✅ FORCE: logo always FAR LEFT on mobile */
+@media (max-width: 768px){
+
+  header.navbar{
+    position: fixed !important;
+    top: 0 !important; left: 0 !important; right: 0 !important;
+    height: 64px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    direction: rtl !important;            /* العناصر تبدأ من اليمين */
+    justify-content: flex-start !important;
+
+    padding: 10px 12px !important;
+    padding-left: 140px !important;       /* ✅ مساحة للوجو على الشمال (زوّد/قلّل) */
+  }
+
+  /* ✅ ترتيب يمين: قائمة ثم احجز ثم بحث */
+  header.navbar .nav-toggle{ order: 1 !important; }
+  header.navbar .book-pill-mobile,
+  header.navbar .book-pill{ order: 2 !important; }
+  header.navbar .search-btn{ order: 3 !important; }
+
+  /* ✅ اللوجو خارج لعبة الـ flex: ثابت على الشمال */
+  header.navbar .logo{
+    position: absolute !important;
+    left: 12px !important;
+    right: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 1000000 !important;
+  }
+
+  header.navbar .logo img{
+    height: 40px !important;
+    width: auto !important;
+    max-width: 120px !important;
+    display: block !important;
+  }
+}
+
+/* ✅ Move search close (X) away from logo */
+header.navbar.search-open .search-close{
+  position: fixed !important;
+
+  /* ❌ امنع الشمال */
+  left: auto !important;
+
+  /* ✅ خليه يمين الشاشة */
+  right: 16px !important;
+
+  /* مسافة من فوق */
+  top: 16px !important;
+
+  z-index: 1000002 !important;
+
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 999px !important;
+
+  display: grid !important;
+  place-items: center !important;
+}
+/* ===== MOBILE: header pinned (stable) ===== */
+@media (max-width: 768px){
+
+  /* خلي الحاوية نفسها فوق */
+  #header{
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 999999 !important;
+    transform: none !important;
+  }
+
+  /* بدل fixed -> sticky عشان الهزّة تقل */
+  header.navbar{
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* اقفل أي states بتحركه */
+  header.navbar.scrolled,
+  header.navbar.hide,
+  header.navbar.hidden,
+  header.navbar.is-hidden{
+    transform: none !important;
+    top: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* مهم: امسح padding-top اللي كنت بتعمله للجسم */
+  body{
+    padding-top: 0 !important;
+  }
+}
 
 

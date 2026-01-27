@@ -2,349 +2,519 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>سياسة الخصوصية وشروط الاستخدام | Another World Photography</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style-v3.css">
+
+<link rel="stylesheet" href="css/style-v3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --text-main: #1a1a1a;
-    --text-muted: #555;
-    --bg-main: #fafafa;
-    --accent: #000;
+:root{
+  --text-main:#1a1a1a;
+  --text-muted:#555;
+  --bg-main:#fafafa;
+  --accent:#000;
+
+  /* ✅ ارتفاع الهيدر الحقيقي بيتحسب بعد inject */
+  --privacy-nav-h: 90px;
 }
 
-* {
-    box-sizing: border-box;
+*{ box-sizing:border-box; }
+
+html, body{
+  margin:0 !important;
+  padding:0 !important;
+  overflow-x:hidden;
 }
 
-body {
-    margin: 0;
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    line-height: 1.7;
-    font-size: 14px;
+body.privacy-page{
+  direction: rtl;
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.7;
+  font-size: 14px;
+
+  /* مفيد لو في لينكات انكور */
+  scroll-padding-top: var(--privacy-nav-h);
 }
 
-.wrapper {
-    max-width: 900px;
-    margin: 80px auto;
-    padding: 0 24px;
+/* روابط داخل المحتوى */
+.privacy-page .wrapper a{
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
 }
 
-header {
-    margin-bottom: 60px;
+/* كل ستايل المحتوى جوه wrapper فقط */
+.privacy-page .wrapper section{ margin-bottom: 28px; }
+
+.privacy-page .wrapper section h2{
+  font-size: 17px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
-header h1 {
-    font-size: 26px;
-    font-family: "Cairo", sans-serif;
-    font-weight: 500;
-    margin-bottom: 8px;
+.privacy-page .wrapper section p{
+  color: var(--text-muted);
+  margin-bottom: 10px;
 }
 
-header p {
-    font-size: 14px;
-    font-family: "Cairo", sans-serif;
-    color: var(--text-muted);
+.privacy-page .wrapper ul{
+  padding-right: 18px;
+  margin: 10px 0;
 }
 
-section {
-    margin-bottom: 28px;
+.privacy-page .wrapper ul li{
+  margin-bottom: 8px;
+  color: var(--text-muted);
 }
 
-section h2 {
-    font-size: 17px;
-    font-family: "Cairo", sans-serif;
-    font-weight: 500;
-    margin-bottom: 8px;
+/* ===== Footer: زي باقي الموقع ===== */
+.privacy-page #footer,
+.privacy-page #footer *{ box-sizing:border-box; }
+
+.privacy-page #footer .aw-footer,
+.privacy-page #footer .secure-payment{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
 }
 
-section p {
-    color: var(--text-muted);
-    margin-bottom: 10px;
+.privacy-page #footer .footer-container,
+.privacy-page #footer .secure-inner{
+  width:90% !important;
+  max-width:1300px !important;
+  margin:0 auto !important;
 }
 
-ul {
-    padding-right: 18px;
-    margin: 10px 0;
+.privacy-page #footer ul,
+.privacy-page #footer li,
+.privacy-page #footer a{
+  margin:0;
+  padding:0;
+  border:0;
 }
 
-ul li {
-    margin-bottom: 8px;
-    color: var(--text-muted);
+/* =========================================
+   ✅ تثبيت الهيدر 100% (موبايل + ديسكتوب)
+   ========================================= */
+
+/* 1) الحاوية اللي بيتم حقن الهيدر جوّاها */
+body.privacy-page #header{
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999999 !important;
+
+  transform: none !important;
+  transition: none !important;
 }
 
-.notice {
-    background: #ffffff;
-    padding: 18px 20px;
-    border-radius: 6px;
-    font-size: 14px;
-    color: var(--text-muted);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+body.privacy-page #header header.navbar{
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: #0b2a4a !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+  height: auto !important;
+  min-height: unset !important;
 }
 
-a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0,0,0,0.25);
-}
-
-a:hover {
-    border-bottom-color: #000;
-}
-
-
-@media (max-width: 600px) {
-    body {
-        font-size: 14px;
-    }
-
-    header h1 {
-        font-size: 23px;
-    }
-}
-
-
-html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-#footer {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.aw-footer {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.secure-payment {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.wrapper {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-section:last-child {
-    margin-bottom: 0 !important;
-}
 
 </style>
 </head>
 
-<body>
+<body class="privacy-page">
 
+<!-- الهيدر (بيتحقن من components/header.html) -->
+<div id="header"></div>
 
-
-<header>
-</header>
-<div style="
-    background-color:#a59f95;
+<!-- HERO -->
+<div class="privacy-hero" style="
+    background-color:#f4a43a;
     background-size:140px;
     padding:70px 20px;
     text-align:center;
     margin-bottom:60px;
     position:relative;
 ">
+  <div style="position:absolute; inset:0;"></div>
 
-    <div style="
-        position:absolute;
-        inset:0;
-    "></div>
+  <div style="position:relative; z-index:2;">
+    <h1 style="
+        margin:0 0 12px;
+        font-size:32px;
+        font-weight:500;
+        color:#0b2a4a;
+        letter-spacing:0.5px;
+    ">
+      سياسة الخصوصية وشروط الاستخدام
+    </h1>
 
-    <div style="position:relative; z-index:2;">
-        <h1 style="
-            margin:0 0 12px;
-            font-size:32px;
-            font-weight:500;
-            color:#ffffff;
-            letter-spacing:0.5px;
-        ">
-            سياسة الخصوصية وشروط الاستخدام 
-        </h1>
-
-        <p style="
-            margin:0;
-            font-size:14px;
-            color:rgba(255,255,255,0.7);
-        ">
-            <a href="/" style="color:#fff; text-decoration:none;">الرئيسية</a>
-            <span style="margin:0 6px;">›</span>
-            <span>سياسة الخصوصية</span>
-        </p>
-    </div>
-
+    <p style="
+        margin:0;
+        font-size:14px;
+        color:#0b2a4a;
+    ">
+      <a href="/" style="color:#0b2a4a; text-decoration:none;">الرئيسية</a>
+      <span style="margin:0 6px;">›</span>
+      <span>سياسة الخصوصية</span>
+    </p>
+  </div>
 </div>
 
 <div class="wrapper">
-    <section>
+  <section>
     <p>
-        في موقع <strong>Another World Photography</strong> نولي اهتمامًا كبيرًا بخصوصية المستخدمين
-        والمصورين والعملاء، ونلتزم بحماية البيانات الشخصية وحقوق الملكية الفكرية.
-        باستخدامك لهذا الموقع، فإنك توافق على جميع الشروط والسياسات الموضحة في هذه الصفحة.
+      في موقع <strong>Another World Photography</strong> نولي اهتمامًا كبيرًا بخصوصية المستخدمين
+      والمصورين والعملاء، ونلتزم بحماية البيانات الشخصية وحقوق الملكية الفكرية.
+      باستخدامك لهذا الموقع، فإنك توافق على جميع الشروط والسياسات الموضحة في هذه الصفحة.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>1. المعلومات التي نقوم بجمعها</h2>
     <ul>
-        <li>الاسم، البريد الإلكتروني، رقم الهاتف</li>
-        <li>بيانات الحجز والدفع</li>
-        <li>الصور التي يتم اختيارها من الجروب الرسمي على فيسبوك</li>
-        <li>بيانات تقنية مثل عنوان IP وملفات تعريف الارتباط (Cookies)</li>
+      <li>الاسم، البريد الإلكتروني، رقم الهاتف</li>
+      <li>بيانات الحجز والدفع</li>
+      <li>الصور التي يتم اختيارها من الجروب الرسمي على فيسبوك</li>
+      <li>بيانات تقنية مثل عنوان IP وملفات تعريف الارتباط (Cookies)</li>
     </ul>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>2. كيفية استخدام المعلومات</h2>
     <p>
-        تُستخدم المعلومات التي نقوم بجمعها لإدارة الحجوزات،
-        عرض الأعمال الفوتوغرافية المميزة،
-        التواصل مع العملاء،
-        وتحسين جودة الخدمات المقدمة.
+      تُستخدم المعلومات التي نقوم بجمعها لإدارة الحجوزات،
+      عرض الأعمال الفوتوغرافية المميزة،
+      التواصل مع العملاء،
+      وتحسين جودة الخدمات المقدمة.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>3. سياسة استخدام الصور وحقوق الملكية</h2>
     <p>
-        جميع الصور المعروضة على الموقع يتم اختيارها من الجروب الرسمي
-        الخاص بـ Another World Photography على فيسبوك.
+      جميع الصور المعروضة على الموقع يتم اختيارها من الجروب الرسمي
+      الخاص بـ Another World Photography على فيسبوك.
     </p>
 
     <ul>
-        <li>جميع حقوق الصور محفوظة لأصحابها الأصليين</li>
-        <li>يتم نشر الصور مع ذكر اسم المصور أو صفحته</li>
-        <li>الموقع لا يدّعي ملكية أي صورة</li>
+      <li>جميع حقوق الصور محفوظة لأصحابها الأصليين</li>
+      <li>يتم نشر الصور مع ذكر اسم المصور أو صفحته</li>
+      <li>الموقع لا يدّعي ملكية أي صورة</li>
     </ul>
 
     <div style="
-    background:#a59f95;
-    color:#2e2a2a;
-    padding:18px 22px;
-    border-radius:6px;
-    font-size:14px;
-    line-height:1.7;
-    margin-top:25px;
+      background:#f4a43a;
+      color:#2e2a2a;
+      padding:18px 22px;
+      border-radius:6px;
+      font-size:18px;
+      line-height:1.7;
+      margin-top:25px;
+    ">
+      بنشر المصور لأي صورة داخل الجروب الرسمي،
+      فإنه يقر ويوافق على إعادة نشرها على الموقع
+      لأغراض العرض الفني والترويج غير التجاري فقط.
+    </div>
+  </section>
 
-">
-    بنشر المصور لأي صورة داخل الجروب الرسمي،
-    فإنه يقر ويوافق على إعادة نشرها على الموقع
-    لأغراض العرض الفني والترويج غير التجاري فقط.
-
-</div>  
-</section>
-
-
-<section>
+  <section>
     <h2>4. طلب إزالة الصور</h2>
     <p>
-        في حال رغبة صاحب الصورة في إزالة أي عمل خاص به من الموقع،
-        يمكنه التواصل معنا، وسيتم تنفيذ الطلب خلال مدة لا تتجاوز
-        <strong>72 ساعة</strong>.
+      في حال رغبة صاحب الصورة في إزالة أي عمل خاص به من الموقع،
+      يمكنه التواصل معنا، وسيتم تنفيذ الطلب خلال مدة لا تتجاوز
+      <strong>72 ساعة</strong>.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>5. الاستخدام التجاري للصور</h2>
     <p>
-        لا يتم استخدام أي صورة لأغراض إعلانية أو تجارية مدفوعة
-        إلا بعد الحصول على موافقة كتابية واضحة من صاحب حقوق الصورة.
+      لا يتم استخدام أي صورة لأغراض إعلانية أو تجارية مدفوعة
+      إلا بعد الحصول على موافقة كتابية واضحة من صاحب حقوق الصورة.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>6. سياسة الحجز والدفع</h2>
     <ul>
-        <li>يتيح الموقع حجز جلسات تصوير (خطوبة – أفراح – بورتريه – جولات تصوير)</li>
-        <li>قد يتطلب الحجز دفع مقدم</li>
-        <li>تتوفر وسائل دفع إلكترونية أو عبر التحويل</li>
+      <li>يتيح الموقع حجز جلسات تصوير (خطوبة – أفراح – بورتريه – جولات تصوير)</li>
+      <li>قد يتطلب الحجز دفع مقدم</li>
+      <li>تتوفر وسائل دفع إلكترونية أو عبر التحويل</li>
     </ul>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>7. الإلغاء والاسترداد</h2>
     <p>
-        تختلف سياسة الإلغاء والاسترداد حسب نوع الخدمة،
-        ويتم توضيح جميع الشروط قبل تأكيد الحجز.
+      تختلف سياسة الإلغاء والاسترداد حسب نوع الخدمة،
+      ويتم توضيح جميع الشروط قبل تأكيد الحجز.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>8. إخلاء المسؤولية</h2>
     <p>
-        الموقع غير مسؤول عن أي نزاعات أو اتفاقات تتم خارج إطار
-        الحجوزات الرسمية المسجلة عبر الموقع.
+      الموقع غير مسؤول عن أي نزاعات أو اتفاقات تتم خارج إطار
+      الحجوزات الرسمية المسجلة عبر الموقع.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>9. التعديلات على السياسة</h2>
     <p>
-        نحتفظ بالحق في تعديل سياسة الخصوصية وشروط الاستخدام في أي وقت،
-        ويتم نشر أي تحديثات على هذه الصفحة.
+      نحتفظ بالحق في تعديل سياسة الخصوصية وشروط الاستخدام في أي وقت،
+      ويتم نشر أي تحديثات على هذه الصفحة.
     </p>
-</section>
+  </section>
 
-<section>
+  <section>
     <h2>10. تواصل معنا</h2>
-
     <p>
-        من خلال البريد الإلكتروني:
-        <a href="mailto:info@anotherworldphotography.com">
-            info@anotherworldphotography.com
-        </a>
+      من خلال البريد الإلكتروني:
+      <a href="mailto:info@anotherworldphotography.com">info@anotherworldphotography.com</a>
     </p>
 
     <p style="margin-top:8px;">
-        أو التواصل عبر واتساب:
-        <a 
-            href="https://wa.me/201146708455" 
-            target="_blank"
-            style="
-                display:inline-flex; 
-                align-items:center; 
-                gap:6px; 
-                direction:ltr;
-                text-decoration:none;
-            
-            "
-        >
-            <img 
-                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-                alt="WhatsApp"
-                style="width:20px; height:20px;"
-            >
-            <span>+20 114 670 8455</span>
-        </a>
+      أو التواصل عبر واتساب:
+      <a href="https://wa.me/201146708455" target="_blank"
+         style="display:inline-flex; align-items:center; gap:6px; direction:ltr; text-decoration:none;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+             alt="WhatsApp" style="width:20px; height:20px;">
+        <span>+20 114 670 8455</span>
+      </a>
     </p>
-</section>
+  </section>
 </div>
 
-
 <!-- الفوتر -->
- <div id="footer"></div>
+<div id="footer"></div>
+
 <script>
+  // Footer inject
   fetch("components/footer.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("footer").innerHTML = data;
     });
 </script>
+
+<script>
+  function initHeader(){
+    const navbar = document.querySelector("header.navbar");
+    if(!navbar) return;
+
+    const navBtn = document.getElementById("navToggle");
+    const closeMenu = document.getElementById("closeMenu");
+
+    const openSearch = document.getElementById("openSearch");
+    const overlay = document.getElementById("searchOverlay");
+    const closeSearch = document.getElementById("closeSearch");
+    const input = document.getElementById("searchInput");
+
+    function setNoScroll(on){
+      document.body.classList.toggle("no-scroll", !!on);
+    }
+
+    // فتح/قفل المنيو
+    if(navBtn){
+      navBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbar.classList.toggle("open");
+        const isOpen = navbar.classList.contains("open");
+        navBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        setNoScroll(isOpen);
+      });
+    }
+
+    if(closeMenu){
+      closeMenu.addEventListener("click", () => {
+        navbar.classList.remove("open");
+        navBtn?.setAttribute("aria-expanded","false");
+        setNoScroll(false);
+      });
+    }
+
+    // اقفل المنيو لما تدوس بره
+    document.addEventListener("click", (e) => {
+      const nav = document.getElementById("mainNav");
+      if(!nav) return;
+      if(navbar.classList.contains("open") && !nav.contains(e.target) && e.target !== navBtn){
+        navbar.classList.remove("open");
+        navBtn?.setAttribute("aria-expanded","false");
+        setNoScroll(false);
+      }
+    });
+
+    // =========================
+    // MOBILE: dropdown click accordion (ONLY)
+    // =========================
+    const isMobile = window.matchMedia("(max-width: 900px)");
+
+    function bindMobileDropdowns(){
+      const nav = document.getElementById("mainNav");
+      if(!nav) return;
+
+      const dropdowns = nav.querySelectorAll(":scope > .dropdown");
+
+      function closeAll(except){
+        dropdowns.forEach(dd=>{
+          if(dd !== except){
+            dd.classList.remove("is-open");
+            const t = dd.querySelector(":scope > span");
+            t && t.setAttribute("aria-expanded","false");
+          }
+        });
+      }
+
+      dropdowns.forEach(dd=>{
+        const trigger = dd.querySelector(":scope > span");
+        const menu = dd.querySelector(":scope > .dropdown-menu");
+        if(!trigger || !menu) return;
+
+        trigger.setAttribute("role","button");
+        trigger.setAttribute("tabindex","0");
+        trigger.setAttribute("aria-expanded","false");
+
+        const toggle = (e)=>{
+          if(!isMobile.matches) return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          const open = dd.classList.contains("is-open");
+          closeAll(dd);
+
+          if(open){
+            dd.classList.remove("is-open");
+            trigger.setAttribute("aria-expanded","false");
+          }else{
+            dd.classList.add("is-open");
+            trigger.setAttribute("aria-expanded","true");
+          }
+        };
+
+        trigger.addEventListener("click", toggle);
+        trigger.addEventListener("keydown", (e)=>{
+          if(e.key === "Enter" || e.key === " "){ toggle(e); }
+        });
+      });
+    }
+
+    bindMobileDropdowns();
+
+    // البحث Overlay
+    if(openSearch && overlay && closeSearch && input){
+      openSearch.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbar.classList.remove("open");
+        navbar.classList.add("search-open");
+        overlay.setAttribute("aria-hidden","false");
+        setNoScroll(true);
+        setTimeout(()=>input.focus(), 50);
+      });
+
+      function closeIt(){
+        input && input.blur();
+        navbar.classList.remove("search-open");
+        overlay.setAttribute("aria-hidden","true");
+        input && (input.value = "");
+        setNoScroll(false);
+      }
+
+      closeSearch.addEventListener("click", closeIt);
+      overlay.addEventListener("click", (e)=>{ if(e.target===overlay) closeIt(); });
+      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeIt(); });
+    }
+  }
+
+  function syncPrivacyHeaderHeight(){
+    const host = document.getElementById("header");
+    const navbar = host?.querySelector("header.navbar");
+    if(!host || !navbar) return;
+
+    // امسح أي تأثيرات إخفاء
+    navbar.classList.remove("hide","is-hidden","sticky");
+
+    // احسب الارتفاع الحقيقي
+    const h = Math.ceil(navbar.getBoundingClientRect().height || 64);
+
+    // استخدم padding-top للجسم (بدل hero margin)
+    document.documentElement.style.setProperty("--privacy-nav-h", h + "px");
+    document.body.style.paddingTop = h + "px";
+
+    // خلى الهيرو يبدأ عادي (من غير margin-top)
+    const hero = document.querySelector(".privacy-hero");
+    if(hero) hero.style.marginTop = "0px";
+  }
+
+  // Header inject
+  fetch("components/header.html")
+    .then(r => r.text())
+    .then(html => {
+      document.getElementById("header").innerHTML = html;
+      initHeader();
+      syncPrivacyHeaderHeight();
+
+      // إعادة حساب عند تغيير المقاس/الدوران
+      window.addEventListener("resize", syncPrivacyHeaderHeight);
+      window.addEventListener("orientationchange", syncPrivacyHeaderHeight);
+      // كمان بعد تحميل الخطوط/الصور لو حصل اختلاف بسيط
+      setTimeout(syncPrivacyHeaderHeight, 150);
+      setTimeout(syncPrivacyHeaderHeight, 400);
+    });
+</script>
+
+
+<script>
+(function(){
+  if(!document.body.classList.contains("privacy-page")) return;
+
+  const mq = window.matchMedia("(max-width: 768px)");
+
+  function hardPin(){
+    if(!mq.matches) return;
+    const h = document.querySelector("header.navbar");
+    if(!h) return;
+
+    // اقفل أي حركة/إخفاء
+    h.classList.remove("scrolled","hide","hidden","is-hidden","sticky");
+    h.style.transform = "none";
+    h.style.top = "0px";
+    h.style.transition = "none";
+    h.style.animation = "none";
+  }
+
+  // بعد حقن الهيدر
+  const t = setInterval(()=>{
+    const h = document.querySelector("header.navbar");
+    if(!h) return;
+    clearInterval(t);
+
+    hardPin();
+    window.addEventListener("scroll", ()=>requestAnimationFrame(hardPin), {passive:true});
+    window.addEventListener("touchmove", ()=>requestAnimationFrame(hardPin), {passive:true});
+
+    // لو في سكربت عنيف بيرجع يضيف كلاس تاني
+    setInterval(hardPin, 120);
+  }, 30);
+})();
+</script>
+
+
+
 
 </body>
 </html>

@@ -2,9 +2,8 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تواصل معنا | Another World Photography</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link rel="stylesheet" href="css/style-v3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +13,8 @@
 
 <style>
 :root{
-    --btn-bg:#a59f95;
-    --btn-hover:#644117;
+    --btn-bg:#f4a43a;
+    --btn-hover:#5181b1;
     --modal-bg:rgba(0,0,0,.65);
 }
 
@@ -24,33 +23,9 @@
     font-family:'Montserrat',system-ui;
 }
 
-/* ==== إصلاح الهيدر لصفحة contact فقط ==== */
-body.contact-page header,
-body.contact-page .navbar,
-body.contact-page nav,
-body.contact-page .header-container {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    z-index: 99999 !important;
-    background: #998872 !important;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1) !important;
-    transform: translateY(0) !important;
-    transition: none !important;
-    animation: none !important;
-}
 
-body.contact-page .navbar.sticky,
-body.contact-page .navbar.scrolled,
-body.contact-page .navbar.fixed {
-    position: fixed !important;
-    top: 0 !important;
-}
 
-body.contact-page {
-    padding-top: 80px !important;
-}
+
 
 /* إيقاف أي تأثيرات scroll */
 body.contact-page .navbar {
@@ -69,7 +44,7 @@ body.contact-page .navbar {
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #777;
+  color: #f4a43a;
   pointer-events: none;
 }
 
@@ -114,14 +89,14 @@ body.contact-page .navbar {
   padding: 40px;
   border-radius: 10px;
   box-sizing: border-box;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
 }
 
 
 /* أزرار الفورم + Join/Hire */
 button { 
     background: var(--btn-bg); 
-    color:#fff; 
+    color:#0b2a4a; 
     border:none; 
     padding:14px 28px; 
     font-size:15px; 
@@ -141,7 +116,7 @@ button:hover {
 /* زر إرسال الفورم */
 form button {
     background: var(--btn-bg);      
-    color:#fff;
+    color:#0b2a4a;
     width:100%;
     font-weight:600;
 }
@@ -295,6 +270,114 @@ textarea { resize:vertical; min-height:100px; }
   font-size: 14px;
 }
 
+:root{
+  --contact-nav-h: 90px; /* هيتعدل تلقائيًا بالـ JS */
+}
+
+/* 1) ثبّت حاوية حقن الهيدر */
+body.contact-page #header{
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999999 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* 2) الهيدر نفسه */
+body.contact-page #header header.navbar{
+  width: 100% !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  background: #0b2a4a !important; /* نفس لونك */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12) !important;
+}
+
+/* 3) تجاهل hide/scrolled/sticky في الصفحة دي */
+body.contact-page #header header.navbar.scrolled,
+body.contact-page #header header.navbar.sticky,
+body.contact-page #header header.navbar.hide,
+body.contact-page #header header.navbar.is-hidden,
+body.contact-page #header header.navbar[class*="hide"],
+body.contact-page #header header.navbar[class*="hidden"]{
+  transform: none !important;
+  top: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 4) ألوان النص والأيقونات */
+body.contact-page #header header.navbar a,
+body.contact-page #header header.navbar span,
+body.contact-page #header header.navbar button{
+  color:#fff !important;
+}
+body.contact-page #header header.navbar .nav-toggle span{
+  background:#fff !important;
+}
+
+/* 5) خلي المحتوى يبدأ بعد الهيدر */
+body.contact-page .contact-hero{
+  margin-top: var(--contact-nav-h) !important;
+}
+
+/* ✅ Mobile: اقفل أي حركة للهيدر نهائياً */
+@media (max-width: 768px){
+  body.contact-page #header,
+  body.contact-page #header header.navbar{
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    will-change: auto !important;
+  }
+
+  /* لو سكربت بيضيف كلاسّات الحركة */
+  body.contact-page #header header.navbar.scrolled,
+  body.contact-page #header header.navbar.sticky,
+  body.contact-page #header header.navbar.hide,
+  body.contact-page #header header.navbar.is-hidden{
+    transform: none !important;
+    top: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+html, body{
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+/* بدل ما hero ياخد margin-top */
+body.contact-page{
+  padding-top: 0 !important;
+  scroll-padding-top: 0 !important;
+}
+
+/* لو موجودة عندك خليهـا تلغي أي margin-top للـ hero */
+body.contact-page .contact-hero{
+  margin-top: 0 !important;
+}
+body.contact-page #header{
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999999 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto !important;
+}
+
+body.contact-page #header *{
+  transition: none !important;
+}
+
 
 </style>
 
@@ -311,20 +394,195 @@ function closeModal(id){
 </head>
 
 <body class="contact-page">
-
-
-<!-- HEADER
 <div id="header"></div>
+
+
 <script>
-fetch("components/header.html")
-.then(r=>r.text())
-.then(d=>document.getElementById("header").innerHTML=d);
-</script> -->
+  function initHeader(){
+    const navbar = document.querySelector("header.navbar");
+    if(!navbar) return;
+
+    const navBtn = document.getElementById("navToggle");
+    const closeMenu = document.getElementById("closeMenu");
+
+    const openSearch = document.getElementById("openSearch");
+    const overlay = document.getElementById("searchOverlay");
+    const closeSearch = document.getElementById("closeSearch");
+    const input = document.getElementById("searchInput");
+    
+    
+
+    // فتح/قفل المنيو
+    if(navBtn){
+      navBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbar.classList.toggle("open");
+        navBtn.setAttribute("aria-expanded", navbar.classList.contains("open") ? "true" : "false");
+      });
+    }
+
+    if(closeMenu){
+      closeMenu.addEventListener("click", () => {
+        navbar.classList.remove("open");
+        navBtn?.setAttribute("aria-expanded","false");
+      });
+    }
+
+    // اقفل المنيو لما تدوس بره
+    document.addEventListener("click", (e) => {
+      const nav = document.getElementById("mainNav");
+      if(!nav) return;
+      if(navbar.classList.contains("open") && !nav.contains(e.target) && e.target !== navBtn){
+        navbar.classList.remove("open");
+        navBtn?.setAttribute("aria-expanded","false");
+      }
+    });
+
+    // =========================
+    // =========================
+// MOBILE: dropdown click accordion (ONLY)
+// =========================
+const isMobile = window.matchMedia("(max-width: 900px)");
+
+function bindMobileDropdowns(){
+  const nav = document.getElementById("mainNav");
+  if(!nav) return;
+
+  const dropdowns = nav.querySelectorAll(":scope > .dropdown");
+
+  function closeAll(except){
+    dropdowns.forEach(dd=>{
+      if(dd !== except){
+        dd.classList.remove("is-open");
+        const t = dd.querySelector(":scope > span");
+        t && t.setAttribute("aria-expanded","false");
+      }
+    });
+  }
+
+  dropdowns.forEach(dd=>{
+    const trigger = dd.querySelector(":scope > span");
+    const menu = dd.querySelector(":scope > .dropdown-menu");
+    if(!trigger || !menu) return;
+
+    trigger.setAttribute("role","button");
+    trigger.setAttribute("tabindex","0");
+    trigger.setAttribute("aria-expanded","false");
+
+    const toggle = (e)=>{
+      if(!isMobile.matches) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      const open = dd.classList.contains("is-open");
+      closeAll(dd);
+
+      if(open){
+        dd.classList.remove("is-open");
+        trigger.setAttribute("aria-expanded","false");
+      }else{
+        dd.classList.add("is-open");
+        trigger.setAttribute("aria-expanded","true");
+      }
+    };
+
+    trigger.addEventListener("click", toggle);
+    trigger.addEventListener("keydown", (e)=>{
+      if(e.key === "Enter" || e.key === " "){ toggle(e); }
+    });
+  });
+}
+
+bindMobileDropdowns();
+
+
+
+
+    // البحث Overlay
+    if(openSearch && overlay && closeSearch && input){
+      openSearch.addEventListener("click", (e) => {
+        e.stopPropagation();
+        navbar.classList.remove("open");
+        navbar.classList.add("search-open");
+        overlay.setAttribute("aria-hidden","false");
+        setTimeout(()=>input.focus(), 50);
+      });
+
+      function closeIt(){
+        input && input.blur();                 // ✅ شيل الفوكس من input
+        navbar.classList.remove("search-open");
+        overlay.setAttribute("aria-hidden","true");
+        input && (input.value = "");
+      }
+
+
+
+      closeSearch.addEventListener("click", closeIt);
+      overlay.addEventListener("click", (e)=>{ if(e.target===overlay) closeIt(); });
+      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeIt(); });
+    }
+  }
+
+  let _lockTimer;
+
+function lockMobilePinnedHeader(){
+  if(!window.matchMedia("(max-width: 768px)").matches) return;
+
+  const host = document.getElementById("header");
+  const navbar = host?.querySelector("header.navbar");
+  if(!host || !navbar) return;
+
+  // اقفل أي تحريك على الكونتينر نفسه
+  host.style.position = "fixed";
+  host.style.top = "0";
+  host.style.left = "0";
+  host.style.right = "0";
+  host.style.width = "100%";
+  host.style.transform = "none";
+  host.style.transition = "none";
+
+  // اقفل أي تحريك على الهيدر
+  navbar.classList.remove("hide","is-hidden","scrolled","sticky");
+  navbar.style.position = "fixed";
+  navbar.style.top = "0";
+  navbar.style.left = "0";
+  navbar.style.right = "0";
+  navbar.style.width = "100%";
+  navbar.style.transform = "none";
+  navbar.style.transition = "none";
+
+  // احسب ارتفاعه واعمل padding للجسم (زي الخصوصية)
+  const h = Math.ceil(navbar.getBoundingClientRect().height || 80);
+  document.documentElement.style.setProperty("--contact-nav-h", h + "px");
+  document.body.style.paddingTop = h + "px";
+
+  // “قفل إضافي” بعد أي سكربت تاني يحاول يغيره
+  clearTimeout(_lockTimer);
+  _lockTimer = setTimeout(() => {
+    navbar.classList.remove("hide","is-hidden","scrolled","sticky");
+    navbar.style.transform = "none";
+    host.style.transform = "none";
+  }, 50);
+}
+
+  fetch("components/header.html")
+  .then(r => r.text())
+  .then(html => {
+    document.getElementById("header").innerHTML = html;
+    initHeader();
+    lockMobilePinnedHeader();
+    window.addEventListener("resize", lockMobilePinnedHeader);
+    window.addEventListener("orientationchange", lockMobilePinnedHeader);
+    window.addEventListener("scroll", lockMobilePinnedHeader, { passive:true }); // ✅ يقفل أي حركة لو سكربت تاني بيحركه
+  });
+
+</script>
+
 
 <!-- HERO -->
-<section style="background:#a59f95;padding:80px 20px;color:#fff;text-align:center">
+<section class="contact-hero" style="background:#f4a43a;padding:80px 20px;color:#0b2a4a;text-align:center">
   <h1>تواصل معنا</h1>
-  <p><a href="/" style="color:#fff">الرئيسية</a> › تواصل معنا</p>
+  <p><a href="/" style="color:#0b2a4a">الرئيسية</a> › تواصل معنا</p>
 </section>
 
 <!-- Join Modal -->
