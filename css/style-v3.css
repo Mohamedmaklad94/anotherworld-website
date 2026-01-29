@@ -278,12 +278,6 @@ body {
    letter-spacing: normal;
 }
 
-.navbar:not(.scrolled) a:hover,
-.navbar:not(.scrolled) .dropdown span:hover {
-  color: white !important;
-  border-bottom: 2px solid white !important;
-}
-
 
 .navbar span:hover {
   color: #ccc;
@@ -292,14 +286,14 @@ body {
 /* hover الطبيعي فوق */
 .navbar:not(.scrolled) a:hover,
 .navbar:not(.scrolled) .dropdown span:hover {
-  color: white !important;
-  border-bottom: 2px solid white !important;
+  color: #fca311 !important;
+  border-bottom: 2px solid #fca311 !important;
 }
 
 
 /* الهيدر بعد الاسكرول */
 .navbar.scrolled {
-background:#a59f95; /* لون معتم */
+background:#0b1e5e;
 backdrop-filter: blur(10px);
 box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 padding: 10px 30px; /* يصغر شوية */
@@ -308,19 +302,15 @@ padding: 10px 30px; /* يصغر شوية */
 /* تعديل ألوان الروابط في النافبار */
 .navbar a:hover,
 .navbar .dropdown span:hover {
-  color: #644117 !important;
+  color: #fca311 !important;
   border-bottom: 2px solid #b38b59 !important;
 }
 
-.dropdown-menu a:hover {
-  background: #998872 !important;
-  color: #b38b59 !important;
-}
 
 .navbar.scrolled nav a:hover,
 .navbar.scrolled .dropdown span:hover {
-  color: #5c3904 !important;
-  border-bottom: 2px solid #5c3904 !important;
+  color: #fca311 !important;
+  border-bottom: 2px solid #fca311 !important;
 }
 
 
@@ -361,46 +351,18 @@ padding: 10px 30px; /* يصغر شوية */
 }
 
 .navbar.scrolled .dropdown-menu {
-  background: #a59f95 !important; /* نفس لون الهيدر */
+  background: #0b1e5e !important; /* نفس لون الهيدر */
   backdrop-filter: none !important;
   box-shadow: 0 8px 32px rgba(0,0,0,0.37) !important;
 }
 
 .navbar.scrolled .dropdown-menu a:hover {
-  background: #7f6f5a !important; /* أغمق سنة */
-  color: #c79a5e !important;
+  background: #054279 !important; /* أغمق سنة */
+  color: #fb8500 !important;
 }
 
 
-/*زرار احجز معانا */
-.book-btn > span {
-  background: #6b4a1f;              /* لون الزر */
-  color: #fff !important;
-  padding: 4px 14px;
-  border-radius: 20px;              /* الشكل البيضاوي */
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.35);
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-}
 
-/* hover */
-.book-btn > span:hover {
-  background: #845b2b;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-  border-bottom: none !important;   /* يلغي underline */
-}
-
-
-.navbar.scrolled .book-btn > span {
-  background: #5c3904;
-  color: #fff !important;
-}
-
-.book-btn > span:hover {
-  border-bottom: none !important;
-}
 
 
 
@@ -597,7 +559,7 @@ header.navbar{
 
 /* ===== FOOTER ===== */
 .aw-footer {
-  background: #000;
+  background: #0b1e5e;
   color: #fff;
   padding: 20px 0 0px;
   font-family: 'Cairo', sans-serif;
@@ -680,7 +642,7 @@ ul.footer-contact{
 }
 
 .footer-links a:hover {
-  color: #fff;
+  color: #fb8500;
 }
 
 /* Contact */
@@ -707,13 +669,18 @@ ul.footer-contact{
   flex: 1;         /* ✅ يخليه ياخد عرض العمود */
 }
 
+.footer-contact li a:hover{
+ color: #fb8500;
+
+}
 .footer-contact a {
   color: #ccc;
   text-decoration: none;
 }
 
+
 .footer-contact a:hover {
-  color: #fff;
+  color: #fb8500;
 }
 
 /* Bottom */
@@ -722,16 +689,16 @@ ul.footer-contact{
   margin-top: 10px;
   padding-top: 5px;
   border: 0;
-  color: #aaa;
+  color: #c7c4c4;
   font-size: .95rem;
 }
 
 
 /* ===== Secure Payment Section المعدل ===== */
 .secure-payment {
-    background: #000;
+    background: #0b1e5e;
     padding: 15px 5%; /* ← مسافة أقل */
-    border-top: 1px solid #333; /* ← خط فاصل */
+    border-top: 1px solid #333333; /* ← خط فاصل */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -813,7 +780,7 @@ ul.footer-contact{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #000;
+    color: #0b1e5e;
     font-size: 1.5rem;
     transition: .3s;
     border: 2px solid #fff;
@@ -2412,7 +2379,7 @@ p:not(.navbar p):not(.footer p) {
 
   /* ✅ 2) زر احجز معنا: ملون طول الوقت (Fix التعارض) */
   .book-btn > span{
-    background: #f4a43a !important;     /* نفس لون زر الموبايل */
+    background: linear-gradient( 90deg, #0a6fb5 0%, #1fa6d8 45%, #0c5fa3 100% ) !important;
     color: #fff !important;
     border: 2px solid transparent !important;
     padding: 8px 16px !important;
@@ -2431,7 +2398,7 @@ p:not(.navbar p):not(.footer p) {
 
   /* حتى في حالة scrolled يفضل ملون */
   .navbar.scrolled .book-btn > span{
-    background: #f4a43a !important;
+    background: linear-gradient( 90deg, #0a6fb5 0%, #1fa6d8 45%, #0c5fa3 100% ) !important;
     color: #fff !important;
   }
 
@@ -2489,8 +2456,8 @@ p:not(.navbar p):not(.footer p) {
   align-items: center !important;
 
   /* ✅ أهم سطرين */
-  justify-content: flex-start !important;   /* خلي المحتوى يبدأ من أول الزر */
-  direction: rtl !important;                /* عشان “🔍 ابحث” يروح ناحية اليمين جوه الزر */
+  justify-content: flex-start !important;   
+  direction: rtl !important;                
 
   height: 42px;
   padding: 0 14px 0 28px !important;        /* يمين أقل، شمال أكتر */
@@ -2641,7 +2608,7 @@ header.navbar .search-btn .search-label{ order: 2; }
     z-index: 1000000 !important;
   }
 
-  /* input وسط الشاشة بشكل “Search bar” محترم */
+  /*“Search bar” */
   header.navbar.search-open .search-panel input{
     width: min(760px, 92vw) !important;
     height: 64px !important;
@@ -2665,7 +2632,7 @@ header.navbar .search-btn .search-label{ order: 2; }
     color: rgba(255,255,255,0.75) !important;
   }
 
-  /* Focus حلو */
+  /* Focus  */
   header.navbar.search-open .search-panel input:focus{
     border-color: rgba(244,164,58,0.65) !important;  /* قريب من لون زر احجز معنا */
     box-shadow: 0 18px 60px rgba(0,0,0,0.35), 0 0 0 4px rgba(244,164,58,0.18) !important;
@@ -2679,7 +2646,7 @@ header.navbar .search-btn .search-label{ order: 2; }
     text-align: right !important;
   }
 
-  /* خلي زر الإغلاق فوق أي حاجة وميتاكلش */
+  /* خلي زر الإغلاق فوق أي حاجة */
   header.navbar.search-open .search-close{
     z-index: 1000002 !important;
     pointer-events: auto !important;
