@@ -190,7 +190,121 @@
     display: none !important;
 }
 
+@media (max-width: 768px){
 
+  /* الهيرو */
+  .events-hero{
+    min-height: 72vh !important;          /* بدل 100vh عشان ميبقاش فاضي تحت */
+    height: 72vh !important;
+    padding: 0 !important;
+    display: block !important;            /* بدل flex */
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+
+  /* أوفرلاي خفيف + جراديانت تحت */
+  .events-overlay{
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.20) 0%,
+      rgba(0,0,0,0.10) 55%,
+      rgba(0,0,0,0.55) 100%
+    ) !important;
+  }
+
+  /* العنوان: ثبّته فوق الصورة */
+  .events-hero h1{
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 18px !important;              /* بدل margin-bottom */
+    transform: translateX(-50%) !important;
+
+    margin: 0 !important;
+    width: calc(100% - 28px) !important;
+    text-align: center !important;
+
+    font-size: 2.2rem !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0 !important;
+    z-index: 5 !important;
+
+    /* صندوق بلور خلف العنوان */
+    padding: 14px 16px !important;
+    border-radius: 16px !important;
+    text-shadow: 0 6px 22px rgba(0,0,0,0.45) !important;
+  }
+
+  /* الأزرار (prev/next) على الموبايل تكون فوق الصورة وتحت شوية */
+  .events-prev,
+  .events-next{
+    top: 40% !important;
+    bottom: auto !important;              /* فوق العنوان */
+    transform: none !important;
+
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 28px !important;
+    border-radius: 12px !important;
+
+  
+  }
+
+  .events-prev{ left: 14px !important; }
+  .events-next{ right: 14px !important; }
+
+  /* الدوتس */
+  .events-dots{
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  right: auto !important;
+
+  bottom: 12px !important;   /* قربها لتحت */
+  justify-content: center !important;
+  width: 100% !important;
+  gap: 10px !important;
+  z-index: 6 !important;
+}
+/* ===== MOBILE: LIGHTBOX FIX ===== */
+.events-lightbox.active{
+  align-items: center !important;
+}
+
+.events-content{
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  padding: 56px 12px 16px !important; /* مساحة للزر X فوق */
+}
+
+.events-img{
+  width: 100% !important;
+  max-height: 75vh !important;
+  height: auto !important;
+  object-fit: contain !important;     /* الأهم: الصورة تظهر كاملة */
+}
+
+/* زر الإغلاق فوق ثابت */
+.events-close{
+  top: 12px !important;
+  right: 12px !important;
+  z-index: 10001 !important;
+  font-size: 2.2rem !important;
+}
+
+/* الأسهم يمين/شمال في نص الشاشة */
+.events-nav{
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10001 !important;
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 1.8rem !important;
+}
+
+#architecturePrev{ left: 10px !important; }
+#architectureNext{ right: 10px !important; }
+
+}
 </style>
 </head>
 
