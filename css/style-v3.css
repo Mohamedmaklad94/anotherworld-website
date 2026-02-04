@@ -363,9 +363,6 @@ padding: 10px 30px; /* يصغر شوية */
 
 
 
-
-
-
 /* تعديل جزء اللوجو فقط */
 .logo img {
   height: 50px !important; /* زود الحجم */
@@ -2888,5 +2885,327 @@ header.navbar.search-open .search-close{
     padding-top: 0 !important;
   }
 }
+
+/* ===== HOME INTRO SECTION ===== */
+.home-intro{
+  padding: 5px 5%;
+  background: #f6f7fb; /* فاتح لكن مش أبيض فاقع */
+}
+
+.intro-box{
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.intro-box h2{
+  font-family: "Cairo", sans-serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0b2c6f;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+/* الخط الذهبي تحت العنوان */
+.intro-box h2::after{
+  content:"";
+  display:block;
+  width:220px;
+  height:4px;
+  background:#e6b325;
+  margin:14px auto 0;
+  border-radius:4px;
+}
+
+.intro-box p{
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #2c2c2c; /* أهم حاجة: لون غامق */
+  margin: 25px auto 30px;
+  max-width: 750px;
+}
+
+/* الزرارين */
+.intro-cta{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background: linear-gradient(90deg,#0aa0c8,#0b63c7);
+  color:#fff;
+  padding:14px 26px;
+  border-radius:30px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 10px 25px rgba(0,0,0,.18);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-secondary{
+  background:#0b2c6f;
+  color:#fff;
+  padding:14px 26px;
+  border-radius:30px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover{
+  background: #fb8500;
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(251,133,0,0.35);
+}
+
+/* موبايل */
+@media(max-width:768px){
+  .intro-box h2{font-size:1.8rem;}
+  .intro-box p{font-size:1.05rem;}
+  .intro-cta a{width:100%; max-width:320px;}
+}
+
+/* ===== CINEMA GALLERY (3D) ===== */
+.cinema-gallery{
+  position: relative;
+  padding: 22px 4% 16px;  
+  background: radial-gradient(ellipse at center, #111 0%, #05070a 60%, #000 100%);
+  overflow: hidden;
+  border-radius: 22px;
+
+  width: 100%;             /*  Full width */
+  max-width: none;         /*  مايبقاش متسنتر ضيق */
+  margin: 18px 0;          /*  بدل auto */
+  box-shadow: 0 30px 80px rgba(0,0,0,.55);
+}
+
+
+
+.cinema-stage{
+  position: relative;
+  height: 360px;  
+  width: 100%;         /*  ده اللي بيخليه مش بطول الشاشة */
+  overflow: hidden;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective-origin: 50% 55%;
+  border-radius: 22px;
+}
+
+
+
+.cinema-cta{
+  display:inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  color:#fff;
+  text-decoration:none;
+  background: #fb8500; /* زي اللي في اسكرينك */
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  transition: opacity .25s ease, box-shadow .25s ease;
+}
+
+
+.cinema-cta:hover{
+  opacity:.92;
+  box-shadow: 0 18px 40px rgba(251,133,0,.25);
+}
+/* الشريط اللي عليه الصور */
+.cinema-track{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.cinema-overlay{
+  position: absolute;
+  right: 6%;
+  top: 50%;
+  transform: translateY(-5%);
+  z-index: 10;
+  text-align: right;
+  color: #fff;
+  max-width: 420px;
+  pointer-events: none; /* عشان السحب على الصور يفضل شغال */
+}
+
+.cinema-overlay h2{
+  font-family: "Cairo", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.cinema-overlay p{
+  margin: 0 0 18px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.85);
+  font-family: "Cairo", sans-serif;
+}
+
+.cinema-overlay .cinema-cta{
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  background: #fb8500;
+  box-shadow: 0 14px 30px rgba(0,0,0,.35);
+  pointer-events: auto; /* ✅ الزر فقط clickable */
+}
+
+
+
+/* كل كارت صورة */
+.cinema-card{
+  position:absolute;
+  width: 320px; 
+  height: 480px;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  border-radius: 16px;
+
+  overflow: visible;              /* ✅ مهم للانعكاس */
+  box-shadow: none;               /* هننقل الشادو للـ img-wrap */
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition: filter 0.4s ease;
+}
+
+
+/* الصورة نفسها */
+.cinema-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* ✅ تظهر كاملة */
+  background: transparent;
+}
+
+.cinema-card .img-wrap{
+  width:100%;
+  height:100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0,0,0,.45);
+  position: relative;
+}
+
+
+
+/* ====== Mobile tweaks ====== */
+@media (max-width: 900px){
+  .cinema-overlay{
+    right: 50%;
+    top: auto;
+    bottom: 14px;                 /*  نزّله تحت */
+    transform: translateX(50%);
+    text-align: center;
+    max-width: 92%;
+    padding: 10px 12px;           /* مساحة للنص */
+    border-radius: 16px;
+  }
+
+  .cinema-overlay h2{
+    font-size: 1.35rem;           /* أصغر */
+    margin: 0 0 6px;
+    line-height: 1.2;
+  }
+
+  .cinema-overlay p{
+    font-size: .95rem;            /* أصغر */
+    margin: 0 0 10px;
+    line-height: 1.5;
+    opacity: .9;
+  }
+
+  .cinema-overlay .cinema-cta{
+    font-size: .95rem;            /* أصغر */
+    padding: 10px 10px;           /* أصغر */
+  }
+}
+
+
+
+.cinema-stage, .cinema-track, .cinema-card, .cinema-card img{
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: pan-y; /* يسمح بسكرول الصفحة رأسيًا ويخلي السحب أفقي للكاروسيل */
+}
+.cinema-stage{ cursor: grab; }
+.cinema-stage:active{ cursor: grabbing; }
+.cinema-card .img-wrap,
+.cinema-card .img-wrap img{
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+/* remove white streaks / shine */
+.cinema-card .img-wrap::before{ display:none !important; }
+.cinema-card .img-wrap{ background: transparent !important; }
+
+/* optional: reduce reflection artifacts */
+.cinema-card .reflection{ filter:none !important; opacity:.12; }
+.cinema-card .reflection::after{ display:none !important; }
+
+/* if still exists from older version */
+.cinema-link::before{ display:none !important; }
+
+/* sharpness improvements */
+.cinema-card, .cinema-card *{
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cinema-card .img-wrap{
+  transform: translateZ(2px); /* بدل 0 أو 1 */
+  -webkit-transform: translateZ(2px);
+}
+.cinema-card{ will-change: auto; }
+
+
+/* very small */
+@media (max-width: 520px){
+  .cinema-stage{ height: 320px; }
+}
+
+.cinema-card, .cinema-card *{
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.cinema-card .img-wrap{
+  transform: translateZ(0.6px);
+  -webkit-transform: translateZ(0.01px);
+}
+
+.cinema-card{
+  will-change: auto !important;  /* ✅ امنع وضع GPU المبالغ فيه */
+}
+
+.cinema-card .img-wrap {
+  transform: none !important;
+}
+.cinema-stage {
+  perspective: none !important;
+}
+
+
+
+
 
 

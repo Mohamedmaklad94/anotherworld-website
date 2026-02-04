@@ -20,19 +20,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    .photographers-hero {
-      min-height: 100vh;
-      background: url('../img/gallery/photographers-hero.jpg') no-repeat center center;
-      background-size: cover;
-      color: white;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-
+   
+   html, body{
+  overflow-x: hidden;
+}
     .photographers-hero h1 {
       font-family: 'Cairo', sans-serif !important;
       font-size: 6rem;
@@ -61,6 +52,290 @@
     line-height: 1.2;
     font-weight: 500;
 }
+
+.photographers-hero{
+  min-height: 70vh;
+  position: relative;
+  background: url('img/gallery/photographers-hero.jpg') no-repeat center center;
+  background-size: cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 120px 6% 60px;
+}
+
+.ph-hero-overlay{
+  width:min(1100px, 100%);
+  text-align:center;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(2px);
+  border-radius: 26px;
+  padding: 40px 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.photographers-hero h1{
+  margin: 0 0 10px;
+  font-family: "Cairo", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  color: #1a2c5a;
+  letter-spacing: -1px;
+}
+
+.photographers-hero .hero-line1{
+  margin: 0 0 22px;
+  font-size: 1.1rem;
+  color:#243b73;
+}
+
+.ph-hero-actions{
+  display:flex;
+  gap: 14px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap: wrap;
+}
+
+.ph-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration:none;
+  font-weight:700;
+  font-family:"Cairo", sans-serif;
+}
+
+.ph-btn.primary{
+  background:#0b3aa6;
+  color:#fff;
+}
+
+.ph-search{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background:#fff;
+  border:1px solid rgba(26,44,90,0.18);
+  min-width: min(420px, 90vw);
+}
+
+.ph-search i{ color:#1a2c5a; opacity: .7; }
+.ph-search input{
+  width:100%;
+  border:0;
+  outline:0;
+  font-family:"Cairo", sans-serif;
+  font-size: 1rem;
+}
+
+.ph-controls{
+  width:min(1100px, 100%);
+  margin: 22px auto 0;
+  padding: 0 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ph-filters{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  flex-wrap: wrap;
+}
+
+.ph-filters select{
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(26,44,90,0.18);
+  font-family:"Cairo", sans-serif;
+  background:#fff;
+}
+
+.ph-toggle{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  font-family:"Cairo", sans-serif;
+  color:#1a2c5a;
+  user-select:none;
+}
+
+.ph-meta{
+  font-family:"Cairo", sans-serif;
+  color:#1a2c5a;
+  opacity:.85;
+}
+
+.ph-grid-wrap{
+  width:min(1100px, 100%);
+  margin: 20px auto 60px;
+  padding: 0 6%;
+}
+
+
+.ph-card--mosaic{
+  background:#fff;
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 14px 30px rgba(0,0,0,.12);
+  transition:.35s ease;
+}
+
+.ph-card--mosaic:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 40px rgba(0,0,0,.18);
+}
+
+.ph-card{
+  min-width: 0;
+}
+
+.ph-card-body,
+.ph-mosaic{
+  min-width: 0;
+}
+
+.ph-mosaic{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding: 8px;
+  gap: 6px;
+  background:#eef1f8;
+}
+
+.ph-mosaic img{
+  width:100%;
+  height: 72px; 
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.ph-card-body{
+  position:relative;
+  text-align:center;
+  padding: 10px 12px 12px;
+}
+
+.ph-avatar{
+  width: 56px;
+  height: 56px;
+  margin-top: -30px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #fff;
+  box-shadow:0 10px 22px rgba(0,0,0,.25);
+  background:#fff;
+}
+
+.ph-badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  background:#ffd54f;
+  color:#6a5200;
+  font-size:.85rem;
+  padding:6px 14px;
+  border-radius:999px;
+  font-weight:700;
+}
+
+.ph-name{
+  margin:10px 0 2px;
+  font-size:1rem;
+  font-weight:800;
+  color:#1a2c5a;
+}
+
+.ph-location{
+  font-size:.82rem;
+  color:#4b5f99;
+  margin-bottom:8px;
+}
+
+.ph-tags{
+  display:flex;
+  justify-content:center;
+  gap: 6px;
+  flex-wrap: nowrap;      /* مهم */
+  overflow:auto;          /* مهم */
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  scrollbar-width: none;  /* فايرفوكس */
+}
+.ph-tags::-webkit-scrollbar{ display:none; } /* كروم */
+
+.ph-tag{
+  white-space: nowrap;
+  flex: 0 0 auto;
+  font-size: .72rem;
+  padding: 3px 9px;
+}
+
+
+.ph-actions{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+}
+
+.ph-view{
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(11,58,166,.22);
+  background:rgba(11,58,166,.06);
+  text-decoration:none;
+  font-weight:700;
+  color:#0b3aa6;
+}
+
+.ph-book{
+  padding:8px 12px;
+  border-radius:999px;
+  background:#0b3aa6;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.ph-grid{
+  display:grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.ph-filters select[hidden]{
+  display:none !important;
+}
+
+
+/* لابتوب/شاشات متوسطة */
+@media (max-width: 1200px){
+  .ph-grid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* تابلت */
+@media (max-width: 900px){
+  .ph-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* موبايل: 2 كروت بدل 1 */
+@media (max-width: 560px){
+  .ph-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+}
+
+/* موبايلات صغيرة جدًا: 1 */
+@media (max-width: 360px){
+  .ph-grid{ grid-template-columns: 1fr; }
+}
+
+
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .photographers-hero h1 {
@@ -100,25 +375,284 @@
       }
     }
 
+    @media (max-width: 600px){
+  .ph-actions{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .ph-view, .ph-book{
+    width: 100%;
+    justify-content: center;
+    padding: 8px 8px;
+    font-size: .8rem;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE PACK (MOBILE + TABLET ONLY)
+   Works ONLY under 980px — desktop stays untouched
+   Paste at the very end of <style>
+   ========================================================= */
+
+@media (max-width: 980px){
+
+  /* 0) Safety ضد أي overflow أفقي */
+  html, body{ overflow-x: hidden; }
+  *{ box-sizing: border-box; }
+  img{ max-width:100%; display:block; }
+
+  /* 1) قلل padding اللي بيخنق المساحة */
+  .ph-grid-wrap, .ph-controls{
+    padding: 0 14px !important;
+    width: 100% !important;
+  }
+
+  /* 2) الجريد: تابلت = 2 أعمدة (من غير كروت عريضة) */
+  .ph-grid{
+    display:grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    align-items: start !important;
+  }
+
+  /* 3) الكارت ما يفرضش عرض/ارتفاع غريب */
+  .ph-card, .ph-card--mosaic, .ph-mosaic, .ph-card-body{
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .ph-card--mosaic{
+    border-radius: 22px !important;
+  }
+
+  /* 4) الموزاييك: صغّر الارتفاع عشان الكارت ما يبقاش طويل */
+  .ph-mosaic{
+    padding: 8px !important;
+    gap: 6px !important;
+  }
+  .ph-mosaic img{
+    height: 68px !important;
+    border-radius: 12px !important;
+    object-fit: cover !important;
+  }
+
+  /* 5) الأفاتار والـ badge ما يركبوش على بعض */
+  .ph-card--mosaic{ position: relative !important; }
+
+  /* خليك محافظ على البادج في الركن فوق (لو موجود) */
+  .ph-badge{
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 5 !important;
+    font-size: .78rem !important;
+    padding: 6px 10px !important;
+  }
+
+  /* الأفاتار في النص دايمًا */
+  .ph-card-body{ text-align:center !important; padding: 10px 12px 14px !important; }
+  .ph-avatar{
+    width: 54px !important;
+    height: 54px !important;
+    margin-top: -26px !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+    border-width: 3px !important;
+  }
+
+  /* 6) النصوص */
+  .ph-name{ font-size: .98rem !important; margin: 10px 0 2px !important; }
+  .ph-location{ font-size: .82rem !important; margin-bottom: 8px !important; }
+
+  /* 7) Tags: سطر واحد Scroll أفقي */
+  .ph-tags{
+    display:flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 6px !important;
+    justify-content: center !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 10px !important;
+    scrollbar-width: none !important;
+  }
+  .ph-tags::-webkit-scrollbar{ display:none; }
+  .ph-tag{
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+    font-size: .72rem !important;
+    padding: 3px 9px !important;
+  }
+
+  /* 8) الأزرار: FIX نهائي للنص داخل الزر + يمنع أي overlap */
+  .ph-actions{
+    display:grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+  .ph-view, .ph-book{
+    width:100% !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap: 8px !important;
+    min-width:0 !important;
+    padding: 10px 10px !important;
+    font-size: .85rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+  }
+  .ph-view i{
+    line-height:1 !important;
+    display:inline-block !important;
+    font-size: .95em !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SMALL (<= 420px)
+   ========================================================= */
+@media (max-width: 420px){
+
+  .ph-grid-wrap, .ph-controls{ padding: 0 10px !important; }
+
+  /* على 375 و 390: خليها 2 أعمدة لكن أصغر */
+  .ph-grid{
+    grid-template-columns: repeat(2, minmax(0,1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .ph-mosaic img{ height: 60px !important; }
+
+  .ph-avatar{
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: -24px !important;
+  }
+
+  .ph-view, .ph-book{
+    padding: 9px 8px !important;
+    font-size: .82rem !important;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES (<= 360px) => 1 card فقط عشان الشكل يفضل محترم
+   ========================================================= */
+@media (max-width: 360px){
+  .ph-grid{ grid-template-columns: 1fr !important; }
+  .ph-mosaic img{ height: 66px !important; } /* مسموح أعلى شوية لأن كارت واحد */
+}
+
+/* Fix: at ~425px, two buttons are too narrow for "عرض الملف" */
+@media (max-width: 460px){
+  .ph-actions{
+    grid-template-columns: 1fr !important;  /* بدل 1fr 1fr */
+    gap: 10px !important;
+  }
+
+  .ph-view, .ph-book{
+    width: 100% !important;
+    padding: 10px 12px !important;
+    font-size: .9rem !important;
+  }
+}
+
+/* Safety: never let text spill outside the pill */
+.ph-view, .ph-book{
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* desktop only: bigger book button */
+@media (min-width: 981px){
+  .ph-book{
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+}
+
 
   </style>
 </head>
-<body class="strwharvest-body">
+<body class="photographers-body">
   <div id="header"></div>
-  <script>
-    fetch("components/header.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("header").innerHTML = data;
-      });
-  </script>
 
   <!-- الهيرو -->
 <section class="photographers-hero">
-  <h1> صفحة المصورين قيد التحديث</h1>
-  <p class="hero-line1"> يتم تحديث قاعدة بيانات المصورين في الوقت الحالي</p>
-  <p class="hero-line2">بإمكانك العودة لاحقًا</p>
+  <div class="ph-hero-overlay">
+    <h1>اكتشف المصورين</h1>
+    <p class="hero-line1">تصفح نخبة المصورين من مجتمع Another World Photography</p>
+
+    <div class="ph-hero-actions">
+      <a class="ph-btn primary" href="contact.html#join-photographer">انضم كمصور</a>
+
+      <div class="ph-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="phSearch" type="search" placeholder="ابحث باسم المصور..." autocomplete="off">
+      </div>
+    </div>
+  </div>
 </section>
+
+<section class="ph-controls">
+  <div class="ph-filters">
+    <select id="phCategory">
+      <option value="">كل التخصصات</option>
+      <option value="model">مودل</option>
+      <option value="wedding">أفراح</option>
+      <option value="engagement">خطوبة</option>
+      <option value="other-events">مناسبات أخرى</option>
+      <option value="portrait">بورتريه</option>
+      <option value="product">منتجات</option>
+      <option value="architecture">معماري</option>
+      <option value="street">شارع</option>
+      <option value="brands">علامات تجارية</option>
+      <option value="wildlife">حياة برية</option>
+    </select>
+
+    <select id="phCountry">
+      <option value="">كل الدول</option>
+      <option value="EG">مصر</option>
+      <option value="SA">السعودية</option>
+      <option value="AE">الإمارات</option>
+      <option value="KW">الكويت</option>
+      <option value="QA">قطر</option>
+    </select>
+
+    <select id="phGov" hidden disabled>
+      <option value="">كل المحافظات</option>
+    </select>
+
+
+    <label class="ph-toggle">
+      <input id="phFeatured" type="checkbox">
+      <span>مميز فقط</span>
+    </label>
+  
+
+  <label class="ph-toggle">
+  <input id="phBookable" type="checkbox">
+  <span>متاح للحجز فقط</span>
+  </label>
+
+  </div>
+
+  <div class="ph-meta">
+    <span id="phCount">0</span> مصور
+  </div>
+</section>
+
+<section class="ph-grid-wrap">
+  <div class="ph-grid" id="phGrid"></div>
+  <div class="ph-empty" id="phEmpty" hidden>
+    لا توجد نتائج مطابقة. جرّب كلمة أخرى أو غيّر الفلاتر.
+  </div>
+</section>
+
 
 <script>
   function initHeader(){
@@ -306,6 +840,294 @@ bindMobileDropdowns();
     bind();
     mq.addEventListener?.("change", bind);
   })();
+</script>
+
+
+<script>
+  // ====== بيانات تجريبية (بعدها نخليها JSON أو API)
+ const PHOTOGRAPHERS = [
+    {
+      id: 1,
+      name: "Ahmed Hassan",
+      username: "ahmed-hassan",
+      avatar: "img/team/mohamed-atef.jpg",
+      country: "EG",
+      governorate: "cairo",          // ✅ لازم تبقى نفس values بتاعة dropdown (small letters)
+      governorateAr: "القاهرة",
+      city: "Nasr City",
+      featured: true,
+      bookable: true,
+      specialties: ["street", "portrait"],
+      thumbs: [
+        "img/gallery/architecture/0001-elsayed-al-qumra.jpg",
+        "img/gallery/architecture/0002-heba-mostafa.jpg",
+        "img/gallery/architecture/0003-yara-jarkas.jpg",
+        "img/gallery/architecture/0004-meennaeem-hassaan.jpg"
+      ]
+    },
+    {
+      id: 2,
+      name: "Asmaa Zakarya",
+      username: "asmaa-zakarya",
+      avatar: "img/team/asmaa-zakarya.jpg",
+      country: "EG",
+      governorate: "aswan",
+      governorateAr: "أسوان",
+      city: "Aswan",
+      featured: true,
+      bookable: false,
+      specialties: ["street", "nature", "architecture"],
+      thumbs: [
+        "img/gallery/architecture/0005-mustafa-ahmed.jpg",
+        "img/gallery/architecture/0006-amr-ali.jpg",
+        "img/gallery/architecture/0007-doha-alaa.jpg",
+        "img/gallery/architecture/0008-moustafa-abdlrazik.jpg"
+      ]
+    },
+    {
+      id: 3,
+      name: "Sama Ahmed",
+      username: "sama-ahmed",
+      avatar: "img/team/sama-ahmed.jpg",
+      country: "EG",
+      governorate: "alexandria",
+      governorateAr: "الإسكندرية",
+      city: "Alexandria",
+      featured: true,
+      bookable: false,
+      specialties: ["street", "landscape"],
+      thumbs: [
+        "img/gallery/architecture/0009-elsayed-al-safaan.jpg",
+        "img/gallery/architecture/0010-muhammed-m-fathy.jpg",
+        "img/gallery/architecture/0011-abdo-thabet.jpg",
+        "img/gallery/architecture/0012-abdelrahman-mohsen.jpg"
+      ]
+    },
+    {
+      id: 4,
+      name: "Sama Ahmed",
+      username: "sama-ahmed",
+      avatar: "img/team/sama-ahmed.jpg",
+      country: "EG",
+      governorate: "cairo",
+      governorateAr: "القاهرة",
+      city: "Alexandria",
+      featured: false,
+      bookable: true,
+      specialties: ["street", "landscape"],
+      thumbs: [
+        "img/gallery/architecture/0009-elsayed-al-safaan.jpg",
+        "img/gallery/architecture/0010-muhammed-m-fathy.jpg",
+        "img/gallery/architecture/0011-abdo-thabet.jpg",
+        "img/gallery/architecture/0012-abdelrahman-mohsen.jpg"
+      ]
+    }
+  ];
+
+  const categoryAr = {
+    nature: "طبيعة",
+    portrait: "بورتريه",
+    street: "شارع",
+    architecture: "معماري",
+    events: "فعاليات",
+    product: "منتجات",
+    fineart: "Fine art",
+    wildlife: "حياة برية",
+    landscape: "مناظر طبيعية"
+  };
+
+  const countryAr = {
+    EG: "مصر",
+    SA: "السعودية",
+    AE: "الإمارات",
+    KW: "الكويت",
+    QA: "قطر",
+  };
+
+  const EGYPT_GOVS = [
+    { v:"cairo", t:"القاهرة" },
+    { v:"giza", t:"الجيزة" },
+    { v:"alexandria", t:"الإسكندرية" },
+    { v:"qalyubia", t:"القليوبية" },
+    { v:"sharqia", t:"الشرقية" },
+    { v:"dakahlia", t:"الدقهلية" },
+    { v:"gharbia", t:"الغربية" },
+    { v:"monufia", t:"المنوفية" },
+    { v:"beheira", t:"البحيرة" },
+    { v:"kafr_el_sheikh", t:"كفر الشيخ" },
+    { v:"damietta", t:"دمياط" },
+    { v:"portsaid", t:"بورسعيد" },
+    { v:"ismailia", t:"الإسماعيلية" },
+    { v:"suez", t:"السويس" },
+    { v:"fayoum", t:"الفيوم" },
+    { v:"beni_suef", t:"بني سويف" },
+    { v:"minya", t:"المنيا" },
+    { v:"asyut", t:"أسيوط" },
+    { v:"sohag", t:"سوهاج" },
+    { v:"qena", t:"قنا" },
+    { v:"luxor", t:"الأقصر" },
+    { v:"aswan", t:"أسوان" },
+    { v:"red_sea", t:"البحر الأحمر" },
+    { v:"matrouh", t:"مطروح" },
+    { v:"north_sinai", t:"شمال سيناء" },
+    { v:"south_sinai", t:"جنوب سيناء" },
+    { v:"new_valley", t:"الوادي الجديد" }
+  ];
+
+  const els = {
+    grid: document.getElementById("phGrid"),
+    empty: document.getElementById("phEmpty"),
+    count: document.getElementById("phCount"),
+    search: document.getElementById("phSearch"),
+    cat: document.getElementById("phCategory"),
+    country: document.getElementById("phCountry"),
+    featured: document.getElementById("phFeatured"),
+    gov: document.getElementById("phGov"),
+    bookable: document.getElementById("phBookable"),
+  };
+
+  function normalize(s){
+    return (s || "")
+      .toString()
+      .toLowerCase()
+      .trim();
+  }
+
+  function render(items){
+  els.grid.innerHTML = items.map(p => {
+    const locLabel = (p.country === "EG")
+    ? (p.governorateAr || p.governorate || p.city)
+    : (p.city);
+
+    const loc = [countryAr[p.country] || p.country, locLabel].filter(Boolean).join(" - ");
+
+    const tags = (p.specialties || [])
+      .slice(0,5)
+      .map(t => `<span class="ph-tag">${categoryAr[t] || t}</span>`)
+      .join("");
+
+    const badge = p.featured ? `<span class="ph-badge">مميز</span>` : "";
+    const link = `photographer.html?u=${encodeURIComponent(p.username)}`;
+
+    const t = p.thumbs || [];
+    const t0 = t[0] || p.avatar;
+    const t1 = t[1] || p.avatar;
+    const t2 = t[2] || p.avatar;
+    const t3 = t[3] || p.avatar;
+
+    return `
+      <article class="ph-card ph-card--mosaic">
+        <div class="ph-mosaic" aria-hidden="true">
+          <img src="${t0}" alt="" loading="lazy">
+          <img src="${t1}" alt="" loading="lazy">
+          <img src="${t2}" alt="" loading="lazy">
+          <img src="${t3}" alt="" loading="lazy">
+        </div>
+
+        <div class="ph-card-body">
+          ${badge}
+          <img class="ph-avatar" src="${p.avatar}" alt="صورة ${p.name}" loading="lazy">
+
+          <h3 class="ph-name">${p.name}</h3>
+          <p class="ph-location">${loc || "—"}</p>
+
+          <div class="ph-tags">${tags}</div>
+
+          <div class="ph-actions">
+            <a class="ph-view" href="${link}">
+              عرض الملف <i class="fa-solid fa-arrow-left"></i>
+            </a>
+           ${p.bookable ? `
+           <a class="ph-book" href="main-booking.html?photographer=${encodeURIComponent(p.username)}">
+            احجز
+           </a>
+           ` : ``}
+
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  els.count.textContent = items.length.toString();
+  els.empty.hidden = items.length !== 0;
+}
+
+
+  // اربط عنصر المحافظات
+  const phGov = document.getElementById("phGov");
+
+  // ابني الخيارات مرة واحدة
+  function buildGovOptions(){
+    if(!phGov) return;
+    phGov.innerHTML = `<option value="">كل المحافظات</option>` + 
+      EGYPT_GOVS.map(g => `<option value="${g.v}">${g.t}</option>`).join("");
+  }
+  buildGovOptions();
+
+  function toggleGov(){
+    if(!phGov) return;
+
+    const isEgypt = els.country.value === "EG";
+    if(isEgypt){
+      phGov.hidden = false;
+      phGov.disabled = false;
+    }else{
+      phGov.value = "";
+      phGov.hidden = true;
+      phGov.disabled = true;
+    }
+  }
+
+  // نادِها أول ما الصفحة تفتح
+  toggleGov();
+
+  // لما تتغير الدولة
+  els.country.addEventListener("change", () => {
+    toggleGov();
+    applyFilters();
+  });
+
+  // فلترة بالمحافظة (لو مصر)
+  if(phGov){
+    phGov.addEventListener("change", applyFilters);
+  }
+
+  function applyFilters(){
+  const q = normalize(els.search.value);
+  const cat = els.cat.value;
+  const ctry = els.country.value;
+  const feat = els.featured.checked;
+  const onlyBookable = els.bookable.checked;
+  const gov = (phGov && !phGov.hidden) ? phGov.value : "";
+
+  const out = PHOTOGRAPHERS.filter(p => {
+    const matchQ = !q || normalize(p.name).includes(q);
+    const matchCat = !cat || (p.specialties || []).includes(cat);
+    const matchCountry = !ctry || p.country === ctry;
+    const matchGov = !gov || (normalize(p.governorate) === normalize(gov));
+    const matchFeat = !feat || !!p.featured;
+    const matchBookable = !onlyBookable || !!p.bookable;
+    return matchQ && matchCat && matchCountry && matchGov && matchFeat && matchBookable;
+
+  });
+
+  render(out);
+}
+
+
+  // Bind
+  ["input", "change"].forEach(evt => {
+    els.search.addEventListener(evt, applyFilters);
+    els.cat.addEventListener(evt, applyFilters);
+    els.country.addEventListener(evt, applyFilters);
+    els.featured.addEventListener(evt, applyFilters);
+    els.bookable.addEventListener(evt, applyFilters);
+
+  });
+
+  // أول رندر
+  render(PHOTOGRAPHERS);
 </script>
 
 

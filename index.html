@@ -242,6 +242,8 @@
   }
 }
 
+
+
   </style>
 </head>
   <body class="index-body">
@@ -487,23 +489,42 @@ bindMobileDropdowns();
   </section>
 
 
+  <section class="home-intro">
+  <div class="intro-box">
+    
+    <h2>Another World Photography</h2>
+    
+    <p>
+      منصة تصوير ذكية تربط العملاء بالمصورين في مكان واحد داخل مصر.
+      احجز مصورًا محترفًا من أي مدينة أو محافظة،
+      أو انضم كمصور واعرض أعمالك أمام مجتمع يتجاوز 1.1 مليون متابع للتصوير.
+    </p>
+    <p class="contact-subtitle" style="margin-top:-10px; opacity:.95;">
+  تصوير مناسبات، بورتريه، منتجات، موضة، معماري، طبيعة وأكثر.
+</p>
 
-  <!-- قسم معرض مختصر -->
-   <section class="home-section reveal">
-  <div class="home-content horizontal">
-
-    <div class="text">
-      <h2>معرض الصور</h2>
-      <p>اكتشف أفضل أعمال مصورينا في مختلف التصنيفات.</p>
-      <a href="gallery-all.html" class="btn">استعرض المعرض</a>
+    <div class="intro-cta">
+      <a href="book.html" class="btn-primary">احجز مصور</a>
+      <a href="join-photographer.html" class="btn-secondary">انضم كمصور</a>
     </div>
-
-    <a href="gallery-all.html" class="gallery-thumb">
-      <img src="img/gallery/preview.png" alt="معرض الصور">
-    </a>
 
   </div>
 </section>
+
+
+  <!-- قسم معرض مختصر -->
+<section class="cinema-gallery" aria-label="معرض الصور المتحرك">
+  <div class="cinema-stage" id="cinemaStage"></div>
+
+  <div class="cinema-overlay">
+    <h2>معرض الصور</h2>
+    <p>اكتشف أفضل أعمال مصورينا في مختلف التصنيفات.</p>
+    <a href="gallery-all.html" class="cinema-cta">استعرض المعرض</a>
+  </div>
+</section>
+
+
+
 
 
 
@@ -668,5 +689,217 @@ bindMobileDropdowns();
 <script async defer crossorigin="anonymous" 
   src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v24.0">
 </script>
+
+
+<script>
+(function(){
+  const stage = document.getElementById("cinemaStage");
+  if(!stage) return;
+
+  const IMG_DIR = "img/cinema/";
+  const IMAGES = [
+    "1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg",
+    "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg","17.jpg"
+  ];
+
+  // ========= state =========
+  let angle = 0;
+  let paused = false;
+
+  // drag
+  let isDown = false;
+  let lastX = 0;
+  let dragDelta = 0;
+  let isDragging = false;
+  const DRAG_THRESHOLD = 8;
+  const DRAG_SENSITIVITY = 0.10;
+  const INERTIA_FRICTION = 0.92;
+  let inertia = 0;
+
+  // responsive config (will be set in setConfig)
+  let CARD_W = 320, CARD_H = 480, RADIUS = 900, GAP = 18, SPREAD = 20;
+  let HIDE_LIMIT = 230;
+  let speed = 0.12;
+
+  const mqMobile = window.matchMedia("(max-width: 900px)");
+
+  // ========= build DOM once =========
+  const track = document.createElement("div");
+  track.className = "cinema-track";
+  stage.appendChild(track);
+
+  const cards = IMAGES.map((file, i) => {
+    const card = document.createElement("div");
+    card.className = "cinema-card";
+
+    const wrap = document.createElement("div");
+    wrap.className = "img-wrap";
+
+    const img = document.createElement("img");
+    img.loading = "lazy";
+    img.alt = "Another World Photography gallery preview " + (i+1);
+    img.src = IMG_DIR + file;
+
+    wrap.appendChild(img);
+    card.appendChild(wrap);
+    track.appendChild(card);
+    return card;
+  });
+
+  // ========= responsive config =========
+  function setConfig(){
+    const isMobile = mqMobile.matches;
+
+    if(isMobile){
+      // ✅ mobile: أصغر + radius أقل + حركة أهدى
+      CARD_W = 220;
+      CARD_H = 330;
+      RADIUS = 600;
+      GAP = 30;
+      speed = 0.12;
+
+      // ✅ خلي صور أكتر “مرئية” عشان ميبقاش في فراغ
+      HIDE_LIMIT = 150;
+
+    } else {
+      // ✅ desktop
+      CARD_W = 320;
+      CARD_H = 480;
+      RADIUS = 900;
+      GAP = 25;
+      speed = 0.08;
+      HIDE_LIMIT = 230;
+    }
+
+    // طبق الأحجام على الكروت
+    cards.forEach(card => {
+      card.style.width = CARD_W + "px";
+      card.style.height = CARD_H + "px";
+    });
+
+    // ✅ SPREAD محسوب من (عرض+مسافة) على radius
+    // وبعدين نعمله clamp عشان الموبايل ميبوّظش (لا تداخل ولا فراغ)
+    SPREAD = ((CARD_W + GAP) / RADIUS) * (180 / Math.PI);
+
+    if(isMobile){
+      // على الموبايل: لو SPREAD طلع كبير يعمل فراغ، لو صغير يعمل تداخل
+      SPREAD = Math.max(12, Math.min(SPREAD, 20));
+    } else {
+      SPREAD = Math.max(14, Math.min(SPREAD, 26));
+      SPREAD *= 0.90; // قرب بسيط للديسكتوب بدون تداخل
+    }
+
+    layout(); // اعمل relayout فورًا
+  }
+
+  // ========= layout =========
+  function layout(){
+    cards.forEach((card, i) => {
+      const a = (i * SPREAD) + angle;
+
+      const norm = ((a % 360) + 360) % 360;
+      const distToFront = Math.min(norm, 360 - norm);
+
+      // ✅ إخفاء تدريجي بدل اختفاء جماعي (ده كان سبب “الفراغ”)
+      if(distToFront > HIDE_LIMIT){
+        card.style.opacity = "0";
+        card.style.visibility = "hidden";
+        return;
+      } else {
+        card.style.visibility = "visible";
+        // fade خفيف عند الأطراف (من غير blur)
+        const fade = Math.min(distToFront / HIDE_LIMIT, 1);
+        card.style.opacity = String(1 - fade * 0.85);
+      }
+
+      // z-index عشان الأمامي فوق
+      const z = Math.round(1000 - distToFront * 6);
+      card.style.zIndex = String(z);
+
+      card.style.transform =
+        `translate3d(-50%, -50%, 0) rotateY(${a}deg) translateZ(${RADIUS}px)`;
+    });
+  }
+
+  // ========= animation =========
+  function tick(){
+    if(!paused && !isDown) angle -= speed;
+
+    if(!isDown && Math.abs(inertia) > 0.001){
+      angle += inertia;
+      inertia *= INERTIA_FRICTION;
+    }
+
+    if(angle < -360) angle += 360;
+    if(angle > 360) angle -= 360;
+
+    layout();
+    requestAnimationFrame(tick);
+  }
+
+  // ========= drag =========
+  function pointerDown(clientX){
+    isDown = true;
+    paused = true;
+    lastX = clientX;
+    dragDelta = 0;
+    isDragging = false;
+    inertia = 0;
+  }
+
+  function pointerMove(clientX){
+    if(!isDown) return;
+    const dx = clientX - lastX;
+    lastX = clientX;
+    dragDelta += Math.abs(dx);
+    if(dragDelta > DRAG_THRESHOLD) isDragging = true;
+
+    angle += dx * DRAG_SENSITIVITY;
+    inertia = dx * DRAG_SENSITIVITY * 0.9;
+  }
+
+  function pointerUp(){
+    if(!isDown) return;
+    isDown = false;
+    setTimeout(() => {
+      paused = false;
+      setTimeout(() => { isDragging = false; }, 50);
+    }, 120);
+  }
+
+  stage.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    pointerDown(e.clientX);
+  });
+  window.addEventListener("mousemove", (e) => pointerMove(e.clientX));
+  window.addEventListener("mouseup", pointerUp);
+
+  stage.addEventListener("touchstart", (e) => {
+    if(!e.touches || !e.touches[0]) return;
+    pointerDown(e.touches[0].clientX);
+  }, {passive:true});
+
+  stage.addEventListener("touchmove", (e) => {
+    if(!e.touches || !e.touches[0]) return;
+    pointerMove(e.touches[0].clientX);
+  }, {passive:true});
+
+  stage.addEventListener("touchend", pointerUp);
+
+  stage.addEventListener("dragstart", (e)=> e.preventDefault());
+
+
+  // ✅ تشغيل + تحديث عند تغيير المقاس
+  setConfig();
+  mqMobile.addEventListener?.("change", setConfig);
+  window.addEventListener("resize", setConfig);
+  window.addEventListener("orientationchange", setConfig);
+
+  requestAnimationFrame(tick);
+})();
+</script>
+
+
+
 </body>
 </html>
