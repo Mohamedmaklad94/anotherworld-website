@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Best Admin of the Month</title>
+
+<style>
+  :root{
+    --bg2:#020617;
+    --stroke:rgba(255,255,255,.14);
+    --muted:rgba(229,231,235,.72);
+    --gold:#facc15;
+    --gold2:#fde68a;
+    --red:#dc2626;
+    --shadow: 0 40px 110px rgba(0,0,0,.62);
+    --radius: 22px;
+  }
+
+  *{ box-sizing:border-box; font-family: "Segoe UI", system-ui, -apple-system, sans-serif; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background:
+      radial-gradient(1100px 700px at 12% -12%, rgba(250,204,21,.16), transparent 60%),
+      radial-gradient(900px 520px at 104% -8%, rgba(239,68,68,.14), transparent 55%),
+      radial-gradient(circle at top, #111827, var(--bg2));
+    color:#fff;
+    overflow-x:hidden;
+  }
+
+  /* subtle stars */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(1px 1px at 12% 20%, rgba(255,255,255,.25) 50%, transparent 52%),
+      radial-gradient(2px 2px at 72% 18%, rgba(255,255,255,.20) 50%, transparent 52%),
+      radial-gradient(1px 1px at 44% 62%, rgba(255,255,255,.16) 50%, transparent 52%),
+      radial-gradient(1px 1px at 86% 72%, rgba(255,255,255,.16) 50%, transparent 52%),
+      radial-gradient(2px 2px at 26% 78%, rgba(255,255,255,.14) 50%, transparent 52%);
+    opacity:.55;
+    pointer-events:none;
+  }
+
+  /* LOGO left */
+  .logo{
+    position:fixed;
+    top:18px;
+    left:18px;
+    width:118px;
+    z-index:60;
+    opacity:.95;
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,.55));
+  }
+
+  /* RESTART right */
+  .restart{
+    position:fixed;
+    top:18px;
+    right:18px;
+    z-index:60;
+    height:42px;
+    padding:0 16px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    backdrop-filter: blur(10px);
+    color:#fff;
+    font-weight:900;
+    cursor:pointer;
+    transition:.2s ease;
+  }
+  .restart:hover{ transform: translateY(-1px); background:rgba(255,255,255,.10); }
+  .restart:active{ transform: translateY(0); }
+
+  /* CONFETTI CANVAS */
+  canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:10;
+  }
+
+  /* CENTER */
+  .scene{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:120px 18px 60px;
+  }
+
+  .wrap{
+    width:min(980px, 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:26px;
+    position:relative;
+    z-index:15;
+  }
+
+  /* HEADLINE with extra spacing away from gift */
+  .headline{
+    width:min(860px, 100%);
+    text-align:center;
+    margin-top:8px;
+    margin-bottom:18px; /* <-- keeps it away from the gift */
+  }
+  .headline h2{
+    margin:0;
+    font-size:clamp(24px, 3.4vw, 36px);
+    font-weight:950;
+    letter-spacing:.2px;
+  }
+  .headline p{
+    margin:10px auto 0;
+    max-width:760px;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:clamp(14px, 1.8vw, 16px);
+  }
+
+  /* ===== GIFT BOX (premium) ===== */
+  .gift-scene{ perspective: 1400px; margin-top:6px; }
+
+  .gift-box{
+    position:relative;
+    width:260px;
+    height:220px;
+    transform-style:preserve-3d;
+    cursor:pointer;
+    transition: transform .25s ease, filter .25s ease;
+    filter: drop-shadow(0 40px 110px rgba(0,0,0,.65));
+  }
+  .gift-box:hover{
+    transform: translateY(-6px) rotateX(4deg) rotateY(-6deg);
+  }
+
+  .gift-shadow{
+    position:absolute;
+    width:260px;
+    height:60px;
+    left:50%;
+    bottom:-26px;
+    transform:translateX(-50%);
+    background: radial-gradient(closest-side, rgba(0,0,0,.55), transparent 70%);
+    filter: blur(2px);
+    z-index:-1;
+  }
+
+  .gift-body{
+    position:absolute;
+    inset:auto 0 0 0;
+    height:170px;
+    border-radius: 18px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.22), transparent 45%),
+      linear-gradient(180deg, #fff2a3, var(--gold)),
+      linear-gradient(120deg, rgba(0,0,0,.10), transparent 55%);
+    box-shadow: var(--shadow);
+    border:1px solid rgba(0,0,0,.12);
+    border-top: 1px solid rgba(0,0,0,.10);
+    overflow:hidden;
+  }
+
+  /* glossy highlight on body */
+  .gift-body::before{
+    content:"";
+    position:absolute;
+    inset:-40px -80px auto auto;
+    width:220px;
+    height:220px;
+    transform: rotate(20deg);
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.40), transparent 65%);
+    opacity:.7;
+  }
+
+  .gift-lid{
+    position:absolute;
+    width:100%;
+    height:64px;
+    top:-56px; /* <-- closer to the box */
+    border-radius: 18px 18px 12px 12px;
+    transform-origin:bottom;
+    transition: 1.05s cubic-bezier(.18,.92,.22,1);
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.30), transparent 50%),
+      linear-gradient(180deg, #fff8c7, var(--gold2)),
+      linear-gradient(120deg, rgba(0,0,0,.10), transparent 55%);
+    border:1px solid rgba(0,0,0,.10);
+    box-shadow: 0 22px 55px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+
+  .gift-lid::before{
+    content:"";
+    position:absolute;
+    inset:-60px auto auto -80px;
+    width:240px;
+    height:240px;
+    transform: rotate(-18deg);
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45), transparent 65%);
+    opacity:.65;
+  }
+
+  /* ribbon */
+  .ribbon-v, .ribbon-h{
+    position:absolute;
+    background: linear-gradient(180deg, #ff6b6b, var(--red));
+    box-shadow:
+      inset 0 0 0 1px rgba(0,0,0,.08),
+      0 18px 28px rgba(0,0,0,.18);
+  }
+  .ribbon-v{
+    width:30px;
+    height:100%;
+    left:50%;
+    transform:translateX(-50%);
+    border-radius:12px;
+  }
+  .ribbon-h{
+    height:30px;
+    width:100%;
+    top:42%;
+    border-radius:12px;
+  }
+
+  /* bow */
+  .bow{
+    position:absolute;
+    top:-96px;
+    left:50%;
+    transform:translateX(-50%);
+    width:110px;
+    height:68px;
+    filter: drop-shadow(0 18px 28px rgba(0,0,0,.32));
+  }
+  .bow::before, .bow::after{
+    content:"";
+    position:absolute;
+    width:54px; height:54px;
+    border-radius:18px 50px 18px 50px;
+    background: linear-gradient(180deg, #ff7070, var(--red));
+  }
+  .bow::before{ left:0; transform: rotate(18deg); }
+  .bow::after{ right:0; transform: rotate(-18deg); }
+  .bow span{
+    position:absolute;
+    left:50%; top:28px;
+    transform:translateX(-50%);
+    width:26px; height:22px;
+    border-radius:10px;
+    background: linear-gradient(180deg, #ff7070, var(--red));
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.10);
+  }
+
+  /* open */
+  .gift-box.open .gift-lid{ transform: rotateX(-122deg); }
+
+  .hint{
+    margin-top:14px;
+    color:rgba(229,231,235,.78);
+    font-size:14px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    justify-content:center;
+  }
+  .hint b{ color: var(--gold); }
+
+  /* ===== CINEMATIC COUNTDOWN (full screen, no skip) ===== */
+  .countdown{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:200;
+    background:rgba(2,6,23,.55);
+    backdrop-filter: blur(10px);
+  }
+
+  .countdown::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 50% 45%, rgba(0,0,0,0), rgba(0,0,0,.75) 70%),
+      repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,.06) 0px,
+        rgba(255,255,255,.06) 1px,
+        rgba(0,0,0,0) 4px,
+        rgba(0,0,0,0) 8px
+      );
+    opacity:.45;
+    pointer-events:none;
+  }
+
+  .count-num{
+    position:relative;
+    font-weight:950;
+    font-size:clamp(140px, 24vw, 320px);
+    color: var(--gold);
+    letter-spacing:.02em;
+    text-shadow:
+      0 0 30px rgba(250,204,21,.35),
+      0 0 140px rgba(250,204,21,.18);
+    filter: drop-shadow(0 30px 90px rgba(0,0,0,.55));
+    animation: countIn 900ms cubic-bezier(.12,.9,.22,1) forwards;
+  }
+
+  @keyframes countIn{
+    0%   { opacity:0; transform: scale(.7); filter: blur(14px); }
+    60%  { opacity:1; transform: scale(1.05); filter: blur(0px); }
+    100% { opacity:1; transform: scale(1); }
+  }
+
+  /* ===== RESULT CARD ===== */
+  .result{
+    display:none;
+    width:min(780px, 100%);
+    text-align:center;
+    animation: fadeUp .9s ease forwards;
+  }
+
+  .card{
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+    padding: 26px 18px 22px;
+    backdrop-filter: blur(14px);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .card::before{
+    content:"";
+    position:absolute; inset:-2px;
+    background: radial-gradient(650px 220px at 50% -10%, rgba(250,204,21,.20), transparent 60%);
+    pointer-events:none;
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 14px;
+    border-radius:999px;
+    border:1px solid rgba(250,204,21,.35);
+    background: rgba(250,204,21,.10);
+    color: var(--gold);
+    font-weight:900;
+    letter-spacing:.2px;
+    margin-bottom:16px;
+  }
+
+  .admin-img{
+    width:190px; height:190px;
+    border-radius:50%;
+    border:6px solid rgba(250,204,21,.95);
+    box-shadow: 0 0 60px rgba(250,204,21,.35);
+    margin: 6px 0 14px;
+    object-fit:cover;
+  }
+
+  h1{
+    margin: 6px 0 8px;
+    font-size: clamp(26px, 4vw, 40px);
+  }
+
+  .name{
+    margin:0 0 10px;
+    font-size: clamp(18px, 2.8vw, 22px);
+    color: rgba(229,231,235,.92);
+  }
+
+  .desc{
+    max-width: 620px;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(229,231,235,.82);
+  }
+
+  .actions{
+    margin-top: 18px;
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    padding:12px 18px;
+    border-radius:999px;
+    border:1px solid transparent;
+    background: var(--gold);
+    color: #111827;
+    font-weight: 950;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:.2s ease;
+    min-width: 210px;
+    justify-content:center;
+  }
+  .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+  .btn:active{ transform: translateY(0px); }
+
+  .btn.secondary{
+    background: rgba(255,255,255,.08);
+    border:1px solid var(--stroke);
+    color:#fff;
+    min-width: 210px;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  @media (max-width:520px){
+    .logo{ width:98px; }
+    .btn, .btn.secondary{ min-width: 100%; }
+  }
+</style>
+</head>
+
+<body>
+  <img src="img/logo.png" class="logo" alt="Logo" />
+  <button class="restart" id="restartBtn" type="button">⟲ Restart</button>
+
+  <canvas id="confetti"></canvas>
+
+  <div class="scene">
+    <div class="wrap">
+
+      <div class="headline" id="headline">
+        <h2>Monthly Appreciation</h2>
+        <p>
+          Click the gift to reveal this month’s best admin — a small celebration for big effort.
+        </p>
+      </div>
+
+      <div class="gift-scene" id="giftScene">
+        <div class="gift-box" id="gift" aria-label="Open gift">
+          <div class="gift-shadow"></div>
+
+          <div class="gift-lid"></div>
+          <div class="bow"><span></span></div>
+
+          <div class="gift-body">
+            <div class="ribbon-v"></div>
+            <div class="ribbon-h"></div>
+          </div>
+        </div>
+
+        <div class="hint"><b>Tip:</b> click to open ✨</div>
+      </div>
+
+      <div class="result" id="result">
+        <div class="card">
+          <div class="badge">🏆 Best Admin of the Month</div>
+
+          <img src="img/team/zahraa-mohamed.jpg" class="admin-img" alt="Admin photo" />
+
+          <h1>Congratulations!</h1>
+          <div class="name" id="adminName">Zahraa Mohamed</div>
+
+          <p class="desc" id="adminText">
+            Thanks for bringing not only results but also positive energy to the group every day.
+            Your dedication truly makes a difference.
+          </p>
+
+          <div class="actions">
+            <a class="btn" id="downloadBtn" href="docs/certificate.pdf" download>
+              ⬇ Download Certificate
+            </a>
+
+            <button class="btn secondary" id="shareBtn" type="button">
+              🔗 Share
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CINEMATIC COUNTDOWN (full screen / no skip) -->
+  <div class="countdown" id="countdown" aria-hidden="true">
+    <div class="count-num" id="num">10</div>
+  </div>
+
+<script>
+  const gift = document.getElementById("gift");
+  const giftScene = document.getElementById("giftScene");
+  const headline = document.getElementById("headline");
+
+  const countdown = document.getElementById("countdown");
+  const numEl = document.getElementById("num");
+
+  const result = document.getElementById("result");
+  const restartBtn = document.getElementById("restartBtn");
+  const shareBtn = document.getElementById("shareBtn");
+
+  let timer = null;
+  let opened = false;
+
+  gift.addEventListener("click", () => {
+    if (opened) return;
+    opened = true;
+
+    gift.classList.add("open");
+    setTimeout(startCountdown, 850);
+  });
+
+  function startCountdown(){
+    countdown.style.display = "flex";
+    countdown.setAttribute("aria-hidden","false");
+
+    let i = 10;
+    tick(i);
+
+    timer = setInterval(() => {
+      i--;
+      tick(i);
+
+      if (i === 0){
+        clearInterval(timer);
+        timer = null;
+        countdown.style.display = "none";
+        countdown.setAttribute("aria-hidden","true");
+        reveal();
+      }
+    }, 1000);
+  }
+
+  function tick(n){
+    numEl.textContent = n;
+
+    // re-trigger animation
+    numEl.style.animation = "none";
+    void numEl.offsetWidth;
+    numEl.style.animation = "countIn 900ms cubic-bezier(.12,.9,.22,1) forwards";
+  }
+
+  function reveal(){
+    giftScene.style.display = "none";
+    headline.style.display = "none";
+    result.style.display = "block";
+    startConfetti();
+  }
+
+  // Restart
+  restartBtn.addEventListener("click", () => {
+    if (timer) { clearInterval(timer); timer = null; }
+
+    countdown.style.display = "none";
+    countdown.setAttribute("aria-hidden","true");
+
+    opened = false;
+    gift.classList.remove("open");
+
+    giftScene.style.display = "block";
+    headline.style.display = "block";
+    result.style.display = "none";
+
+    // reset confetti
+    particles = [];
+    ctx.clearRect(0,0,c.width,c.height);
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+  });
+
+  // Share: Web Share API + fallback copy link
+  shareBtn.addEventListener("click", async () => {
+    const title = "Best Admin of the Month";
+    const text = "🏆 Best Admin of the Month — Congratulations!";
+    const url = window.location.href;
+
+    try{
+      if (navigator.share){
+        await navigator.share({ title, text, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        shareBtn.textContent = "✅ Link Copied";
+        setTimeout(() => shareBtn.textContent = "🔗 Share", 1400);
+      }
+    } catch (e){
+      shareBtn.textContent = "⚠️ Couldn’t Share";
+      setTimeout(() => shareBtn.textContent = "🔗 Share", 1400);
+    }
+  });
+
+  /* CONFETTI */
+  const c = document.getElementById("confetti");
+  const ctx = c.getContext("2d");
+
+  function resize(){
+    c.width = innerWidth;
+    c.height = innerHeight;
+  }
+  addEventListener("resize", resize);
+  resize();
+
+  let particles = [];
+  let raf = null;
+
+  function startConfetti(){
+    if (raf) cancelAnimationFrame(raf);
+    particles = [];
+
+    for (let i=0; i<220; i++){
+      particles.push({
+        x: Math.random()*c.width,
+        y: -Math.random()*c.height,
+        r: Math.random()*6 + 3,
+        s: Math.random()*3 + 2,
+        a: Math.random()*Math.PI*2,
+        w: Math.random()*1.6 + .6,
+        col: `hsl(${Math.random()*360}, 90%, 60%)`
+      });
+    }
+    animate();
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,c.width,c.height);
+
+    particles.forEach(p => {
+      p.y += p.s;
+      p.x += Math.sin(p.a) * p.w;
+      p.a += 0.02;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.col;
+      ctx.fill();
+
+      if (p.y > c.height + 10){
+        p.y = -10;
+        p.x = Math.random()*c.width;
+      }
+    });
+
+    raf = requestAnimationFrame(animate);
+  }
+</script>
+
+</body>
+</html>
